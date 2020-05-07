@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>Hello World</title>
-    <link href="/2020/05/07/hello-world/"/>
-    <url>/2020/05/07/hello-world/</url>
+    <title>关于反射的知识点的整理</title>
+    <link href="/2020/05/07/%E5%85%B3%E4%BA%8E%E5%8F%8D%E5%B0%84%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%95%B4%E7%90%86/"/>
+    <url>/2020/05/07/%E5%85%B3%E4%BA%8E%E5%8F%8D%E5%B0%84%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E6%95%B4%E7%90%86/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<div align='center' ><font size='6'>关于反射的知识点的整理</font></div><hr><h2 id="关于java-lang-Class的理解"><a href="#关于java-lang-Class的理解" class="headerlink" title="关于java.lang.Class的理解"></a>关于java.lang.Class的理解</h2><font size='4'><h3 id="1、类的加载过程"><a href="#1、类的加载过程" class="headerlink" title="1、类的加载过程"></a>1、类的加载过程</h3><p>&emsp;&emsp;程序在运行过程中通过javac.exe命令之后，会生成一个或者多个字节码文件(以.class结尾)，接着当我们使用java.exe命令对某个字节码文件进行解释编译运行，此时就相当于将某个字节码文件加载到了内存中，此过程称之为类的加载，而加载到内存中的类，我们称之为运行时类，此时的运行时类就作为一个Class的实例存在。换句话说，Class的实例就对应着一个运行时类。</p><h3 id="2、哪些对象可以有Class的对象"><a href="#2、哪些对象可以有Class的对象" class="headerlink" title="2、哪些对象可以有Class的对象"></a>2、哪些对象可以有Class的对象</h3><p>(1)、 interface 接口</p><p>(2)、数组[]</p><p>(3)、enum 枚举</p><p>(4)、primitive type 基本数据类型</p><p>(5)、annotation 注解</p><p>(6)、class：外部类、成员(成员内部类、静态内部类)、局部内部类、匿名内部类</p><p>(7)、void</p><h3 id="3、关于获取Class类的实例的方法"><a href="#3、关于获取Class类的实例的方法" class="headerlink" title="3、关于获取Class类的实例的方法"></a>3、关于获取Class类的实例的方法</h3><p>关于其中使用到的<a href="附录：">^Person</a>类见附录</p><p>(1)、方式一：通过运行时属性来获取</p><pre><code>Class&lt;Person&gt; clazz1 = Person.class;    System.out.println(clazz1);</code></pre><p>(2)、方式二：通过运行时类的对象来获取</p><pre><code>Person p1 = new Person();    Class clazz2 = p1.getClass();       //此方法在Object中声明    System.out.println(clazz2);</code></pre><p>(3)、方式三：通过静态方法forName(String classPath)来获取</p><pre><code>Class clazz3 = Class.forName(&quot;Reflaction.Person&quot;);    System.out.println(clazz3);</code></pre><p>(4)、方式四：通过类的加载ClassLoader来获取</p><pre><code>ClassLoader classLoader = ReflactionTest.class.getClassLoader();    Class&lt;Person&gt; clazz4 = (Class&lt;Person&gt;) classLoader.loadClass(&quot;Reflaction.Person&quot;);    System.out.println(clazz4);</code></pre><h3 id="4、一点点关于数组的小思考"><a href="#4、一点点关于数组的小思考" class="headerlink" title="4、一点点关于数组的小思考"></a>4、一点点关于数组的小思考</h3><pre><code>int[] a = new int[10];int[] b = new int[100];Class a10 = a.getClass();Class b100 = b.getClass();System.out.println(a10 == b100);</code></pre><p>结果为：<strong>true</strong><br>原因是：只要数组的元素类型和维度(一维数组、二维数组这样的)一样，它们为同一个Class<br></font></p><hr><h3 id="以下为Person类的附录："><a href="#以下为Person类的附录：" class="headerlink" title="以下为Person类的附录："></a>以下为Person类的附录：</h3><pre><code>package Reflaction;/** * @author BunnyAndOak0 * */public class Person {        private String name;        public int age;        public String getName() {            return name;        }        public void setName(String name) {            this.name = name;        }        public int getAge() {            return age;        }        public void setAge(int age) {            this.age = age;        }        public Person() {            super();            // TODO Auto-generated constructor stub        }        private Person(String name) {            super();            this.name = name;        }        public Person(String name, int age) {            super();            this.name = name;            this.age = age;        }        @Override        public String toString() {            return &quot;Person [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;        }        public void show() {            System.out.println(&quot;我是一个人！&quot;);        }        private String showNation(String nation) {            System.out.println(&quot;我的国籍是：&quot; + nation);            return nation;        }}</code></pre>]]></content>
     
     
     
@@ -18,10 +18,23 @@
   
   <entry>
     <title>我的第一篇博客文章</title>
-    <link href="/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"/>
-    <url>/2020/05/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <link href="/2020/05/07/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"/>
+    <url>/2020/05/07/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
     
-    <content type="html"><![CDATA[<p>##第一章<br>内容</p><hr><p>##第二章<br>内容</p><hr><p>这只是个测试文档！</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="想写一点关于博客语法的东西"><a href="#想写一点关于博客语法的东西" class="headerlink" title="想写一点关于博客语法的东西"></a>想写一点关于博客语法的东西</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2020/05/07/hello-world/"/>
+    <url>/2020/05/07/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     
     
