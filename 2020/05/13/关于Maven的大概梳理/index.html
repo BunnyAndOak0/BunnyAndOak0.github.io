@@ -201,7 +201,7 @@
 
 
 <h3 id="4、依赖"><a href="#4、依赖" class="headerlink" title="4、依赖"></a>4、依赖</h3><p><font size='4'>(1)maven解析依赖信息的时候，会到本地仓库中查找被以来的jar包，对于我们自己的maven工程，使用mvn install命令安装后就可以进入仓库了。<br>(2)依赖的范围：<br><font size='5'><code>&lt;scope&gt;test&lt;/scope&gt;</code>默认值是compile</font>   </p>
-<p>&emsp;&emsp;[1]compile<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;对主程序<strong>有效</strong>，测试程序<strong>有效</strong>，<strong>参与</strong>打包，<strong>参与</strong>部署<br>&emsp;&emsp;[2]test<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;对主程序<strong>无效</strong>,测试程序<strong>有效</strong>，<strong>不参与</strong>打包，<strong>不参与</strong>部署<br>&emsp;&emsp;[3]provided<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;对主程序<strong>有效</strong>，测试程序<strong>有效</strong>，<strong>不参与</strong>打包，<strong>不参与</strong>部署   </p>
+<p>&emsp;&emsp;[1]compile<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;对主程序<strong>有效</strong>，测试程序<strong>有效</strong>，<strong>参与</strong>打包，<strong>参与</strong>部署<br>&emsp;&emsp;[2]test<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;对主程序<strong>无效</strong>，测试程序<strong>有效</strong>，<strong>不参与</strong>打包，<strong>不参与</strong>部署<br>&emsp;&emsp;[3]provided<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;对主程序<strong>有效</strong>，测试程序<strong>有效</strong>，<strong>不参与</strong>打包，<strong>不参与</strong>部署   </p>
 <p>(3)依赖的传递性<br>&emsp;&emsp;[1]可以传递的依赖不必在每个工程中都重复声明<br>&emsp;&emsp;[2]<strong>非</strong>compile范围的依赖是传递不过来的   </p>
 <p>(4)依赖的排除<br>&emsp;&emsp;[1]需要设置依赖排除的场合<br>&emsp;&emsp;[2]依赖排除的方式<br><font size='5'></p>
 <pre><code>&lt;exclusions&gt;
@@ -226,7 +226,7 @@
         &lt;!-- 引用版本号实现统一管理 --&gt;
         &lt;version&gt;${edu.kmust.spring.version}&lt;/version&gt;
         &lt;scope&gt;compile&lt;/scope&gt;
-    &lt;/dependency&gt;   </code></pre></font>
+&lt;/dependency&gt;   </code></pre></font>
 
 <p>&emsp;&emsp;[3]properties标签并不只是可以声明版本号，也可以进行其他的设置，凡是需要统一声明后再使用的都可以引用<br><font size='5'></p>
 <pre><code>&lt;properties&gt;
@@ -285,14 +285,16 @@
 &lt;/dependencyManagement&gt;</code></pre></font>
 
 <p>[5]在子工程中删除junit依赖的版本号部分<br>也就是：<code>&lt;version&gt;  &lt;/version&gt;</code><br>Tips：配置继承后，执行命令时要先安装父工程</p>
-<h3 id="8、聚合"><a href="#8、聚合" class="headerlink" title="8、聚合"></a>8、聚合</h3><p>作用：一键安装各个模块工具<br>在一个总的聚合工具中配置各个参与聚合的模块  </p>
+<h3 id="8、聚合"><a href="#8、聚合" class="headerlink" title="8、聚合"></a>8、聚合</h3><p>作用：一键安装各个模块工具<br>在一个总的聚合工具中配置各个参与聚合的模块<br><font size='5'></p>
 <pre><code>&lt;!-- 配置聚合 --&gt;
 &lt;modules&gt;
     &lt;!-- 指定各个子工程的相对路径 --&gt;
     &lt;module&gt;../HelloFriend&lt;/module&gt;
     &lt;module&gt;../MakeFriends&lt;/module&gt;
     &lt;module&gt;../Hello&lt;/module&gt;
-&lt;/modules&gt;   </code></pre><p>使用方法：在聚合工程的pom.xml上右键 —&gt; run as —&gt; maven install</p>
+&lt;/modules&gt;</code></pre></font>   
+使用方法：在聚合工程的pom.xml上右键 ---> run as ---> maven install
+
 </font>   
 
 <hr>
