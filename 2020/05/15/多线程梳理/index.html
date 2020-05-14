@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    1.8k 字
+                    4k 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    20
+                    53
                      分钟
                   </span>
                 
@@ -296,7 +296,545 @@ public class ThreadPool {
 <p>线程分为：守护线程、用户线程<br>守护线程依赖于用户线程例如：垃圾回收，通过thread.setDaemon(true);可以将用户线程变为守护线程，如果jvm中都为守护线程，则当前jvm将会退出   </p>
 </font>   
 
-<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/img/loading.gif" alt="生命周期">   </p>
+<p><font size='4'>状态包括：NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING ,TEARMINATED<br>(sleep()不会释放锁，wait()会释放锁)<font>   </p>
+<h2 id="解决线程"><a href="#解决线程" class="headerlink" title="解决线程"></a>解决线程</h2><p><font size='4'>解决线程安全问题会用到同步机制，有三种方式，但是效率会下降，因为使用同步机制时就相当于是一个单线程，只有一个线程参与，而其他的线程等待   </p>
+<h3 id="方式一：使用同步代码块"><a href="#方式一：使用同步代码块" class="headerlink" title="方式一：使用同步代码块"></a>方式一：使用同步代码块</h3><font size='5'>
+
+<pre><code>synchronized(同步监视器){
+    //需要被同步的代码
+} </code></pre></font>   
+说明：   
+1.操作共享数据的代码，即为需要被同步的代码。  -->不能包含代码多了，也不能包含代码少了。   
+2.共享数据：多个线程共同操作的变量。比如：共享数据。   
+3.同步监视器，俗称：锁。任何一个类的对象，都可以充当锁。   
+要求：多个线程必须要共用同一把锁。    
+补充：在**实现Runnable接口**创建多线程的方式中，我们可以考虑使用this充当同步监视器。   
+
+<p>对于继承了Thread类来实现线程的方法来说，<strong>同步代码块</strong>中的同步监视器，慎用this来充当同步监视器，而考虑使用<strong>当前类</strong>来充当同步监视器<br><font size='5'>   </p>
+<pre><code>class Window2 extends Thread{
+    private static int ticket = 100;    
+    private static Object obj = new Object();
+
+    @Override
+    public void run() {
+
+        while(true){
+            //正确的
+        // synchronized (obj){
+            synchronized (Window2.class){//Class clazz = Window2.class,Window2.class只会加载一次
+                //错误的方式：this代表着t1,t2,t3三个对象
+        // synchronized (this){
+
+                if(ticket &gt; 0){
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println(getName() + &quot;：卖票，票号为：&quot; + ticket);
+                    ticket--;
+                }else{
+                    break;
+                }
+            }
+        }
+    }
+}
+
+public class WindowTest2 {
+    public static void main(String[] args) {
+        Window2 t1 = new Window2();
+        Window2 t2 = new Window2();
+        Window2 t3 = new Window2();
+
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+    }
+}   </code></pre></font>   
+
+<p>对于<strong>实现Runnable接口</strong>实现多线程来说，<strong>同步代码块</strong>中的同步监视器可以为<strong>this</strong><br><font size='5'></p>
+<pre><code>class Window1 implements Runnable{
+
+private int ticket = 100;
+//Object obj = new Object();
+//Dog dog = new Dog();
+    @Override
+    public void run() {
+//        Object obj = new Object();
+        while(true){
+            synchronized (this){//此时的this:唯一的Window1的对象   //方式二：synchronized (dog) {
+
+                if (ticket &gt; 0) {
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println(Thread.currentThread().getName() + &quot;:卖票，票号为：&quot; + ticket);
+
+                    ticket--;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+public class WindowTest1 {
+    public static void main(String[] args) {
+        Window1 w = new Window1();
+
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+}
+
+class Dog{
+
+}       </code></pre></font>
+
+<h3 id="方式二：使用同步方法"><a href="#方式二：使用同步方法" class="headerlink" title="方式二：使用同步方法"></a>方式二：使用同步方法</h3><p>如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的。<br>说明：<br>1、同步方法仍然涉及同步监视器，只是不需要我们现实的声明<br>2、<strong>非静态</strong>的同步方法，同步监视器是：<strong>this</strong><br>&emsp;<strong>静态</strong>的同步方法，同步监视器是：<strong>当前类本身</strong>   </p>
+<p>对于使用<strong>继承Thread类</strong>的方法来实现线程的方法来说，而使用<strong>同步方法</strong>时，需要用<strong>static synchronized</strong>来修饰<br>例如：<br><font size='5'>  </p>
+<pre><code>class Window4 extends Thread {
+    private static int ticket = 100;
+
+    @Override
+    public void run() {
+
+        while (true) {
+
+            show();
+        }
+
+    }
+    private static synchronized void show(){//同步监视器：Window4.class
+        //private synchronized void show(){ //同步监视器：t1,t2,t3。此种解决方式是错误的
+        if (ticket &gt; 0) {
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(Thread.currentThread().getName() + &quot;：卖票，票号为：&quot; + ticket);
+            ticket--;
+        }
+    }
+}
+
+public class WindowTest4 {
+    public static void main(String[] args) {
+        Window4 t1 = new Window4();
+        Window4 t2 = new Window4();
+        Window4 t3 = new Window4();
+
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+    }
+}</code></pre></font>  
+
+
+<p>对于<strong>实现Runnable接口</strong>实现多线程来说，同步监视器可以为<strong>this</strong>，使用<strong>同步方法</strong>时，要用<strong>sychronized</strong>来修饰方法<br>例如：<br><font size='5'></p>
+<pre><code>class Window3 implements Runnable {
+
+    private int ticket = 100;
+
+    @Override
+    public void run() {
+        while (true) {
+
+            show();
+        }
+    }
+
+    private synchronized void show(){//同步监视器：this
+        //synchronized (this){
+
+            if (ticket &gt; 0) {
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                System.out.println(Thread.currentThread().getName() + &quot;:卖票，票号为：&quot; + ticket);
+
+                ticket--;
+            }
+        //}
+    }
+}
+
+public class WindowTest3 {
+    public static void main(String[] args) {
+        Window3 w = new Window3();
+
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+}</code></pre></font>   
+
+<h3 id="方式三：使用Lock锁-JDK5-0新增"><a href="#方式三：使用Lock锁-JDK5-0新增" class="headerlink" title="方式三：使用Lock锁(JDK5.0新增)"></a>方式三：使用Lock锁(JDK5.0新增)</h3><p>没有使用同步监视器，因为其自身就是一个同步监视器<br>1、实例化ReentrantLock<br>2、调用锁定方法lock()<br>3、调用解锁方法unlock()   </p>
+<p>例如：<br><font size='5'>   </p>
+<pre><code>class Window implements Runnable{
+
+    private int ticket = 100;
+    //1.实例化ReentrantLock
+    private ReentrantLock lock = new ReentrantLock();
+
+    @Override
+    public void run() {
+        while(true){
+            try{
+                //2.调用锁定方法lock()
+                lock.lock();
+
+                if(ticket &gt; 0){
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println(Thread.currentThread().getName() + &quot;：售票，票号为：&quot; + ticket);
+                    ticket--;
+                }else{
+                    break;
+                }
+            }finally {
+                //3.调用解锁方法：unlock()
+                lock.unlock();
+            }
+        }
+    }
+}
+
+public class LockTest {
+    public static void main(String[] args) {
+        Window w = new Window();
+
+        Thread t1 = new Thread(w);
+        Thread t2 = new Thread(w);
+        Thread t3 = new Thread(w);
+
+        t1.setName(&quot;窗口1&quot;);
+        t2.setName(&quot;窗口2&quot;);
+        t3.setName(&quot;窗口3&quot;);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}    </code></pre></font>   
+
+<p>Tips:<br>synchronized和lock的异同：<br>相同：二者都可以解决线程安全问题<br>不同：synchronized机制在执行完响应的代码之后会<strong>自动释放同步监视器(锁)</strong>，而Lock需要调用方法来<strong>手动启动lock()</strong>,同时结束之后也需要<strong>手动实现unlock()</strong>     </p>
+<p>同步机制的利弊：<br>好处：解决了线程的安全问题。<br>弊端：操作同步代码时，只能一个线程参与，其他线程等待。相当于是一个单线程的过程，效率低。</p>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>死锁：不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的资源，就形成了线程的思索   </p>
+<p>说明：死锁出现后，不会出现异常，不会出现提示，只是所有的线程都处于堵塞状态，无法继续<br><font size='5'></p>
+<pre><code>public class ThreadTest {
+
+    public static void main(String[] args) {
+
+        StringBuffer s1 = new StringBuffer();
+        StringBuffer s2 = new StringBuffer();
+
+        new Thread(){
+            @Override
+            public void run() {
+
+                synchronized (s1){
+
+                    s1.append(&quot;a&quot;);
+                    s2.append(&quot;1&quot;);
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    synchronized (s2){
+                        s1.append(&quot;b&quot;);
+                        s2.append(&quot;2&quot;);
+
+                        System.out.println(s1);
+                        System.out.println(s2);
+                    }
+                }
+            }
+        }.start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (s2){
+
+                    s1.append(&quot;c&quot;);
+                    s2.append(&quot;3&quot;);
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    synchronized (s1){
+                        s1.append(&quot;d&quot;);
+                        s2.append(&quot;4&quot;);
+
+                        System.out.println(s1);
+                        System.out.println(s2);
+                    }
+                }
+            }
+        }).start();
+    }
+}</code></pre></font>   
+
+<h2 id="使用同步机制将单例模式的懒汉式改为线程安全的"><a href="#使用同步机制将单例模式的懒汉式改为线程安全的" class="headerlink" title="使用同步机制将单例模式的懒汉式改为线程安全的"></a>使用同步机制将单例模式的懒汉式改为线程安全的</h2><font size='5'>
+
+<pre><code>public class BankTest {
+
+}
+
+class Bank{
+
+    private Bank(){}
+
+    private static Bank instance = null;
+
+    public static Bank getInstance(){
+        //方式一：效率稍差
+//        synchronized (Bank.class) {
+//            if(instance == null){
+//
+//                instance = new Bank();
+//            }
+//            return instance;
+//        }
+        //方式二：效率更高
+        if(instance == null){
+
+            synchronized (Bank.class) {
+                if(instance == null){
+
+                    instance = new Bank();
+                }
+
+            }
+        }
+        return instance;
+    }
+
+}</code></pre></font>
+
+<h2 id="关于线程通信"><a href="#关于线程通信" class="headerlink" title="关于线程通信"></a>关于线程通信</h2><p>三个方法：<br>wait()：使当前线程进入阻塞，并释放同步监视器<br>notify()：唤醒被wait()的一个线程，如果多个线程被wait就唤醒优先级高的那个<br>notifyAll()：唤醒所有的被wait()的方法   </p>
+<p>说明：<br>1、wait()，notify()，notifyAll()三个方法必须使用在同步代码块或同步方法中<br>2、wait()，notify()，notifyAll()三个方法的调用者必须是同步代码块或同步方法中的同步监视器，否则，会出现IllegalMonitorStateException异常<br>3、wait()，notify()，notifyAll()三个方法是定义在java.lang.Object类中。   </p>
+<p>sleep() 和 wait()的异同<br>相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态。<br>不同点：<br>(1)两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()<br>(2)调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中<br>(3)关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。   </p>
+<p>例如：<br><font size='5'></p>
+<pre><code>class Number implements Runnable{
+    private int number = 1;
+    private Object obj = new Object();
+    @Override
+    public void run() {
+
+        while(true){
+
+            synchronized (obj) {
+
+                obj.notify();
+
+                if(number &lt;= 100){
+
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println(Thread.currentThread().getName() + &quot;:&quot; + number);
+                    number++;
+
+                    try {
+                        //使得调用如下wait()方法的线程进入阻塞状态
+                        obj.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    break;
+                }
+            }
+        }
+    }
+}
+
+public class CommunicationTest {
+    public static void main(String[] args) {
+        Number number = new Number();
+        Thread t1 = new Thread(number);
+        Thread t2 = new Thread(number);
+
+        t1.setName(&quot;线程1&quot;);
+        t2.setName(&quot;线程2&quot;);
+
+        t1.start();
+        t2.start();
+    }
+}</code></pre></gont>   
+
+<h2 id="经典的生产者消费者问题"><a href="#经典的生产者消费者问题" class="headerlink" title="经典的生产者消费者问题"></a>经典的生产者消费者问题</h2><font size='5'>
+
+<pre><code>class Clerk{
+
+    private int productCount = 0;
+    //生产产品
+    public synchronized void produceProduct() {
+        if(productCount &lt; 20){
+            productCount++;
+            System.out.println(Thread.currentThread().getName() + &quot;:开始生产第&quot; + productCount + &quot;个产品&quot;);
+
+            notify();
+        }else{
+            //等待
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    //消费产品
+    public synchronized void consumeProduct() {
+        if(productCount &gt; 0){
+            System.out.println(Thread.currentThread().getName() + &quot;:开始消费第&quot; + productCount + &quot;个产品&quot;);
+            productCount--;
+
+            notify();
+        }else{
+            //等待
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+class Producer extends Thread{//生产者
+
+    private Clerk clerk;
+
+    public Producer(Clerk clerk) {
+        this.clerk = clerk;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(getName() + &quot;:开始生产产品.....&quot;);
+
+        while(true){
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            clerk.produceProduct();
+        }
+    }
+}
+
+class Consumer extends Thread{//消费者
+    private Clerk clerk;
+
+    public Consumer(Clerk clerk) {
+        this.clerk = clerk;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(getName() + &quot;:开始消费产品.....&quot;);
+
+        while(true){
+
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            clerk.consumeProduct();
+        }
+    }
+}
+
+public class ProductTest {
+
+    public static void main(String[] args) {
+        Clerk clerk = new Clerk();
+
+        Producer p1 = new Producer(clerk);
+        p1.setName(&quot;生产者1&quot;);
+
+        Consumer c1 = new Consumer(clerk);
+        c1.setName(&quot;消费者1&quot;);
+        Consumer c2 = new Consumer(clerk);
+        c2.setName(&quot;消费者2&quot;);
+
+        p1.start();
+        c1.start();
+        c2.start();
+    }
+}</code></pre></font>
+</font>   
+
+<p><a href="https://www.bilibili.com/video/BV1Qb411g7cz?p=413" target="_blank" rel="noopener">资料来源</a></p>
+
             </article>
             <hr>
             <div>
