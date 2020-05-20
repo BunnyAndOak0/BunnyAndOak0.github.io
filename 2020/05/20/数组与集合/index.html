@@ -350,7 +350,7 @@ Object[] arr = coll.toArray();
 <p>三个类都是实现了List接口，存储数据的特点：存储的都是有序、可重复的数据。</p>
 <p>不同，见源码分析</p>
 <h3 id="List接口中常用的方法"><a href="#List接口中常用的方法" class="headerlink" title="List接口中常用的方法"></a>List接口中常用的方法</h3><p>void add(int index, Object ele):在index位置插入ele元素<br>boolean addAll(int index, Collection eles):从index位置开始将eles中的所有元素添加进来<br>Object get(int index):获取指定index位置的元素<br>int indexOf(Object obj):返回obj在集合中首次出现的位置<br>int lastIndexOf(Object obj):返回obj在当前集合中末次出现的位置<br>Object remove(int index):移除指定index位置的元素，并返回此元素<br>Object set(int index, Object ele):设置指定index位置的元素为ele<br>List subList(int fromIndex, int toIndex):返回从fromIndex到toIndex位置的子集合</p>
-<h2 id="Collection的子接口-set接口"><a href="#Collection的子接口-set接口" class="headerlink" title="Collection的子接口-set接口"></a>Collection的子接口-set接口</h2><p>无序性：</p>
+<h2 id="Collection子接口-set接口"><a href="#Collection子接口-set接口" class="headerlink" title="Collection子接口-set接口"></a>Collection子接口-set接口</h2><p>无序性：</p>
 <p>不等于随机性，存储的数据在底层数组中，并非按照数组索引的顺序添加，而是根据数据的哈希值决定的，</p>
 <p>不可重复性：保证的元素的添加按照equals()判断，不能返回true，ye’jiu’shi’shuo相通的元素只添加一个</p>
 <h3 id="Set接口框架"><a href="#Set接口框架" class="headerlink" title="Set接口框架"></a>Set接口框架</h3><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/set%E6%8E%A5%E5%8F%A3%E6%A1%86%E6%9E%B6.PNG" srcset="/img/loading.gif" alt="Set接口框架"></p>
