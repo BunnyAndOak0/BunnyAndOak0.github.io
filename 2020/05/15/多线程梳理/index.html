@@ -185,25 +185,20 @@
               <div align='center'><font size='6'>多线程梳理</font></div>   
 
 <hr>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><font size='4'>程序：<br>&emsp;&emsp;是为了完成特定任务，用某种语言编写的一组指令的集合，也就是一段静态代码。<br>进程：<br>&emsp;&emsp;是程序的一次执行过程，或是<strong>正在执行的一个程序</strong>。<br>线程：<br>&emsp;&emsp;进程可以细化为线程，也就是程序内部的一条执行的路径（可以作为调度和执行的单位，每个线程拥有独立的运行栈和计数器配就是pc）。<br>也就是说：进程可以细化为多个线程，而每个线程拥有自己独立的栈，程序计数器，多个线程共享同一个进程中的方法区和堆。<br>内存结构如图：<br><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" alt="内存结构">   </p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>程序：<br>&emsp;&emsp;是为了完成特定任务，用某种语言编写的一组指令的集合，也就是一段静态代码。<br>进程：<br>&emsp;&emsp;是程序的一次执行过程，或是<strong>正在执行的一个程序</strong>。<br>线程：<br>&emsp;&emsp;进程可以细化为线程，也就是程序内部的一条执行的路径（可以作为调度和执行的单位，每个线程拥有独立的运行栈和计数器配就是pc）。<br>也就是说：进程可以细化为多个线程，而每个线程拥有自己独立的栈，程序计数器，多个线程共享同一个进程中的方法区和堆。<br>内存结构如图：<br><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" alt="内存结构">   </p>
 <p>多线程的优点：提高程序的响应，提高CPU的利用率，改善程序结构<br>善用多线程的环境：需要执行两个或者多个任务，是要实现一些要等待的任务，需要在后台运行等。</p>
 <h2 id="单核与多核-并发与并行"><a href="#单核与多核-并发与并行" class="headerlink" title="单核与多核 并发与并行"></a>单核与多核 并发与并行</h2><p>单核CPU：其实是一种假的多线程，因为在一个时间单元内，只能执行一个线程任务。<br>多核CPU：可以更好的发挥多线程的效率。<br>Tips：<br>&emsp;&emsp;一个java程序java.exe，至少有三个线程，main()主程序，gc()垃圾回收线程，异常处理线程。   </p>
 <p>并行：多个CPU同时执行多个任务。<br>并发：一个CPU（采用时间片）同时执行多个任务。</font>   </p>
-<h2 id="创建多线程的方式-总共四种"><a href="#创建多线程的方式-总共四种" class="headerlink" title="创建多线程的方式(总共四种)"></a>创建多线程的方式(总共四种)</h2><h3 id="方式一：继承于Thread类"><a href="#方式一：继承于Thread类" class="headerlink" title="方式一：继承于Thread类"></a>方式一：继承于Thread类</h3><font size='4'>   
-
-<p>1、创建一个继承于Thread类的子类<br>2、重写Thread类的run()方法 —&gt;  将要执行的操作生命在run()中即可<br>3、创建Thread类的子类的对象<br>4、通过此对象调用<strong>start()</strong>，调用的是start()，不是run()   </p>
+<h2 id="创建多线程的方式-总共四种"><a href="#创建多线程的方式-总共四种" class="headerlink" title="创建多线程的方式(总共四种)"></a>创建多线程的方式(总共四种)</h2><h3 id="方式一：继承于Thread类"><a href="#方式一：继承于Thread类" class="headerlink" title="方式一：继承于Thread类"></a>方式一：继承于Thread类</h3><p>1、创建一个继承于Thread类的子类<br>2、重写Thread类的run()方法 —&gt;  将要执行的操作生命在run()中即可<br>3、创建Thread类的子类的对象<br>4、通过此对象调用<strong>start()</strong>，调用的是start()，不是run()   </p>
 <p>调用start()的时候，会启动当前线程，并调用当前线程的run()<br>Tips：<br>&emsp;&emsp;不可以直接调用run()方法，这样的话只会调用方法而不会启动线程<br>&emsp;&emsp;不可以在已启动的线程上再次调用start()，否则会报会报IllegalThreadStateException的异常</font>   </p>
-<h3 id="方式二：实现Runnable接口"><a href="#方式二：实现Runnable接口" class="headerlink" title="方式二：实现Runnable接口"></a>方式二：实现Runnable接口</h3><font size='4'>  
-
-<p>1、创建一个实现了Runnable接口的类<br>2、实现类去实现Runnable中的抽象方法run()<br>3、创建实现类的对象<br>4、将此对象作为参数传递到Thread类的构造器中，创建Thead类的对象<br>5、通过Thread类的对象调用start()   </p>
+<h3 id="方式二：实现Runnable接口"><a href="#方式二：实现Runnable接口" class="headerlink" title="方式二：实现Runnable接口"></a>方式二：实现Runnable接口</h3><p>1、创建一个实现了Runnable接口的类<br>2、实现类去实现Runnable中的抽象方法run()<br>3、创建实现类的对象<br>4、将此对象作为参数传递到Thread类的构造器中，创建Thead类的对象<br>5、通过Thread类的对象调用start()   </p>
 <p>通过Thread类的对象调用start()的时候，线程会启动，并调用当线程的run()方法，也就是调用了Runnable类型的target里面的run()</font>   </p>
 <font size='5'>
 两种线程方式的比较：</font>   
-<font size='4'>   
 
 <p>开发中优先选用<strong>Runnable接口</strong>的方式<br>原因：<br>1、实现类的方式没有类的单继承性局限<br>2、实现类的方式更适合来处理多个线程有共享数据的情况   </p>
 <p>相同点：两种方式都需要重新run()方法，将线程要执行的逻辑声明在run()中<br>(联系：public class Thread implements Runnable)   </p>
-<h3 id="方式三：实现Callable接口-JDK5-0新增"><a href="#方式三：实现Callable接口-JDK5-0新增" class="headerlink" title="方式三：实现Callable接口(JDK5.0新增)"></a>方式三：实现Callable接口(JDK5.0新增)</h3><p>Callable和Raunnable比较<br>1、call()可以有返回值的。<br>2、call()可以抛出异常，被外面的操作捕获，获取异常的信息<br>3、Callable是支持泛型的<br><font size='5'></p>
+<h3 id="方式三：实现Callable接口-JDK5-0新增"><a href="#方式三：实现Callable接口-JDK5-0新增" class="headerlink" title="方式三：实现Callable接口(JDK5.0新增)"></a>方式三：实现Callable接口(JDK5.0新增)</h3><p>Callable和Raunnable比较<br>1、call()可以有返回值的。<br>2、call()可以抛出异常，被外面的操作捕获，获取异常的信息<br>3、Callable是支持泛型的   </p>
 <pre><code>//1.创建一个实现Callable的实现类
 class NumThread implements Callable{
     //2.实现call方法，将此线程需要执行的操作声明在call()中
@@ -241,9 +236,7 @@ public class ThreadNew {
             e.printStackTrace();
         }
     }
-}   </code></pre></font>   
-
-<h3 id="方式四：使用线程池-JDK5-0新增"><a href="#方式四：使用线程池-JDK5-0新增" class="headerlink" title="方式四：使用线程池(JDK5.0新增)"></a>方式四：使用线程池(JDK5.0新增)</h3><p>好处：<br>1、提高响应速度（减少了创建新线程的时间）<br>2、降低资源消耗（重复利用线程池中线程，不需要每次都创建）<br>3、便于线程管理<br>corePoolSize：核心池的大小<br>maximumPoolSize：最大线程数<br>keepAliveTime：线程没有任务时最多保持多长时间后会终止<br><font size='5'></p>
+}   </code></pre><h3 id="方式四：使用线程池-JDK5-0新增"><a href="#方式四：使用线程池-JDK5-0新增" class="headerlink" title="方式四：使用线程池(JDK5.0新增)"></a>方式四：使用线程池(JDK5.0新增)</h3><p>好处：<br>1、提高响应速度（减少了创建新线程的时间）<br>2、降低资源消耗（重复利用线程池中线程，不需要每次都创建）<br>3、便于线程管理<br>corePoolSize：核心池的大小<br>maximumPoolSize：最大线程数<br>keepAliveTime：线程没有任务时最多保持多长时间后会终止   </p>
 <pre><code>class NumberThread implements Runnable{
     @Override
     public void run() {
@@ -285,33 +278,18 @@ public class ThreadPool {
         //3.关闭连接池
         service.shutdown();
     }
-}</code></pre></font>
-
-</font>   
-
-<h2 id="Thread常用的方法："><a href="#Thread常用的方法：" class="headerlink" title="Thread常用的方法："></a>Thread常用的方法：</h2><p><font size='4'>1、start()：启动当前线程调用run()<br>2、run()：通常需要重写Thread类中的此方法，声明要执行的操作<br>3、currentThread()：<strong>静态方法</strong>，返回执行当前代码的线程<br>4、setName()/getName()：设置/获取当前线程的名字(设置线程名字也可以在构造器中进行)<br>5、setName()：设置当前线程的名字<br>6、yield()：释放当前cpu的执行权，例如：this.yield()，<strong>但是不释放锁</strong><br>7、join()：在线程a中调用b的join()方法，则a就会进入阻塞状态，直达b完全执行完之后，才会结束阻塞状态，也就是说将b线程加入到main线程中，只有b线程运行结束，才会接着往下走<br>8、stop()：已过时，强制结束当前线程<br>9、sleep(毫秒数)：让当前线程睡眠指定的毫秒数，此时，线程是阻塞状态<br>10、isAlive()：判断当前线程是否存活   </p>
+}</code></pre><h2 id="Thread常用的方法："><a href="#Thread常用的方法：" class="headerlink" title="Thread常用的方法："></a>Thread常用的方法：</h2><p>1、start()：启动当前线程调用run()<br>2、run()：通常需要重写Thread类中的此方法，声明要执行的操作<br>3、currentThread()：<strong>静态方法</strong>，返回执行当前代码的线程<br>4、setName()/getName()：设置/获取当前线程的名字(设置线程名字也可以在构造器中进行)<br>5、setName()：设置当前线程的名字<br>6、yield()：释放当前cpu的执行权，例如：this.yield()，<strong>但是不释放锁</strong><br>7、join()：在线程a中调用b的join()方法，则a就会进入阻塞状态，直达b完全执行完之后，才会结束阻塞状态，也就是说将b线程加入到main线程中，只有b线程运行结束，才会接着往下走<br>8、stop()：已过时，强制结束当前线程<br>9、sleep(毫秒数)：让当前线程睡眠指定的毫秒数，此时，线程是阻塞状态<br>10、isAlive()：判断当前线程是否存活   </p>
 <p>线程的优先级：<br>1、<br>MAX_PRIORITY：10<br>MIN _PRIORITY：1<br>NORM_PRIORITY：5  –&gt;默认优先级<br>2.如何获取和设置当前线程的优先级：<br>getPriority():获取线程的优先级<br>setPriority(int p):设置线程的优先级   </p>
 <p>说明：高优先级的线程要抢占低优先级线程cpu的执行权。但是只是从概率上讲，高优先级的线程高概率的情况下被执行。并不意味着只有当高优先级的线程执行完以后，低优先级的线程才执行。   </p>
 <p>线程通行：wait()/notify()/notifyAll()：此三个的方法定义在Object类中   </p>
 <p>线程分为：守护线程、用户线程<br>守护线程依赖于用户线程例如：垃圾回收，通过thread.setDaemon(true);可以将用户线程变为守护线程，如果jvm中都为守护线程，则当前jvm将会退出   </p>
-</font>   
-
 <h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/img/loading.gif" alt="生命周期">   </p>
-<p><font size='4'>状态包括：NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING ,TEARMINATED<br>(sleep()不会释放锁，wait()会释放锁)<font>   </p>
-<h2 id="解决线程"><a href="#解决线程" class="headerlink" title="解决线程"></a>解决线程</h2><p><font size='4'>解决线程安全问题会用到同步机制，有三种方式，但是效率会下降，因为使用同步机制时就相当于是一个单线程，只有一个线程参与，而其他的线程等待   </p>
-<h3 id="方式一：使用同步代码块"><a href="#方式一：使用同步代码块" class="headerlink" title="方式一：使用同步代码块"></a>方式一：使用同步代码块</h3><font size='5'>
-
-<pre><code>synchronized(同步监视器){
+<p>状态包括：NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING ,TEARMINATED<br>(sleep()不会释放锁，wait()会释放锁)</p>
+<h2 id="解决线程"><a href="#解决线程" class="headerlink" title="解决线程"></a>解决线程</h2><p>解决线程安全问题会用到同步机制，有三种方式，但是效率会下降，因为使用同步机制时就相当于是一个单线程，只有一个线程参与，而其他的线程等待   </p>
+<h3 id="方式一：使用同步代码块"><a href="#方式一：使用同步代码块" class="headerlink" title="方式一：使用同步代码块"></a>方式一：使用同步代码块</h3><pre><code>synchronized(同步监视器){
     //需要被同步的代码
-} </code></pre></font>   
-说明：   
-1.操作共享数据的代码，即为需要被同步的代码。  -->不能包含代码多了，也不能包含代码少了。   
-2.共享数据：多个线程共同操作的变量。比如：共享数据。   
-3.同步监视器，俗称：锁。任何一个类的对象，都可以充当锁。   
-要求：多个线程必须要共用同一把锁。    
-补充：在**实现Runnable接口**创建多线程的方式中，我们可以考虑使用this充当同步监视器。   
-
-<p>对于继承了Thread类来实现线程的方法来说，<strong>同步代码块</strong>中的同步监视器，慎用this来充当同步监视器，而考虑使用<strong>当前类</strong>来充当同步监视器<br><font size='5'>   </p>
+} </code></pre><p>说明：<br>1.操作共享数据的代码，即为需要被同步的代码。  –&gt;不能包含代码多了，也不能包含代码少了。<br>2.共享数据：多个线程共同操作的变量。比如：共享数据。<br>3.同步监视器，俗称：锁。任何一个类的对象，都可以充当锁。<br>要求：多个线程必须要共用同一把锁。<br>补充：在<strong>实现Runnable接口</strong>创建多线程的方式中，我们可以考虑使用this充当同步监视器。   </p>
+<p>对于继承了Thread类来实现线程的方法来说，<strong>同步代码块</strong>中的同步监视器，慎用this来充当同步监视器，而考虑使用<strong>当前类</strong>来充当同步监视器   </p>
 <pre><code>class Window2 extends Thread{
     private static int ticket = 100;    
     private static Object obj = new Object();
@@ -348,21 +326,13 @@ public class WindowTest2 {
     public static void main(String[] args) {
         Window2 t1 = new Window2();
         Window2 t2 = new Window2();
-        Window2 t3 = new Window2();
-
-
-        t1.setName(&quot;窗口1&quot;);
-        t2.setName(&quot;窗口2&quot;);
-        t3.setName(&quot;窗口3&quot;);
-
-        t1.start();
+        Window2 t3 = new Window2();</code></pre><p>​<br>            t1.setName(“窗口1”);<br>            t2.setName(“窗口2”);<br>            t3.setName(“窗口3”);</p>
+<pre><code>        t1.start();
         t2.start();
         t3.start();
 
     }
-}   </code></pre></font>   
-
-<p>对于<strong>实现Runnable接口</strong>实现多线程来说，<strong>同步代码块</strong>中的同步监视器可以为<strong>this</strong><br><font size='5'></p>
+}   </code></pre><p>对于<strong>实现Runnable接口</strong>实现多线程来说，<strong>同步代码块</strong>中的同步监视器可以为<strong>this</strong> </p>
 <pre><code>class Window1 implements Runnable{
 
 private int ticket = 100;
@@ -414,10 +384,8 @@ public class WindowTest1 {
 
 class Dog{
 
-}       </code></pre></font>
-
-<h3 id="方式二：使用同步方法"><a href="#方式二：使用同步方法" class="headerlink" title="方式二：使用同步方法"></a>方式二：使用同步方法</h3><p>如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的。<br>说明：<br>1、同步方法仍然涉及同步监视器，只是不需要我们现实的声明<br>2、<strong>非静态</strong>的同步方法，同步监视器是：<strong>this</strong><br>&emsp;<strong>静态</strong>的同步方法，同步监视器是：<strong>当前类本身</strong>   </p>
-<p>对于使用<strong>继承Thread类</strong>的方法来实现线程的方法来说，而使用<strong>同步方法</strong>时，需要用<strong>static synchronized</strong>来修饰<br>例如：<br><font size='5'>  </p>
+}       </code></pre><h3 id="方式二：使用同步方法"><a href="#方式二：使用同步方法" class="headerlink" title="方式二：使用同步方法"></a>方式二：使用同步方法</h3><p>如果操作共享数据的代码完整的声明在一个方法中，我们不妨将此方法声明同步的。<br>说明：<br>1、同步方法仍然涉及同步监视器，只是不需要我们现实的声明<br>2、<strong>非静态</strong>的同步方法，同步监视器是：<strong>this</strong><br>&emsp;<strong>静态</strong>的同步方法，同步监视器是：<strong>当前类本身</strong>   </p>
+<p>对于使用<strong>继承Thread类</strong>的方法来实现线程的方法来说，而使用<strong>同步方法</strong>时，需要用<strong>static synchronized</strong>来修饰<br>例如：   </p>
 <pre><code>class Window4 extends Thread {
     private static int ticket = 100;
 
@@ -450,22 +418,13 @@ public class WindowTest4 {
     public static void main(String[] args) {
         Window4 t1 = new Window4();
         Window4 t2 = new Window4();
-        Window4 t3 = new Window4();
-
-
-        t1.setName(&quot;窗口1&quot;);
-        t2.setName(&quot;窗口2&quot;);
-        t3.setName(&quot;窗口3&quot;);
-
-        t1.start();
+        Window4 t3 = new Window4();</code></pre><p>​<br>            t1.setName(“窗口1”);<br>            t2.setName(“窗口2”);<br>            t3.setName(“窗口3”);</p>
+<pre><code>        t1.start();
         t2.start();
         t3.start();
 
     }
-}</code></pre></font>  
-
-
-<p>对于<strong>实现Runnable接口</strong>实现多线程来说，同步监视器可以为<strong>this</strong>，使用<strong>同步方法</strong>时，要用<strong>sychronized</strong>来修饰方法<br>例如：<br><font size='5'></p>
+}</code></pre><p>对于<strong>实现Runnable接口</strong>实现多线程来说，同步监视器可以为<strong>this</strong>，使用<strong>同步方法</strong>时，要用<strong>sychronized</strong>来修饰方法<br>例如：   </p>
 <pre><code>class Window3 implements Runnable {
 
     private int ticket = 100;
@@ -514,10 +473,8 @@ public class WindowTest3 {
         t3.start();
     }
 
-}</code></pre></font>   
-
-<h3 id="方式三：使用Lock锁-JDK5-0新增"><a href="#方式三：使用Lock锁-JDK5-0新增" class="headerlink" title="方式三：使用Lock锁(JDK5.0新增)"></a>方式三：使用Lock锁(JDK5.0新增)</h3><p>没有使用同步监视器，因为其自身就是一个同步监视器<br>1、实例化ReentrantLock<br>2、调用锁定方法lock()<br>3、调用解锁方法unlock()   </p>
-<p>例如：<br><font size='5'>   </p>
+}</code></pre><h3 id="方式三：使用Lock锁-JDK5-0新增"><a href="#方式三：使用Lock锁-JDK5-0新增" class="headerlink" title="方式三：使用Lock锁(JDK5.0新增)"></a>方式三：使用Lock锁(JDK5.0新增)</h3><p>没有使用同步监视器，因为其自身就是一个同步监视器<br>1、实例化ReentrantLock<br>2、调用锁定方法lock()<br>3、调用解锁方法unlock()   </p>
+<p>例如：   </p>
 <pre><code>class Window implements Runnable{
 
     private int ticket = 100;
@@ -568,12 +525,10 @@ public class LockTest {
         t2.start();
         t3.start();
     }
-}    </code></pre></font>   
-
-<p>Tips:<br>synchronized和lock的异同：<br>相同：二者都可以解决线程安全问题<br>不同：synchronized机制在执行完响应的代码之后会<strong>自动释放同步监视器(锁)</strong>，而Lock需要调用方法来<strong>手动启动lock()</strong>,同时结束之后也需要<strong>手动实现unlock()</strong>     </p>
+}    </code></pre><p>Tips:<br>synchronized和lock的异同：<br>相同：二者都可以解决线程安全问题<br>不同：synchronized机制在执行完响应的代码之后会<strong>自动释放同步监视器(锁)</strong>，而Lock需要调用方法来<strong>手动启动lock()</strong>,同时结束之后也需要<strong>手动实现unlock()</strong>     </p>
 <p>同步机制的利弊：<br>好处：解决了线程的安全问题。<br>弊端：操作同步代码时，只能一个线程参与，其他线程等待。相当于是一个单线程的过程，效率低。</p>
 <h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>死锁：不同的线程分别占用对方需要的同步资源不放弃，都在等待对方放弃自己需要的资源，就形成了线程的思索   </p>
-<p>说明：死锁出现后，不会出现异常，不会出现提示，只是所有的线程都处于堵塞状态，无法继续<br><font size='5'></p>
+<p>说明：死锁出现后，不会出现异常，不会出现提示，只是所有的线程都处于堵塞状态，无法继续   </p>
 <pre><code>public class ThreadTest {
 
     public static void main(String[] args) {
@@ -632,11 +587,7 @@ public class LockTest {
             }
         }).start();
     }
-}</code></pre></font>   
-
-<h2 id="使用同步机制将单例模式的懒汉式改为线程安全的"><a href="#使用同步机制将单例模式的懒汉式改为线程安全的" class="headerlink" title="使用同步机制将单例模式的懒汉式改为线程安全的"></a>使用同步机制将单例模式的懒汉式改为线程安全的</h2><font size='5'>
-
-<pre><code>public class BankTest {
+}</code></pre><h2 id="使用同步机制将单例模式的懒汉式改为线程安全的"><a href="#使用同步机制将单例模式的懒汉式改为线程安全的" class="headerlink" title="使用同步机制将单例模式的懒汉式改为线程安全的"></a>使用同步机制将单例模式的懒汉式改为线程安全的</h2><pre><code>public class BankTest {
 
 }
 
@@ -669,12 +620,10 @@ class Bank{
         return instance;
     }
 
-}</code></pre></font>
-
-<h2 id="关于线程通信"><a href="#关于线程通信" class="headerlink" title="关于线程通信"></a>关于线程通信</h2><p>三个方法：<br>wait()：使当前线程进入阻塞，并释放同步监视器<br>notify()：唤醒被wait()的一个线程，如果多个线程被wait就唤醒优先级高的那个<br>notifyAll()：唤醒所有的被wait()的方法   </p>
+}</code></pre><h2 id="关于线程通信"><a href="#关于线程通信" class="headerlink" title="关于线程通信"></a>关于线程通信</h2><p>三个方法：<br>wait()：使当前线程进入阻塞，并释放同步监视器<br>notify()：唤醒被wait()的一个线程，如果多个线程被wait就唤醒优先级高的那个<br>notifyAll()：唤醒所有的被wait()的方法   </p>
 <p>说明：<br>1、wait()，notify()，notifyAll()三个方法必须使用在同步代码块或同步方法中<br>2、wait()，notify()，notifyAll()三个方法的调用者必须是同步代码块或同步方法中的同步监视器，否则，会出现IllegalMonitorStateException异常<br>3、wait()，notify()，notifyAll()三个方法是定义在java.lang.Object类中。   </p>
 <p>sleep() 和 wait()的异同<br>相同点：一旦执行方法，都可以使得当前的线程进入阻塞状态。<br>不同点：<br>(1)两个方法声明的位置不同：Thread类中声明sleep() , Object类中声明wait()<br>(2)调用的要求不同：sleep()可以在任何需要的场景下调用。 wait()必须使用在同步代码块或同步方法中<br>(3)关于是否释放同步监视器：如果两个方法都使用在同步代码块或同步方法中，sleep()不会释放锁，wait()会释放锁。   </p>
-<p>例如：<br><font size='5'></p>
+<p>例如：   </p>
 <pre><code>class Number implements Runnable{
     private int number = 1;
     private Object obj = new Object();
@@ -725,11 +674,7 @@ public class CommunicationTest {
         t1.start();
         t2.start();
     }
-}</code></pre></gont>   
-
-<h2 id="经典的生产者消费者问题"><a href="#经典的生产者消费者问题" class="headerlink" title="经典的生产者消费者问题"></a>经典的生产者消费者问题</h2><font size='5'>
-
-<pre><code>class Clerk{
+}</code></pre><h2 id="经典的生产者消费者问题"><a href="#经典的生产者消费者问题" class="headerlink" title="经典的生产者消费者问题"></a>经典的生产者消费者问题</h2><pre><code>class Clerk{
 
     private int productCount = 0;
     //生产产品
@@ -830,10 +775,7 @@ public class ProductTest {
         c1.start();
         c2.start();
     }
-}</code></pre></font>
-</font>   
-
-<p><a href="https://www.bilibili.com/video/BV1Qb411g7cz?p=413" target="_blank" rel="noopener">资料来源</a></p>
+}</code></pre><p><a href="https://www.bilibili.com/video/BV1Qb411g7cz?p=413" target="_blank" rel="noopener">资料来源</a></p>
 
             </article>
             <hr>
