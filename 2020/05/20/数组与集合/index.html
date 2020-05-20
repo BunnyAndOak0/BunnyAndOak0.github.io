@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    4.7k 字
+                    4.2k 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    59
+                    53
                      分钟
                   </span>
                 
@@ -194,17 +194,8 @@
 <li>数组存储数据的特点：<strong>有序、可重复</strong>。对于无序、不可重复的需求，不能满足。</li>
 <li>数组中提供的方法非常有限，对于添加、删除、插入数据等操作，非常不便，同时效率不高。</li>
 </ul>
-<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><hr>
-<p>​         <strong>Java集合不能存放基本数据类型</strong> ,Java集合如Map、Set、List等所有集合只能存放引用类型数据，它们都是存放引用类型数据的容器，不能存放如int、long、float、double等基础类型的数据。</p>
-<h3 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h3><pre><code class="hljs ```java">|----Collection接口：单列集合，用来存储一个一个的对象
-         |----List接口：存储有序的、可重复的数据。                        		   |----ArrayList、LinkedList、Vector
-
-         |----Set接口：存储无序的、不可重复的数据  
-                |----HashSet、LinkedHashSet、TreeSet
-
-|------Map接口：双列集合，用来存储一对(key - value)一对的数据  
-         |----HashMap、LinkedHashMap、TreeMap、Hashtable、Properties</code></pre>
-
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><p>​         <strong>Java集合不能存放基本数据类型</strong> ,Java集合如Map、Set、List等所有集合只能存放引用类型数据，它们都是存放引用类型数据的容器，不能存放如int、long、float、double等基础类型的数据。</p>
+<h3 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h3><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/collection%E6%8E%A5%E5%8F%A3%E6%A1%86%E6%9E%B6.PNG" srcset="/img/loading.gif" alt="collection接口框架"></p>
 <p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E5%9B%BE.png" srcset="/img/loading.gif" alt="集合框架图"></p>
 <h3 id="Collection接口中的方法的使用"><a href="#Collection接口中的方法的使用" class="headerlink" title="Collection接口中的方法的使用"></a>Collection接口中的方法的使用</h3><pre><code class="hljs java">Collection coll = <span class="hljs-keyword">new</span> ArrayList();</code></pre>
 
@@ -335,11 +326,7 @@ Object[] arr = coll.toArray();
    &#125;</code></pre>
 
 <h2 id="Collection子接口-List接口"><a href="#Collection子接口-List接口" class="headerlink" title="Collection子接口-List接口"></a>Collection子接口-List接口</h2><p><strong>存储有序的，可以重复的数据</strong></p>
-<h3 id="List接口框架"><a href="#List接口框架" class="headerlink" title="List接口框架"></a>List接口框架</h3><p>|—-Collection接口：单列集合，用来存储一个一个的对象</p>
-<p>​                |—-List接口：存储有序的、可重复的数据。  –&gt;“动态”数组,替换原有的数组</p>
-<p>​                            |—-ArrayList：作为List接口的主要实现类；<strong>线程不安全</strong>的，<strong>效率高</strong>；底层使用Object[] elementData存储</p>
-<p>​                            |—-LinkedList：对于频繁的插入、删除操作，使用此类效率比ArrayList高；底层使用<strong>双向链表</strong>存储</p>
-<p>​                            |—-Vector：作为List接口的古老实现类；<strong>线程安全</strong>的，<strong>效率低</strong>；底层使用Object[] elementData存储</p>
+<h3 id="List接口框架"><a href="#List接口框架" class="headerlink" title="List接口框架"></a>List接口框架</h3><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/list%E6%8E%A5%E5%8F%A3%E6%A1%86%E6%9E%B6.PNG" srcset="/img/loading.gif" alt="List接口框架"></p>
 <h3 id="各种源码分析"><a href="#各种源码分析" class="headerlink" title="各种源码分析"></a>各种源码分析</h3><p> ArrayList的源码分析：</p>
 <p>jdk 7情况下</p>
 <p>ArrayList list = new ArrayList();//底层创建了长度是10的Object[]数组elementData</p>
@@ -366,11 +353,7 @@ Object[] arr = coll.toArray();
 <h2 id="Collection的子接口-set接口"><a href="#Collection的子接口-set接口" class="headerlink" title="Collection的子接口-set接口"></a>Collection的子接口-set接口</h2><p>无序性：</p>
 <p>不等于随机性，存储的数据在底层数组中，并非按照数组索引的顺序添加，而是根据数据的哈希值决定的，</p>
 <p>不可重复性：保证的元素的添加按照equals()判断，不能返回true，ye’jiu’shi’shuo相通的元素只添加一个</p>
-<h3 id="Set接口框架"><a href="#Set接口框架" class="headerlink" title="Set接口框架"></a>Set接口框架</h3><p>|—-Collection接口：单列集合，用来存储一个一个的对象</p>
-<p>​                |—-Set接口：存储无序的、不可重复的数据   –&gt;高中讲的“集合”</p>
-<p>​                                |—-HashSet：作为Set接口的主要实现类；线程不安全的；可以存储null值</p>
-<p>​                                                |—-LinkedHashSet：作为HashSet的子类；遍历其内部数据时，可以按照添加的顺序遍历，在添加数据的同时，每个数据还维护了两个引用，记录此数据前一个数据和后一个数据。对于频繁的遍历操作，LinkedHashSet效率高于HashSet.</p>
-<p>​                                |—-TreeSet：可以照添加对象的指定属性，进行排序。</p>
+<h3 id="Set接口框架"><a href="#Set接口框架" class="headerlink" title="Set接口框架"></a>Set接口框架</h3><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/set%E6%8E%A5%E5%8F%A3%E6%A1%86%E6%9E%B6.PNG" srcset="/img/loading.gif" alt="Set接口框架"></p>
 <p>说明：</p>
 <p>1、Set接口中没有额外定义新的方法，使用的都是Collection中声明过的方法。</p>
 <p>2、向Set(主要指：HashSet、LinkedHashSet)中添加的数据，其所在的类一定要重写hashCode()和equals()</p>
@@ -437,12 +420,7 @@ Object[] arr = coll.toArray();
         &#125;
     &#125;</code></pre>
 
-<h2 id="双列集合框架-Map"><a href="#双列集合框架-Map" class="headerlink" title="双列集合框架-Map"></a>双列集合框架-Map</h2><p>Map接口框架</p>
-<p>|—-Map:双列数据，存储key-value对的数据 </p>
-<p>​            |—-HashMap:作为Map的<strong>主要实现类</strong>；<strong>线程不安全</strong>的，效率高；<strong>可以存储null的key和value</strong></p>
-<pre><code>|----LinkedHashMap:保证在遍历map元素时，可以照添加的顺序实现遍历。原因：在原的HashMap底层结构基础上，添加了一对指针，指向前一个和后一个元素。对于频繁的遍历操作，此类执行效率高于HashMap。</code></pre><p>​            |—-TreeMap:保证照添加的key-value对进行排序，实现排序遍历。此时考虑key的自然排序或定制排序。底层使用红黑树</p>
-<p>​            |—-Hashtable:作为古老的实现类；<strong>线程安全的</strong>，<strong>效率低</strong>；<strong>不能存储null的key和value</strong></p>
-<p>​                                |—-Properties:常用来处理配置文件。key和value都是String类型</p>
+<h2 id="双列集合框架-Map"><a href="#双列集合框架-Map" class="headerlink" title="双列集合框架-Map"></a>双列集合框架-Map</h2><h3 id="Map接口框架"><a href="#Map接口框架" class="headerlink" title="Map接口框架"></a>Map接口框架</h3><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/map%E6%8E%A5%E5%8F%A3%E6%A1%86%E6%9E%B6.PNG" srcset="/img/loading.gif" alt="Map接口框架"></p>
 <p>存储结构的理解：</p>
 <p>Map中的key:无序的、不可重复的，使用Set存储所的key  —&gt; key所在的类要重写equals()和hashCode() （以HashMap为例)<br>Map中的value:无序的、可重复的，使用Collection存储所的value —&gt;value所在的类要重写equals()<br>一个键值对：key-value构成了一个Entry对象。<br>Map中的entry:无序的、不可重复的，使用Set存储所的entry</p>
 <h3 id="HashMap的底层原理"><a href="#HashMap的底层原理" class="headerlink" title="HashMap的底层原理"></a>HashMap的底层原理</h3><p>HashMap map = new HashMap():</p>
