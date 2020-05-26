@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Spring(4)---JdbcTemplate、事务控制 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>BunnyAndOak0</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-26 20:56">
+                    May 26, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.2k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    18
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <div align='center'><font size='6'>Spring---JdbcTemplate、事务控制</font></div>
+
+<h2 id="jdbctemplate的使用"><a href="#jdbctemplate的使用" class="headerlink" title="jdbctemplate的使用"></a>jdbctemplate的使用</h2><h2 id="自定义jdbctemplate"><a href="#自定义jdbctemplate" class="headerlink" title="自定义jdbctemplate"></a>自定义jdbctemplate</h2><ul>
+<li>现在xml文件中进行配置</li>
+</ul>
+<pre><code class="hljs java">&lt;!-- 配置账户的持久层--&gt;
+    &lt;bean id=<span class="hljs-string">"accountDao"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"com.itheima.dao.impl.AccountDaoImpl"</span>&gt;
+        &lt;!--&lt;property name="jdbcTemplate" ref="jdbcTemplate"&gt;&lt;/property&gt;--&gt;
+        &lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!--配置JdbcTemplate--&gt;
+    &lt;bean id=<span class="hljs-string">"jdbcTemplate"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;
+        &lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- 配置数据源--&gt;
+    &lt;bean id=<span class="hljs-string">"dataSource"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;
+        &lt;property name="driverClassName" value="com.mysql.jdbc.Driver"&gt;&lt;/property&gt;
+        &lt;property name="url" value="jdbc:mysql://localhost:3306/eesy"&gt;&lt;/property&gt;
+        &lt;property name="username" value="root"&gt;&lt;/property&gt;
+        &lt;property name="password" value="1234"&gt;&lt;/property&gt;
+    &lt;/bean&gt;</code></pre>
+
+<p>然后就可以注入使用：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Repository</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountDaoImpl2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAccountDao</span> </span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> JdbcTemplate jdbcTemplate;
+
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Account <span class="hljs-title">findAccountById</span><span class="hljs-params">(Integer accountId)</span> </span>&#123;
+        List&lt;Account&gt; accounts = jdbcTemplate.query(<span class="hljs-string">"select * from account where id = ?"</span>,<span class="hljs-keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account<span class="hljs-class">.<span class="hljs-keyword">class</span>),<span class="hljs-title">accountId</span>)</span>;
+        <span class="hljs-keyword">return</span> accounts.isEmpty()?<span class="hljs-keyword">null</span>:accounts.get(<span class="hljs-number">0</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Account <span class="hljs-title">findAccountByName</span><span class="hljs-params">(String accountName)</span> </span>&#123;
+        List&lt;Account&gt; accounts = jdbcTemplate.query(<span class="hljs-string">"select * from account where name = ?"</span>,<span class="hljs-keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account<span class="hljs-class">.<span class="hljs-keyword">class</span>),<span class="hljs-title">accountName</span>)</span>;
+        <span class="hljs-keyword">if</span>(accounts.isEmpty())&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        &#125;
+        <span class="hljs-keyword">if</span>(accounts.size()&gt;<span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"结果集不唯一"</span>);
+        &#125;
+        <span class="hljs-keyword">return</span> accounts.get(<span class="hljs-number">0</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateAccount</span><span class="hljs-params">(Account account)</span> </span>&#123;
+        jdbcTemplate.update(<span class="hljs-string">"update account set name=?,money=? where id=?"</span>,account.getName(),account.getMoney(),account.getId());
+    &#125;
+&#125;</code></pre>
+
+<h3 id="使用spring的jdbctemplate的类"><a href="#使用spring的jdbctemplate的类" class="headerlink" title="使用spring的jdbctemplate的类"></a>使用spring的jdbctemplate的类</h3><p>此时就不可以再进行注入，但是因为xml中配置过数据源，数据源存在jdbctemplate就会存在</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountDaoImpl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JdbcDaoSupport</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAccountDao</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Account <span class="hljs-title">findAccountById</span><span class="hljs-params">(Integer accountId)</span> </span>&#123;
+        List&lt;Account&gt; accounts = <span class="hljs-keyword">super</span>.getJdbcTemplate().query(<span class="hljs-string">"select * from account where id = ?"</span>,<span class="hljs-keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account<span class="hljs-class">.<span class="hljs-keyword">class</span>),<span class="hljs-title">accountId</span>)</span>;
+        <span class="hljs-keyword">return</span> accounts.isEmpty()?<span class="hljs-keyword">null</span>:accounts.get(<span class="hljs-number">0</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Account <span class="hljs-title">findAccountByName</span><span class="hljs-params">(String accountName)</span> </span>&#123;
+        List&lt;Account&gt; accounts = <span class="hljs-keyword">super</span>.getJdbcTemplate().query(<span class="hljs-string">"select * from account where name = ?"</span>,<span class="hljs-keyword">new</span> BeanPropertyRowMapper&lt;Account&gt;(Account<span class="hljs-class">.<span class="hljs-keyword">class</span>),<span class="hljs-title">accountName</span>)</span>;
+        <span class="hljs-keyword">if</span>(accounts.isEmpty())&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        &#125;
+        <span class="hljs-keyword">if</span>(accounts.size()&gt;<span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"结果集不唯一"</span>);
+        &#125;
+        <span class="hljs-keyword">return</span> accounts.get(<span class="hljs-number">0</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateAccount</span><span class="hljs-params">(Account account)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.getJdbcTemplate().update(<span class="hljs-string">"update account set name=?,money=? where id=?"</span>,account.getName(),account.getMoney(),account.getId());
+    &#125;
+&#125;</code></pre>
+
+
+
+<h3 id="基于xml的声明的事务控制配置步骤"><a href="#基于xml的声明的事务控制配置步骤" class="headerlink" title="基于xml的声明的事务控制配置步骤"></a>基于xml的声明的事务控制配置步骤</h3><ol>
+<li>配置事务管理器</li>
+<li>配置事务的通知<pre><code>此时我们需要导入事务的约束 tx名称空间和约束，同时也需要aop的
+使用tx:advice标签配置事务通知
+ 属性：
+        id：给事务通知起一个唯一标识
+        transaction-manager：给事务通知提供一个事务管理器引用</code></pre></li>
+<li>配置AOP中的通用切入点表达式</li>
+<li>建立事务通知和切入点表达式的对应关系</li>
+<li>配置事务的属性<pre><code>是在事务的通知tx:advice标签的内部</code></pre></li>
+</ol>
+<pre><code class="hljs java">&lt;!-- 配置事务管理器 --&gt;
+    &lt;bean id=<span class="hljs-string">"transactionManager"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;
+        &lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- 配置事务的通知--&gt;
+    &lt;tx:advice id=<span class="hljs-string">"txAdvice"</span> transaction-manager=<span class="hljs-string">"transactionManager"</span>&gt;
+        &lt;!-- 配置事务的属性
+                isolation：用于指定事务的隔离级别。默认值是DEFAULT，表示使用数据库的默认隔离级别。
+                propagation：用于指定事务的传播行为。默认值是REQUIRED，表示一定会有事务，增删改的选择。查询方法可以选择SUPPORTS。
+                read-only：用于指定事务是否只读。只有查询方法才能设置为<span class="hljs-keyword">true</span>。默认值是<span class="hljs-keyword">false</span>，表示读写。
+                timeout：用于指定事务的超时时间，默认值是-<span class="hljs-number">1</span>，表示永不超时。如果指定了数值，以秒为单位。
+                rollback-<span class="hljs-keyword">for</span>：用于指定一个异常，当产生该异常时，事务回滚，产生其他异常时，事务不回滚。没有默认值。表示任何异常都回滚。
+                no-rollback-<span class="hljs-keyword">for</span>：用于指定一个异常，当产生该异常时，事务不回滚，产生其他异常时事务回滚。没有默认值。表示任何异常都回滚。
+        --&gt;
+        &lt;tx:attributes&gt;
+            &lt;tx:method name=<span class="hljs-string">"*"</span> propagation=<span class="hljs-string">"REQUIRED"</span> read-only=<span class="hljs-string">"false"</span>/&gt;
+            &lt;tx:method name="find*" propagation="SUPPORTS" read-only="true"&gt;&lt;/tx:method&gt;
+        &lt;/tx:attributes&gt;
+    &lt;/tx:advice&gt;
+
+    &lt;!-- 配置aop--&gt;
+    &lt;aop:config&gt;
+        &lt;!-- 配置切入点表达式--&gt;
+        &lt;aop:pointcut id="pt1" expression="execution(* com.itheima.service.impl.*.*(..))"&gt;&lt;/aop:pointcut&gt;
+        &lt;!--建立切入点表达式和事务通知的对应关系 --&gt;
+        &lt;aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"&gt;&lt;/aop:advisor&gt;
+    &lt;/aop:config&gt;</code></pre>
+
+<h3 id="基于注解的事务控制"><a href="#基于注解的事务控制" class="headerlink" title="基于注解的事务控制"></a>基于注解的事务控制</h3><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 账户的业务层实现类</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * 事务控制应该都是在业务层</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-meta">@Service</span>(<span class="hljs-string">"accountService"</span>)
+<span class="hljs-meta">@Transactional</span>(propagation= Propagation.SUPPORTS,readOnly=<span class="hljs-keyword">true</span>)<span class="hljs-comment">//只读型事务的配置</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAccountService</span></span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> IAccountDao accountDao;
+
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Account <span class="hljs-title">findAccountById</span><span class="hljs-params">(Integer accountId)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> accountDao.findAccountById(accountId);
+
+    &#125;
+
+
+    <span class="hljs-comment">//需要的是读写型事务配置</span>
+    <span class="hljs-meta">@Transactional</span>(propagation= Propagation.REQUIRED,readOnly=<span class="hljs-keyword">false</span>)
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">transfer</span><span class="hljs-params">(String sourceName, String targetName, Float money)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"transfer...."</span>);
+            <span class="hljs-comment">//2.1根据名称查询转出账户</span>
+            Account source = accountDao.findAccountByName(sourceName);
+            <span class="hljs-comment">//2.2根据名称查询转入账户</span>
+            Account target = accountDao.findAccountByName(targetName);
+            <span class="hljs-comment">//2.3转出账户减钱</span>
+            source.setMoney(source.getMoney()-money);
+            <span class="hljs-comment">//2.4转入账户加钱</span>
+            target.setMoney(target.getMoney()+money);
+            <span class="hljs-comment">//2.5更新转出账户</span>
+            accountDao.updateAccount(source);
+
+            <span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>/<span class="hljs-number">0</span>;
+
+            <span class="hljs-comment">//2.6更新转入账户</span>
+            accountDao.updateAccount(target);
+    &#125;
+&#125;</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/26/Spring(1)---IOC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring(1)---IOC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/20/%E6%95%B0%E7%BB%84%E4%B8%8E%E9%9B%86%E5%90%88/">
+                        <span class="hidden-mobile">数组与集合</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Spring(4)---JdbcTemplate、事务控制&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

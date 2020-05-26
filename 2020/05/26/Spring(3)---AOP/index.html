@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Spring(3)---AOP - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>BunnyAndOak0</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-26 20:56">
+                    May 26, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.9k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    24
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <div align='center'><font size='6'>Spring---AOP</font></div>
+
+<h2 id="AOP基本概念"><a href="#AOP基本概念" class="headerlink" title="AOP基本概念"></a>AOP基本概念</h2><p>​        AOP：全称是 Aspect Oriented Programming 即：面向切面编程。 简单的说它就是把我们程序重复的代码抽取出来，在需要执行的时候，使用动态代理的技术，在不修改源码的基础上，对我们的已有方法进行增强。</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>特点：字节码随用随创建，随用随加载</p>
+<p>作用：不修改源码的基础上对方法增强</p>
+<p>分类：</p>
+<ul>
+<li>基于接口的动态代理</li>
+<li>基于子类的动态代理</li>
+</ul>
+<h3 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h3><p>基于接口的动态代理：</p>
+<p>涉及的类：Proxy</p>
+<p>提供者：JDK官方</p>
+<p>如何创建代理对象：</p>
+<ul>
+<li>使用Proxy类中的newProxyInstance方法</li>
+</ul>
+<p>创建代理对象的要求：</p>
+<ul>
+<li>被代理类<strong>最少实现一个接口</strong>，如果没有则不能使用</li>
+</ul>
+<p>newProxyInstance方法的参数：</p>
+<ul>
+<li><p>ClassLoader：类加载器</p>
+<p>它是用于加载代理对象字节码的。和被代理对象使用相同的类加载器。固定写法</p>
+</li>
+<li><p>Class[]：字节码数组</p>
+<p>它是用于让代理对象和被代理对象有相同方法。固定写法。</p>
+</li>
+</ul>
+<p>InvocationHandler：用于提供增强的代码</p>
+<p>它是让我们写如何代理。我们一般都是些一个该接口的实现类，通常情况下都是匿名内部类，但不是必须的。</p>
+<p>此接口的实现类都是谁用谁写。</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">final</span> Producer producer = <span class="hljs-keyword">new</span> Producer();
+        
+       IProducer proxyProducer = (IProducer) Proxy.newProxyInstance(producer.getClass().getClassLoader(),
+                producer.getClass().getInterfaces(),
+                <span class="hljs-keyword">new</span> InvocationHandler() &#123;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 作用：执行被代理对象的任何接口方法都会经过该方法</span>
+<span class="hljs-comment">     * 方法参数的含义</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> proxy   代理对象的引用</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> method  当前执行的方法</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> args    当前执行方法所需的参数</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span>        和被代理对象方法有相同的返回值</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> Throwable</span>
+<span class="hljs-comment">     */</span>
+                    <span class="hljs-meta">@Override</span>
+                    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
+                        <span class="hljs-comment">//提供增强的代码</span>
+                        Object returnValue = <span class="hljs-keyword">null</span>;
+
+                        <span class="hljs-comment">//1.获取方法执行的参数</span>
+                        Float money = (Float)args[<span class="hljs-number">0</span>];
+                        <span class="hljs-comment">//2.判断当前方法是不是销售</span>
+                        <span class="hljs-keyword">if</span>(<span class="hljs-string">"saleProduct"</span>.equals(method.getName())) &#123;
+                            returnValue = method.invoke(producer, money*<span class="hljs-number">0.8f</span>);
+                        &#125;
+                        <span class="hljs-keyword">return</span> returnValue;
+                    &#125;
+                &#125;);
+        proxyProducer.saleProduct(<span class="hljs-number">10000f</span>);
+    &#125;
+&#125;</code></pre>
+
+
+
+<h3 id="基于子类的动态代理"><a href="#基于子类的动态代理" class="headerlink" title="基于子类的动态代理"></a>基于子类的动态代理</h3><p>基于子类的动态代理：</p>
+<p>涉及的类：Enhancer</p>
+<p>提供者：第三方cglib库</p>
+<p>如何创建代理对象：</p>
+<ul>
+<li>使用Enhancer类中的create方法</li>
+</ul>
+<p>创建代理对象的要求：</p>
+<ul>
+<li><strong>被代理类不能是最终类</strong></li>
+</ul>
+<p>create方法的参数：</p>
+<ul>
+<li><p>Class：字节码</p>
+<p>它是用于指定被代理对象的字节码。</p>
+</li>
+<li><p>Callback：用于提供增强的代码</p>
+<p>它是让我们写如何代理。我们一般都是些一个该接口的实现类，通常情况下都是匿名内部类，但不是必须的。</p>
+</li>
+</ul>
+<p>此接口的实现类都是谁用谁写。</p>
+<p>我们一般写的都是该接口的子接口实现类：MethodInterceptor</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">final</span> Producer producer = <span class="hljs-keyword">new</span> Producer();
+
+        Producer cglibProducer = (Producer)Enhancer.create(producer.getClass(), <span class="hljs-keyword">new</span> MethodInterceptor() &#123;
+            <span class="hljs-comment">/**</span>
+<span class="hljs-comment">             * 执行北地阿里对象的任何方法都会经过该方法</span>
+<span class="hljs-comment">             * <span class="hljs-doctag">@param</span> proxy</span>
+<span class="hljs-comment">             * <span class="hljs-doctag">@param</span> method</span>
+<span class="hljs-comment">             * <span class="hljs-doctag">@param</span> args</span>
+<span class="hljs-comment">             *    以上三个参数和基于接口的动态代理中invoke方法的参数是一样的</span>
+<span class="hljs-comment">             * <span class="hljs-doctag">@param</span> methodProxy ：当前执行方法的代理对象</span>
+<span class="hljs-comment">             * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">             * <span class="hljs-doctag">@throws</span> Throwable</span>
+<span class="hljs-comment">             */</span>
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">intercept</span><span class="hljs-params">(Object proxy, Method method, Object[] args, MethodProxy methodProxy)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
+                <span class="hljs-comment">//提供增强的代码</span>
+                Object returnValue = <span class="hljs-keyword">null</span>;
+
+                <span class="hljs-comment">//1.获取方法执行的参数</span>
+                Float money = (Float)args[<span class="hljs-number">0</span>];
+                <span class="hljs-comment">//2.判断当前方法是不是销售</span>
+                <span class="hljs-keyword">if</span>(<span class="hljs-string">"saleProduct"</span>.equals(method.getName())) &#123;
+                    returnValue = method.invoke(producer, money*<span class="hljs-number">0.8f</span>);
+                &#125;
+                <span class="hljs-keyword">return</span> returnValue;
+            &#125;
+        &#125;);
+        cglibProducer.saleProduct(<span class="hljs-number">12000f</span>);
+    &#125;
+&#125;</code></pre>
+
+<p>需引入；</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cglib<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>cglib<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.1_3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+
+<h2 id="基于xml的AOP配置"><a href="#基于xml的AOP配置" class="headerlink" title="基于xml的AOP配置"></a>基于xml的AOP配置</h2><p>配置步骤：</p>
+<ol>
+<li>把通知Bean也交给spring来管理</li>
+<li>使用aop:config标签表明开始AOP的配置</li>
+<li>使用aop:aspect标签表明配置切面<pre><code>id属性：是给切面提供一个唯一标识
+ref属性：是指定通知类bean的Id。</code></pre></li>
+<li>在aop:aspect标签的内部使用对应标签来配置通知的类型<pre><code>我们现在示例是让printLog方法在切入点方法执行之前之前：所以是前置通知
+ aop:before：表示配置前置通知
+ method属性：用于指定Logger类中哪个方法是前置通知
+ pointcut属性：用于指定切入点表达式，该表达式的含义指的是对业务层中哪些方法增强</code></pre></li>
+</ol>
+<p>切入点表达式的写法：<br>        关键字：execution(表达式)<br>        表达式：<br>            访问修饰符  返回值  包名.包名.包名…类名.方法名(参数列表)</p>
+<p>全通配写法：</p>
+<pre><code class="hljs java">* *..*.*(..)</code></pre>
+
+<p>实际开发中切入点表达式的通常写法：<br>            切到业务层实现类下的所有方法:</p>
+<pre><code class="hljs java">* com.itheima.service.impl.*.*(..)</code></pre>
+
+<p>比如:</p>
+<pre><code class="hljs java">&lt;!-- 配置srping的Ioc,把service对象配置进来--&gt;
+    &lt;bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"&gt;&lt;/bean&gt;
+      &lt;aop:before method="printLog" pointcut="execution(* com.itheima.service.impl.*.*(..))"&gt;&lt;/aop:before&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;
+
+&lt;/beans&gt;</code></pre>
+
+<p>AOP配置各种通知：</p>
+<pre><code class="hljs java">&lt;!--配置AOP--&gt;
+    &lt;aop:config&gt;
+        &lt;!-- 配置切入点表达式 id属性用于指定表达式的唯一标识。expression属性用于指定表达式内容
+              此标签写在aop:aspect标签内部只能当前切面使用。
+              它还可以写在aop:aspect外面，此时就变成了所有切面可用
+          --&gt;
+        &lt;aop:pointcut id="pt1" expression="execution(* com.itheima.service.impl.*.*(..))"&gt;&lt;/aop:pointcut&gt;
+        &lt;!--配置切面 --&gt;
+        &lt;aop:aspect id=<span class="hljs-string">"logAdvice"</span> ref=<span class="hljs-string">"logger"</span>&gt;
+            &lt;!-- 配置前置通知：在切入点方法执行之前执行
+            &lt;aop:before method="beforePrintLog" pointcut-ref="pt1" &gt;&lt;/aop:before&gt;--&gt;
+
+            &lt;!-- 配置后置通知：在切入点方法正常执行之后值。它和异常通知永远只能执行一个
+            &lt;aop:after-returning method="afterReturningPrintLog" pointcut-ref="pt1"&gt;&lt;/aop:after-returning&gt;--&gt;
+
+            &lt;!-- 配置异常通知：在切入点方法执行产生异常之后执行。它和后置通知永远只能执行一个
+            &lt;aop:after-throwing method="afterThrowingPrintLog" pointcut-ref="pt1"&gt;&lt;/aop:after-throwing&gt;--&gt;
+
+            &lt;!-- 配置最终通知：无论切入点方法是否正常执行它都会在其后面执行
+            &lt;aop:after method="afterPrintLog" pointcut-ref="pt1"&gt;&lt;/aop:after&gt;--&gt;
+
+            &lt;!-- 配置环绕通知 详细的注释请看Logger类中--&gt;
+            &lt;aop:around method="aroundPringLog" pointcut-ref="pt1"&gt;&lt;/aop:around&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;</code></pre>
+
+
+
+<h3 id="基于注解的AOP配置"><a href="#基于注解的AOP配置" class="headerlink" title="基于注解的AOP配置"></a>基于注解的AOP配置</h3><pre><code class="hljs java"><span class="hljs-meta">@Component</span>(<span class="hljs-string">"logger"</span>)
+<span class="hljs-meta">@Aspect</span><span class="hljs-comment">//表示当前类是一个切面类</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Logger</span> </span>&#123;
+
+    <span class="hljs-meta">@Pointcut</span>(<span class="hljs-string">"execution(* com.itheima.service.impl.*.*(..))"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pt1</span><span class="hljs-params">()</span></span>&#123;&#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 前置通知</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-comment">//    @Before("pt1()")</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">beforePrintLog</span><span class="hljs-params">()</span></span>&#123;
+        System.out.println(<span class="hljs-string">"前置通知Logger类中的beforePrintLog方法开始记录日志了。。。"</span>);
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 后置通知</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-comment">//    @AfterReturning("pt1()")</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">afterReturningPrintLog</span><span class="hljs-params">()</span></span>&#123;
+        System.out.println(<span class="hljs-string">"后置通知Logger类中的afterReturningPrintLog方法开始记录日志了。。。"</span>);
+    &#125;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 异常通知</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-comment">//    @AfterThrowing("pt1()")</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">afterThrowingPrintLog</span><span class="hljs-params">()</span></span>&#123;
+        System.out.println(<span class="hljs-string">"异常通知Logger类中的afterThrowingPrintLog方法开始记录日志了。。。"</span>);
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 最终通知</span>
+<span class="hljs-comment">     */</span>
+<span class="hljs-comment">//    @After("pt1()")</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">afterPrintLog</span><span class="hljs-params">()</span></span>&#123;
+        System.out.println(<span class="hljs-string">"最终通知Logger类中的afterPrintLog方法开始记录日志了。。。"</span>);
+    &#125;</code></pre>
+
+<p>关于环绕通知：</p>
+<p>​        它是spring框架为我们提供的一种可以在代码中手动控制增强方法何时执行的方式。</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Around</span>(<span class="hljs-string">"pt1()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">aroundPringLog</span><span class="hljs-params">(ProceedingJoinPoint pjp)</span></span>&#123;
+        Object rtValue = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span>&#123;
+            Object[] args = pjp.getArgs();<span class="hljs-comment">//得到方法执行所需的参数</span>
+
+            System.out.println(<span class="hljs-string">"Logger类中的aroundPringLog方法开始记录日志了。。。前置"</span>);
+
+            rtValue = pjp.proceed(args);<span class="hljs-comment">//明确调用业务层方法（切入点方法）</span>
+
+            System.out.println(<span class="hljs-string">"Logger类中的aroundPringLog方法开始记录日志了。。。后置"</span>);
+
+            <span class="hljs-keyword">return</span> rtValue;
+        &#125;<span class="hljs-keyword">catch</span> (Throwable t)&#123;
+            System.out.println(<span class="hljs-string">"Logger类中的aroundPringLog方法开始记录日志了。。。异常"</span>);
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(t);
+        &#125;<span class="hljs-keyword">finally</span> &#123;
+            System.out.println(<span class="hljs-string">"Logger类中的aroundPringLog方法开始记录日志了。。。最终"</span>);
+        &#125;
+    &#125;</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/26/Spring(2)---IOC%E9%85%8D%E7%BD%AE%E5%92%8C%E6%B3%A8%E8%A7%A3/">
+                        <span class="hidden-mobile">Spring(2)---IOC配置和注解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Spring(3)---AOP&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Spring(2)---IOC配置和注解 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>BunnyAndOak0</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-05-26 20:56">
+                    May 26, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.3k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    15
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <div align='center'><font size='6'>Spring---IOC配置和注解</font></div>
+
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>之前的xml配置写法：</p>
+<pre><code class="hljs java">&lt;bean id=<span class="hljs-string">"accountService"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"com.itheima.service.impl.AccountServiceImpl"</span>
+         scope=<span class="hljs-string">""</span>  init-method=<span class="hljs-string">""</span> destroy-method=<span class="hljs-string">""</span>&gt;
+       &lt;property name=""  value="" | ref=""&gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+
+
+
+<h2 id="用于创建对象的注解"><a href="#用于创建对象的注解" class="headerlink" title="用于创建对象的注解"></a>用于创建对象的注解</h2><p>他们的作用就和在XML配置文件中编写一个<bean>标签实现的功能是一样的</p>
+<p>Component:</p>
+<ul>
+<li><p>作用：用于把当前类对象存入spring容器中</p>
+</li>
+<li><p>属性：</p>
+<p>value：用于指定bean的id。当我们不写时，它的默认值是当前类名，且首字母改小写。</p>
+</li>
+</ul>
+<p>Controller：一般用在表现层</p>
+<p>Service：一般用在业务层</p>
+<p>Repository：一般用在持久层</p>
+<p>以上三个注解他们的作用和属性与Component是一模一样。</p>
+<p>他们三个是spring框架为我们提供明确的三层使用的注解，使我们的三层对象更加清晰</p>
+<h3 id="用于注入数据"><a href="#用于注入数据" class="headerlink" title="用于注入数据"></a><strong>用于注入数据</strong></h3><p>他们的作用就和在xml配置文件中的bean标签中写一个<property>标签的作用是一样的</p>
+<p>Autowired:</p>
+<ul>
+<li><p>作用：自动按照类型注入。只要容器中有唯一的一个bean对象类型和要注入的变量类型匹配，就可以注入成功</p>
+<p>​            如果ioc容器中没有任何bean的类型和要注入的变量类型匹配，则报错。</p>
+<p>​            如果Ioc容器中有多个类型匹配时：</p>
+</li>
+<li><p>出现位置：</p>
+<p>​            可以是变量上，也可以是方法上</p>
+</li>
+<li><p>细节：</p>
+<p>​            在使用注解注入时，set方法就不是必须的了。</p>
+</li>
+</ul>
+<p>Qualifier:</p>
+<ul>
+<li><p>作用：在按照类中注入的基础之上再按照名称注入。它在给类成员注入时            <strong>不能单独</strong>使用。但是在给方法参数注入时可以（稍后我们讲）</p>
+</li>
+<li><p>属性：</p>
+<p>​            value：用于指定注入bean的id。</p>
+</li>
+</ul>
+<p>Resource</p>
+<ul>
+<li><p>作用：直接按照bean的id注入。它可以独立使用</p>
+</li>
+<li><p>属性：</p>
+<p>​            name：用于指定bean的id。</p>
+<p>以上三个注入都只能注入其他bean类型的数据，而基本类型和String类型无法使用上述注解实现。</p>
+<p>另外，集合类型的注入只能通过XML来实现。</p>
+</li>
+</ul>
+<p>Value</p>
+<ul>
+<li><p>作用：用于注入基本类型和String类型的数据</p>
+</li>
+<li><p>属性：</p>
+<p>​            value：用于指定数据的值。它可以使用spring中SpEL(也就是spring的el表达式）SpEL的写法：${表达式}</p>
+</li>
+</ul>
+<h3 id="用于改变作用范围"><a href="#用于改变作用范围" class="headerlink" title="用于改变作用范围"></a><strong>用于改变作用范围</strong></h3><p>他们的作用就和在bean标签中使用scope属性实现的功能是一样的</p>
+<ul>
+<li><p>Scope</p>
+<p>​            作用：用于指定bean的作用范围</p>
+</li>
+<li><p>属性：</p>
+<p>​            value：指定范围的取值。常用取值：singleton、prototype</p>
+</li>
+</ul>
+<p>和生命周期相关 了解</p>
+<ul>
+<li><p>他们的作用就和在bean标签中使用init-method和destroy-methode的作用是一样的</p>
+<p>​            PreDestroy</p>
+<p>​            作用：用于指定销毁方法</p>
+<p>​            PostConstruct</p>
+<p>​            作用：用于指定初始化方法</p>
+</li>
+</ul>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Service</span>(<span class="hljs-string">"accountService"</span>)
+<span class="hljs-comment">//@Scope("prototype")</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AccountServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IAccountService</span> </span>&#123;
+
+<span class="hljs-comment">//    @Autowired</span>
+<span class="hljs-comment">//    @Qualifier("accountDao1")</span>
+    <span class="hljs-meta">@Resource</span>(name = <span class="hljs-string">"accountDao2"</span>)
+    <span class="hljs-keyword">private</span> IAccountDao accountDao = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-meta">@PostConstruct</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title">init</span><span class="hljs-params">()</span></span>&#123;
+        System.out.println(<span class="hljs-string">"初始化方法执行了"</span>);
+    &#125;
+
+    <span class="hljs-meta">@PreDestroy</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title">destroy</span><span class="hljs-params">()</span></span>&#123;
+        System.out.println(<span class="hljs-string">"销毁方法执行了"</span>);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title">saveAccount</span><span class="hljs-params">()</span></span>&#123;
+        accountDao.saveAccount();
+    &#125;
+&#125;</code></pre>
+
+<p>可以在spring.xml中配置要扫描的包</p>
+<pre><code class="hljs java">&lt;!--告知spring在创建容器时要扫描的包，配置所需要的标签不是在beans的约束中，而是一个名称为context名称空间和约束中--&gt;
+    &lt;context:component-scan base-package="edu.kmust"&gt;&lt;/context:component-scan&gt;</code></pre>
+
+<p>spring管理bean方式的比较：</p>
+<p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/spring%E7%AE%A1%E7%90%86bean%E6%96%B9%E5%BC%8F%E7%9A%84%E6%AF%94%E8%BE%83.PNG" srcset="/img/loading.gif" alt="spring管理bean方式比较"></p>
+<h2 id="使用全注解方式时，会用到的注解"><a href="#使用全注解方式时，会用到的注解" class="headerlink" title="使用全注解方式时，会用到的注解"></a>使用全注解方式时，会用到的注解</h2><p>Configuration</p>
+<ul>
+<li>作用：指定当前类是一个配置类</li>
+<li>细节：当配置类作为AnnotationConfigApplicationContext对象创建的参数时，该注解可以不写。</li>
+</ul>
+<p>ComponentScan</p>
+<ul>
+<li><p>作用：用于通过注解指定spring在创建容器时要扫描的包</p>
+</li>
+<li><p>属性：</p>
+<p>​            value：它和basePackages的作用是一样的，都是用于指定创建容器时要扫描的包。</p>
+<p>​            我们使用此注解就等同于在xml中配置了:</p>
+<pre><code class="hljs java">&lt;context:component-scan base-package="com.itheima"&gt;&lt;/context:component-scan&gt;</code></pre>
+
+</li>
+</ul>
+<p>Bean</p>
+<ul>
+<li><p>作用：用于把<strong>当前方法</strong>的返回值作为bean对象存入spring的ioc容器中</p>
+</li>
+<li><p>属性:</p>
+<p>​            name:用于指定bean的id。当不写时，默认值是当前方法的名称</p>
+</li>
+<li><p>细节：</p>
+<p>​            当我们使用注解配置方法时，如果方法有参数，spring框架会去容器中查找有没有可用的bean对象。</p>
+</li>
+<li><p>查找的方式和Autowired注解的作用是一样的</p>
+</li>
+</ul>
+<p>Import</p>
+<ul>
+<li><p>作用：用于导入其他的配置类</p>
+</li>
+<li><p>属性：</p>
+<p>​            value：用于指定其他配置类的字节码。</p>
+<p>​            当我们使用Import的注解之后，有Import注解的类就父配置类，而导入的都是子配置类</p>
+</li>
+</ul>
+<p>PropertySource</p>
+<ul>
+<li><p>作用：用于指定properties文件的位置</p>
+</li>
+<li><p>属性：</p>
+<p>​            value：指定文件的名称和路径。</p>
+</li>
+<li><p>关键字：classpath，表示类路径下</p>
+</li>
+</ul>
+<pre><code class="hljs java"><span class="hljs-comment">//@Configuration</span>
+<span class="hljs-meta">@ComponentScan</span>(<span class="hljs-string">"com.itheima"</span>)
+<span class="hljs-meta">@Import</span>(JdbcConfig<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>
+@PropertySource("classpath:jdbcConfig.properties")
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringConfiguration</span> </span>&#123;
+
+&#125;</code></pre>
+
+
+
+<h3 id="junit整合"><a href="#junit整合" class="headerlink" title="junit整合"></a>junit整合</h3><p>用Junit单元测试：测试我们的配置</p>
+<ul>
+<li><p>Spring整合junit的配置</p>
+<ul>
+<li>导入spring整合junit的jar(坐标)    </li>
+<li>使用Junit提供的一个注解把原有的main方法替换了，替换成spring提供的</li>
+</ul>
+</li>
+<li><p>@Runwith</p>
+<ul>
+<li>告知spring的运行器，spring和ioc创建是基于xml还是注解的，并且说明位置</li>
+</ul>
+</li>
+<li><p>@ContextConfiguration</p>
+<ul>
+<li>locations：指定xml文件的位置，加上classpath关键字，表示在类路径下</li>
+<li>classes：指定注解类所在地位置</li>
+</ul>
+<p>当我们使用spring 5.x版本的时候，要求junit的jar必须是4.12及以上</p>
+</li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/26/Spring(3)---AOP/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring(3)---AOP</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/05/26/Spring(1)---IOC/">
+                        <span class="hidden-mobile">Spring(1)---IOC</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Spring(2)---IOC配置和注解&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
