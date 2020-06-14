@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Oracle - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>BunnyAndOak0</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-06-15 01:54">
+                    June 15, 2020 am
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    14.6k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    169
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 align=center> Oracle</h1>
+
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p>​        Oracle服务中，有两个服务是非常重要的：</p>
+<ol>
+<li>数据库的实例服务：如果创建了多个数据库，就会有多个数据库实力服务，命名模式为：“OracleServiceSID”</li>
+<li>数据库监听服务“OracleOraDb11g_home1TNSListener”，如果要通过程序访问数据库，就必须开启此服务，否则无法连接。</li>
+</ol>
+<p>Oracle的卸载：</p>
+<ol>
+<li>执行Oracle提供的卸载程序</li>
+<li>进入到注册表，而后删除掉与Oracle有关的配置项</li>
+<li>重新启动电脑，并且进入到安全模式，删除掉所有的Oracle的配置文件</li>
+</ol>
+<h2 id="SQLPlus基础命令"><a href="#SQLPlus基础命令" class="headerlink" title="SQLPlus基础命令"></a>SQLPlus基础命令</h2><p>进行数据库的使用（Windows + r）：</p>
+<p>登录：输入用户、密码</p>
+<ol>
+<li><p>查看当前登录用户</p>
+<pre><code class="hljs java">show user;</code></pre>
+</li>
+<li><p>切换使用的用户</p>
+<pre><code class="hljs java">conn 用户名 [/ 密码][as sysdba];
+<span class="hljs-comment">//如果用超级管理员登录就必须追加“as sysdba”</span></code></pre>
+
+</li>
+</ol>
+<p>设置显示格式：</p>
+<ol>
+<li><p>设置每行显示的数据长度</p>
+<pre><code class="hljs java">set linesize 长度;</code></pre>
+</li>
+<li><p>设置每页显示的数据长度</p>
+<pre><code class="hljs java">set pagesize 长度;</code></pre>
+</li>
+<li><p>清屏</p>
+<pre><code class="hljs java">clear scr;</code></pre>
+
+</li>
+</ol>
+<p>调用自己的文本编辑器</p>
+<p>（windows下用notepad、linux下用vi）</p>
+<p>启动本地的文本编辑工具</p>
+<pre><code class="hljs java">edit my;	<span class="hljs-comment">//此时会在用户所在的目录中创建一个名为my.sql的文件</span></code></pre>
+
+<p>执行程序</p>
+<pre><code class="hljs java"><span class="hljs-meta">@my</span>		<span class="hljs-comment">//执行的是默认路径中的my.sql的文件</span></code></pre>
+
+<p>如果现在需要执行的sql文件已经存在于磁盘上了，就可以使用完整路径进行执行，例如：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@d</span>:\mldn		<span class="hljs-comment">//如果不加后缀，那么默认就是“*.sql”</span></code></pre>
+
+<p>调用本机的操作系统程序</p>
+<pre><code class="hljs java">host 系统命令		
+<span class="hljs-comment">//例如  windows下的拷贝命令</span>
+ host copy d:\mldn.sql d:\a.sql</code></pre>
+
+
+
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>SQL标准语法中，将SQL分为了三种：</p>
+<ul>
+<li>DML（数据操作语言）：指的是数据库的具体操作，具体操作只有四个形式，insert、delete、update、select，其中最麻烦的是查询操作（直接影响程序的性能）</li>
+<li>DDL（数据定义语言）：定义数据库对象、定义数据表、用户、</li>
+<li>DCL（数据控制语言）：用户的授权管理操作</li>
+</ul>
+<h2 id="Scott用户数据表"><a href="#Scott用户数据表" class="headerlink" title="Scott用户数据表"></a>Scott用户数据表</h2><p>查看数据库中所有表名称</p>
+<pre><code class="hljs java">select * from tab;</code></pre>
+
+<h2 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h2><p>使用SQL-DML语法操作</p>
+<p>语法：</p>
+<pre><code class="hljs java">select * |具体的列名 [as] [别名] from 表名称;</code></pre>
+
+<p>起别名</p>
+<pre><code class="hljs java">select empno 编号,ename 姓名,job 工作 from emp;--省略as关键字的写法</code></pre>
+
+<pre><code class="hljs java">select empno as 编号,ename as 姓名,job as 做工 from emp; --保留as关键字的写法</code></pre>
+
+<p>消除重复值</p>
+<pre><code class="hljs java">select distinct *|具体的列名 别名 from 表名称;</code></pre>
+
+
+
+<h2 id="限定查询"><a href="#限定查询" class="headerlink" title="限定查询"></a>限定查询</h2><p>在Oracle数据库中，里面的内容是区分大小写的</p>
+<p>使用WHERE子句</p>
+<pre><code class="hljs java">select *|具体的列名 from 表名称 where 条件表达式;</code></pre>
+
+<p>条件大于某个值：</p>
+<pre><code class="hljs java">select * from emp where sal&gt;<span class="hljs-number">1500</span>;</code></pre>
+
+<p>不为空</p>
+<pre><code class="hljs java">select * from emp where comm is not <span class="hljs-keyword">null</span>;
+<span class="hljs-comment">//为空</span>
+select * from emp where comm is <span class="hljs-keyword">null</span>;</code></pre>
+
+<p>采用and关键字将多个限定条件进行连接，表示所有的限定条件都需要满足</p>
+<pre><code class="hljs java">select * from emp where sal&gt;<span class="hljs-number">1500</span> and comm is not <span class="hljs-keyword">null</span>;</code></pre>
+
+<p>“或者”，所以在查询时，只需要满足两个条件中的一个就行</p>
+<pre><code class="hljs java">select * from emp where sal&gt;<span class="hljs-number">1500</span> or comm is not <span class="hljs-keyword">null</span>;</code></pre>
+
+<p>专门指定范围查询的过滤语句：between x and y，相当于a&gt;=x and a&lt;=y,也就是包含了等于的功能，日期也适用</p>
+<pre><code class="hljs java">select * from emp where sal between <span class="hljs-number">1500</span> and <span class="hljs-number">3000</span>;</code></pre>
+
+<p>模糊查询：Like</p>
+<p>提供两个匹配符号：</p>
+<ol>
+<li><p>“_”：匹配任意的一位字符</p>
+</li>
+<li><p>“%”：表示匹配任意的0位，1位或者多位字符</p>
+<p>例如：查询以A开头的员工：</p>
+<pre><code class="hljs java">SELECT * FROM emp WHERE ename LIKE <span class="hljs-string">'A%'</span> ;</code></pre>
+
+<p>查询雇员姓名中，第二个字母为A的</p>
+<pre><code class="hljs java">SELECT * FROM emp WHERE ename LIKE <span class="hljs-string">'_A%'</span> ;</code></pre>
+
+<ul>
+<li>like运算的时候可以针对各种数据类型，例如：字符串、数字、日期</li>
+<li>如果想要进行关键字的查询，前后可以使用“%关键字%”的形式完成</li>
+<li>如果在进行关键字检索的时候，没有设置关键字内容，也就是设置的是’’（空字符串）,就表示查询全部（要比简单查询性能差很多）</li>
+</ul>
+</li>
+</ol>
+<p>IN、NOT  IN范围查询</p>
+<p>通过给定的种子数，筛选出符合这些数据的内容</p>
+<p>例如：</p>
+<p>查询出雇员编号为：7369、7566、7788、9999的雇员信息</p>
+<pre><code class="hljs java">SELECT * FROM emp
+<span class="hljs-function">WHERE empno <span class="hljs-title">IN</span> <span class="hljs-params">(<span class="hljs-number">7369</span>,<span class="hljs-number">7566</span>,<span class="hljs-number">7839</span>,<span class="hljs-number">9999</span>)</span> </span>;</code></pre>
+
+<p>由于没有9999的雇员，所以只会返回三行数据</p>
+<p>也可以使用NOT  IN表示不在范围之中。</p>
+<p>注意点：</p>
+<p>使用where查询的主要目的是只显示部分数据行的数据信息，在NOT  IN处理的过程中，如果种子数中，出现有任何的空（null），就不会有任何的结果返回。</p>
+<h2 id="查询排序"><a href="#查询排序" class="headerlink" title="查询排序"></a>查询排序</h2><p>使用ORDER BY子句，进行一些特殊子段的排序</p>
+<p>语法：</p>
+<pre><code class="hljs java">③SELECT [DISTINCT] * | 列名称 [别名] , 列名称 [别名] ,... | 数据计算
+①FROM 数据表 [别名] 
+②[WHERE 限定条件(s)]
+④[ORDER BY 排序字段 [ASC | DESC],排序字段 [ASC | DESC],.....];</code></pre>
+
+<p>​        SELECT 子句是在WHERE子句之后执行的，所以WHERE子句中，无法使用SELECT子句定义的别名，Order by是所有子句中最后一个执行，所以可以使用SELECT中的别名。</p>
+<p>两种排序模式：</p>
+<ol>
+<li>ASC：升序，默认为此模式</li>
+<li>DESC：降序</li>
+</ol>
+<p>例如：</p>
+<p>查询所有雇员的信息要求雇员的工资有低到高排序</p>
+<pre><code class="hljs java">SELECT * FROM emp ORDER BY sal ;
+<span class="hljs-comment">//降序</span>
+SELECT * FROM emp ORDER BY sal DESC ;</code></pre>
+
+<p>查询所有雇员的信息，要求工资由高到低排序，如果工资相同就按照雇佣日期由早到晚排序</p>
+<pre><code class="hljs java">SELECT * FROM emp ORDER BY sal DESC , hiredate ASC ;</code></pre>
+
+<p>ORDER BY永远都在最后处理，也就是说排序是在所有数据都筛选完成之后，才进行数据处理。</p>
+<h2 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h2><p>大多数关系型数据库的区别：</p>
+<ol>
+<li>数据的存储区别，拥有不同的存储方案</li>
+<li>支持的数据类型是不同的的</li>
+<li>有不同的支持函数</li>
+</ol>
+<p>​        oracle针对于系统函数的定义的基本格式：返回数据类型 函数名称（数据  | 列名称），而返回的数据类型基本上只有三类：字符串（VARCHAR2），数字（NUMBER），日期（DATE）</p>
+<p>​        单行函数分为：字符串函数、数值函数、日期函数（避免闰年问题）、转换函数、通用函数。</p>
+<p>字符串函数</p>
+<ol>
+<li>进行字符串的处理<ul>
+<li>转大写函数 字符串UPPER（数据 |列）；</li>
+<li>转消谐函数 字符串LOWER（数据 | 列）；</li>
+<li>首字母大写 字符串INITCAP（数据 | 列）；</li>
+<li>计算字符串长度 数字 LENGTH （数据 | 列）；</li>
+<li>字符串截取：字符串 SUBSTR（数据 | 列， 截取点[，长度]）；<ul>
+<li>由指定索引（Oracle中的字符串索引开始的值为1，如果设置为0，则与1相同，也就是所效果与1相同），到结尾</li>
+<li>设置指定索引和截取长度</li>
+<li>也可以将索引数设置为复数，表示由结尾开始的指定索引截取（可以渐变的进行从后往前的计算长度）</li>
+</ul>
+</li>
+<li>字符串替换 字符串 REPLACE（要替换的数据 | 列，要替换的数据， 替换的数据）；</li>
+</ul>
+</li>
+</ol>
+<p>数值函数</p>
+<p>数值函数主要作用是进行一些数字的操作，三种常见数值操作的函数：</p>
+<ol>
+<li>ROUND（数据 | 列[，保留小数位]）：四舍五入的处理；</li>
+<li>TRUNC（数据 | 列[，保留小数位]）：数据截取（不进位）；</li>
+<li>MOD（数据 | 列， 数据 | 列）：求余数。</li>
+</ol>
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><p> 也就是说，FROM之后可以设置多张表，多表查询的参考语法：</p>
+<p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.PNG" srcset="/img/loading.gif" alt=""></p>
+<p>相关概念</p>
+<p>结论：在实际的开发中，慎用多表查询，根据数据量来决定。</p>
+<p>多表查询中，积一直都在。</p>
+<p>多表查询使用分析</p>
+<p>对于多表查询，这些关联的数据表之间存在有一定关系（某个字段，某些条件）</p>
+<ul>
+<li><p>确定要使用的数据表</p>
+</li>
+<li><p>确定已知的关联字段：两张表用一个条件，三张表用两个条件，使用AND连接</p>
+</li>
+</ul>
+<p>数据库中对于多表查询，实际上给出了两种表的连接</p>
+<ul>
+<li><p>内连接</p>
+<p>等值连接，在之前进行判断的时候会使用一些条件（e.deptno = d.deptno），只有条件满足了才会显示相应的数据信息,不满足就不显示</p>
+</li>
+<li><p>外连接：一定要根据具体的查询要求来定义</p>
+<p>数据表记录的全部显示，外连接分为：左外连接，右外连接，全外连接</p>
+<ul>
+<li>左外连接：条件上（字段 = 字段（+））：也就是说左表的数据要求全部显示</li>
+<li>右外连接：条件上（字段（+） = 字段）：也就是说右表的数据要求全部显示</li>
+<li>也可以进行自身关联</li>
+</ul>
+<p>但是外连接的相关操作，在整个实现过程中，使用了（+），如果更换到了其他的数据库，那么有可能就不支持此类查询，为了解决此问题，可以使用1999标准语法。</p>
+<p>1999语法：</p>
+<ul>
+<li>交叉连接：CROSS  JOIN 就是简单地将数据表关联在一起，会产生笛卡尔积</li>
+<li>自然连接：NATURAL   JOIN 内连接，自动找到同名字段，采用内连接的模式效出笛卡尔积</li>
+<li>USING子句（与JOIN配合使用）：设置要进行关联的字段</li>
+<li>ON子句（与JOIN配合使用）：设置关联条件</li>
+<li>外连接（三类）：LEFT  OUTER  JOIN、 RIGHT  OUTER  JOIN、 FULL  OUTER  JOIN（可以与ON配合使用）</li>
+</ul>
+</li>
+</ul>
+<h2 id="集合处理"><a href="#集合处理" class="headerlink" title="集合处理"></a>集合处理</h2><p>  ​        对于查询结果而言，也可以进行集合的运算，要求查询返回的结构一定要相同</p>
+<p>  语法：</p>
+<p>  <img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E9%9B%86%E5%90%88%E7%9A%84%E5%A4%84%E7%90%86.PNG" srcset="/img/loading.gif" alt=""></p>
+<ul>
+<li><p>UNION运算：将集合的结果整合在一起使用，但是相同的部分<strong>不显示</strong></p>
+</li>
+<li><p>UNION   ALL运算：将集合的结果的整合在一起，<strong>显示</strong>相同的部分</p>
+</li>
+<li><p>MINUS运算：差集运算，需要看取值范围的大小使用</p>
+</li>
+<li><p>INTERSECT运算：返回两个查询中的相同部分</p>
+<p>这些运算符都是以查询结果进行处理的，也就是说你可以执行多个不同的查询，再用以上的连接符将以上这些内容放到一起进行显示。</p>
+</li>
+</ul>
+<h2 id="分组统计查询"><a href="#分组统计查询" class="headerlink" title="分组统计查询"></a>分组统计查询</h2><p>统计函数（分组函数、组函数）</p>
+<p>常用：</p>
+<p>COUNT()：可以 统计出数据表中数据行的个数，如果表中没有记录，count的统计结果为0，而不是空null</p>
+<p>用法：COUNT(*)，COUNT(字段)，COUNT(DISTINCT    字段)</p>
+<ol>
+<li><p>如果现在某一个列上的数据没有null，那么使用COUNT(*)和COUNT(字段)结果，是相同的</p>
+<p>但是如果某一个列上一旦出现有空null，则null在COUNT(字段)中是不统计的</p>
+</li>
+<li><p>如果某一个列上拥有重复数据，统计的时候不想出现重复，则使用DISTINCT完成处理</p>
+<p>例如：COUNT(DISTINCT job)</p>
+</li>
+</ol>
+<p>SUM()</p>
+<p>AVG()</p>
+<p>MIN()</p>
+<p>MAX()</p>
+<h2 id="分组统计"><a href="#分组统计" class="headerlink" title="分组统计"></a>分组统计</h2><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E5%88%86%E7%BB%84%E7%BB%9F%E8%AE%A1.PNG" srcset="/img/loading.gif" alt=""></p>
+<ol>
+<li><p>在编写查询语句的时候，如果没有编写GROUP BY子句，这个时候的SELECT 子句中只能够出现统计函数，表示对整表数据的进行性统计操作（可以理解为整表分为一组）。</p>
+</li>
+<li><p>在使用GROUP BY查询址中，SELECT子句里面只能出现分组字段和统计函数，其他的任何字段都不允许出现</p>
+</li>
+<li><p>在进行分组查询的时候，统计函数允许嵌套，但是此时 的SELECT子句之中，不能出现任何字段，包括分组字段</p>
+</li>
+</ol>
+<h2 id="多表查询与分组统计"><a href="#多表查询与分组统计" class="headerlink" title="多表查询与分组统计"></a>多表查询与分组统计</h2><p>​        如果要想按照多个列分组，则要求，这多个列的内容一起重复着，这样的操作往往都要结合多表查询一起出现。</p>
+<h2 id="HAVING子句"><a href="#HAVING子句" class="headerlink" title="HAVING子句"></a>HAVING子句</h2><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/having%E9%A1%BA%E5%BA%8F.PNG" srcset="/img/loading.gif" alt=""></p>
+<p>由于执行顺序的问题，用WHERE代替HAVING的时候，会出现逻辑上的问题。</p>
+<p>HAVING与WHERE的区别：</p>
+<p>WHERE：是在GROUP  BY分组前使用，表示对要分组的数据进行筛选定义，<strong>不允许</strong>使用统计函数。</p>
+<p>HAVING：在GROUP  BY之后使用，<strong>允许</strong>使用统计函数，针对于分组后的数据进行筛选。</p>
+<p>对于分组操作，不一定只有GROUP  BY可以解决，这些集合操作可以将多个查询结果整合在一起显示。</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>​        指的是在一个完整查询的语句里面嵌入N个内部查询结果，子查询没有固定的语法，可以自己嵌套。</p>
+<p>对于子查询而言，在哪个字句出现并没有一个明确的结果：</p>
+<ul>
+<li><strong>WHERE子句</strong>：当子句返回单行单列、多行单列、单行多列</li>
+<li>HAVING子句：子查询返回单行单列，并且需要进行统计操作的时候</li>
+<li><strong>FROM子句</strong>：子查询返回多行多列数据（表）可以在FROM子句中出现，按照表的形式处理</li>
+<li>SELECT子句：子查询返回单行单列</li>
+</ul>
+<p>子查询主要是为了解决查询性能的问问题。</p>
+<ol>
+<li><p>WHERE子句的主要作用，是为了限制数据表中数据行的显示，所以一般都是作为筛选数据使用的。</p>
+<ul>
+<li>子查询返回单行单列</li>
+</ul>
+<p>例如：查询出工资高于平均工资的员工的所有信息</p>
+<pre><code class="hljs java">SELECT * 
+FROM emp
+WHERE sal &gt; (<span class="hljs-function">SELECT <span class="hljs-title">AVG</span><span class="hljs-params">(sal)</span> FROM emp)</span>;</code></pre>
+
+<ul>
+<li>子查询返回单行多列</li>
+</ul>
+<p>指的是要求同时满足两个列的判断</p>
+<pre><code class="hljs JAVA">SELECT * 
+FROM emp 
+WHERE (job, sal) = (SELECT job, sal FROM emp WHERE ename = <span class="hljs-string">'SCOTT'</span>)
+AND ename != <span class="hljs-string">'SCOTT'</span>;</code></pre>
+
+<ul>
+<li>子查询返回多行单列</li>
+</ul>
+<p>一旦子查询返回多行单列的数据，实际上所返回的内容就属于一个数据的范围了，对于范围的的查询在子查询之中定义有三种操作形式：</p>
+<ol>
+<li><p>IN</p>
+<p>与之前的IN是相同的(NOT  IN  指的是不在范围之中)</p>
+<pre><code class="hljs JAVA">SELECT * 
+FROM emp
+<span class="hljs-function">WHERE sal <span class="hljs-title">IN</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">SELECT sal FROM emp WHERE job = <span class="hljs-string">'MANAGER'</span>)</span></span>;</code></pre>
+
+<p>如果使用了<strong>NOT  IN</strong> 并且子查询中返回的结果中包含有null，则不会有任何的结果返回。</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li><p>ANY：一共有三种使用形式</p>
+<p>‘=ANY’：与IN操作完全一样</p>
+<p>‘&gt;ANY’：比最小的值要大</p>
+<p>‘&lt;ANY’：比最大的值要小</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>ALL：所有的内容，有两种方法</p>
+<p>‘&gt;ALL’：比集合中最大的还要大</p>
+<p>‘&lt;ALL’：比集合中最小的还要小</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>在HAVING中使用子查询</p>
+<p>一般而言都表示子查询返回的是单行单列，并且需要使用到分组统计的时候。（HAVING的时候前提是出现GROUP  BY）</p>
+</li>
+</ol>
+<p>   例如：查询出高于公司平均工资的职位名称、职位人数、平均工资</p>
+<ol start="3">
+<li><p>在FROM子句中使用子查询</p>
+<p>​        最主要的作用是确定要使用到的数据表，所谓的数据表也就是一个行列点的集合，也就是说如果返回的取数据是一个多行多列的数据，就需要考虑将其直接放入FROM子句之中。</p>
+</li>
+</ol>
+<p>   例如：</p>
+<p>   查询出每个部门的编号、名称、位置、部门人数、平均工资</p>
+   <pre><code class="hljs java">SELECT d.deptno,d.dname,d.loc,temp.count,temp.avg
+FROM dept d , (
+	SELECT deptno dno,COUNT(empno) count,AVG(sal) avg
+	FROM emp
+	GROUP BY deptno) temp
+WHERE d.deptno=temp.dno(+) ;</code></pre>
+
+<ol start="4">
+<li><p>EXISTS运算</p>
+<p>​        exists运算是一种根据子查询是否有数据的形式来判断条件是否成立的运算符。子查询返回数据则表示判断条件成立。所以EXISTS知识简单的判断是否有数据返回，而不关心返回的具体数据是什么。</p>
+</li>
+</ol>
+<p>Tips：IN和EXISTS的区别：</p>
+<ul>
+<li><p>IN需要明确的进行数据的判断，也就是说子查询中返回的数据的内容要参与运算</p>
+</li>
+<li><p>EXISTS：不需要参考具体的返回内容，其知识依靠是否有数据的返回来判断条件是否成立。</p>
+</li>
+</ul>
+<h2 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h2><p>例如：</p>
+<p>列出与“SCOTT”从事相同工作的所有干员以及部门名称，部门人数，平均工资</p>
+<pre><code class="hljs java">SELECT e.empno,e.ename,e.job,d.dname,temp.count,temp.avg
+FROM emp e,dept d , (
+	SELECT deptno dno,COUNT(empno) count,AVG(sal) avg
+	FROM emp
+	GROUP BY deptno) temp
+WHERE e.job=(
+	SELECT job FROM emp WHERE ename=<span class="hljs-string">'SCOTT'</span>) 
+	AND e.ename&lt;&gt;<span class="hljs-string">'SCOTT'</span>
+	AND e.deptno=d.deptno
+	AND e.deptno=temp.dno</code></pre>
+
+
+
+<p>列出薪资高于在部门30工作的所有员工的薪资以及高于公司平均工资的员工姓名和薪资、部门名称、部门平均工资、个人工资等级。</p>
+<pre><code class="hljs java">SELECT e.ename,e.sal,d.dname,temp.avg,s.grade
+FROM emp e,dept d,(
+	SELECT deptno dno,AVG(sal) avg
+	FROM emp
+	GROUP BY deptno) temp,salgrade s
+WHERE e.sal&gt;ALL(
+	SELECT sal FROM emp WHERE deptno=<span class="hljs-number">30</span>) 
+	AND e.sal&gt;(<span class="hljs-function">SELECT <span class="hljs-title">AVG</span><span class="hljs-params">(sal)</span> FROM emp) </span>
+<span class="hljs-function">	AND e.deptno</span>=d.deptno
+	AND e.deptno=temp.dno
+	AND e.sal BETWEEN s.losal AND s.hisal ;</code></pre>
+
+<p>查询出所有雇员的编号、姓名、职位、薪金、此职位的人数、领导姓名、领导职位、领导所在的职位的人数，雇员部门、雇员部门的人数，领导部门、领导所在的部门人数，雇员工资等级，以及此等级的平均工资。</p>
+<pre><code class="hljs java">SELECT e.empno,e.ename,e.job,e.sal,empjobtemp.count,m.ename,m.job,mgrjobtemp.count,d.dname,empdepttemp.count,d2.dname,mgrdepttemp.count,s.grade,empsaltemp.count
+FROM emp e , (
+	SELECT job,COUNT(*) count
+	FROM emp
+	GROUP BY job) empjobtemp , emp m ,
+	(
+		SELECT job,COUNT(*) count
+		FROM emp
+		<span class="hljs-function">WHERE job <span class="hljs-title">IN</span> <span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">			SELECT job</span></span>
+<span class="hljs-function"><span class="hljs-params">			FROM emp WHERE empno IN (</span></span>
+<span class="hljs-function"><span class="hljs-params">				SELECT DISTINCT mgr FROM emp)</span>)</span>
+<span class="hljs-function">		GROUP BY job) mgrjobtemp,dept d ,</span>
+<span class="hljs-function">	<span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">		SELECT deptno dno,COUNT(*)</span> count</span>
+<span class="hljs-function">		FROM emp</span>
+<span class="hljs-function">		GROUP BY deptno) empdepttemp ,dept d2 ,</span>
+<span class="hljs-function">	<span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">		SELECT deptno dno,COUNT(*)</span> count</span>
+<span class="hljs-function">		FROM emp</span>
+<span class="hljs-function">		WHERE deptno <span class="hljs-title">IN</span> <span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">			SELECT deptno</span></span>
+<span class="hljs-function"><span class="hljs-params">			FROM emp WHERE mgr IN (</span></span>
+<span class="hljs-function"><span class="hljs-params">				SELECT mgr FROM emp)</span>)</span>
+<span class="hljs-function">		GROUP BY deptno) mgrdepttemp , salgrade s ,</span>
+<span class="hljs-function">		<span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">			SELECT s1.grade grd,COUNT(e1.empno)</span> count</span>
+<span class="hljs-function">			FROM emp e1,salgrade s1</span>
+<span class="hljs-function">			WHERE e1.sal BETWEEN s1.losal AND s1.hisal</span>
+<span class="hljs-function">			GROUP BY s1.grade) empsaltemp</span>
+<span class="hljs-function">WHERE e.job</span>=empjobtemp.job 
+	AND e.mgr=m.empno(+)
+	AND m.job=mgrjobtemp.job
+	AND e.deptno=d.deptno
+	AND e.deptno=empdepttemp.dno
+	AND m.deptno=d2.deptno
+	AND m.deptno=mgrdepttemp.dno
+	AND e.sal BETWEEN s.losal AND s.hisal 
+	AND s.grade=empsaltemp.grd;</code></pre>
+
+
+
+<h2 id="数据库更新操作"><a href="#数据库更新操作" class="headerlink" title="数据库更新操作"></a>数据库更新操作</h2><p> 数据表的复制操作：</p>
+<pre><code class="hljs java">CREATE TABLE myemp AS SELECT * FROM emp;</code></pre>
+
+<p>对于数据更新操作在SQL中，一共分为三种：增加（INSERT）、修改（UPDATE）、删除（DELETE）</p>
+<ol>
+<li><p>数据增加</p>
+<p>如果向已有的数据表之中进行数据的增加，其采用的语法有两种：</p>
+<ul>
+<li>完整语法格式（推荐使用）</li>
+</ul>
+<pre><code class="hljs java">INSERT INTO 表名称(列名称,列名称,...) VALUES (内容<span class="hljs-number">1</span>,内容<span class="hljs-number">2</span>,...) ;</code></pre>
+
+<ul>
+<li>简化语法（不写列名称）</li>
+</ul>
+<pre><code class="hljs java">INSERT INTO 表名称 VALUES (内容<span class="hljs-number">1</span>,内容<span class="hljs-number">2</span>,...) ;</code></pre>
+
+<p>TIps：</p>
+<p>在追加内容的时候常见的几种类型：</p>
+<ol>
+<li>字符串，要求使用” ‘(单引号) “例如：’hello’</li>
+<li>是数字，直接进行编写</li>
+<li>日期，当前日期使用SYSDATE描述，如果使用自定义日期则可以使用TO_DATE()函数进行转换</li>
+</ol>
+</li>
+</ol>
+<p>   例如：</p>
+<p>   向myemp表中追加一行新的记录</p>
+<p>   使用完整语法：</p>
+   <pre><code class="hljs java">INSERT INTO myemp 
+(empno,sal,ename,hiredate,job,mgr,comm,deptno) 
+VALUES 
+(<span class="hljs-number">8888</span>,<span class="hljs-number">9999.99</span>,<span class="hljs-string">'爱丽丝'</span>,TO_DATE(<span class="hljs-string">'1969-10-10'</span>,<span class="hljs-string">'yyyy-mm-dd'</span>), <span class="hljs-string">'魔法使'</span>,<span class="hljs-number">1521</span>，<span class="hljs-number">10</span>，<span class="hljs-number">40</span>);</code></pre>
+
+<p>   如果在某些字段上不想设置数据（null），那么有两种做法：</p>
+<ol>
+<li>在增加的时候不设置具体的内容</li>
+<li>明确的设置内容为null</li>
+</ol>
+<ol start="2">
+<li><p>数据的修改</p>
+<p>也算是数据的更新处理操作，修改的命令使用的是UPDATE语句完成，其语法如下：</p>
+<pre><code class="hljs java">UPDATE 表名称 SET 字段<span class="hljs-number">1</span>=内容<span class="hljs-number">1</span>,字段<span class="hljs-number">2</span>=内容<span class="hljs-number">2</span>, ... [WHERE 更新条件(s)] ;</code></pre>
+
+<p>​        如果没有写上那个更新条件，就表示表中的所有数据行信息都要同时进行更新（实际中很少用），如果写上了更新条件就表示只更新满足条件的数据行，这些条件可以像之前限定查询那样进行各种运算符的整合或者使用子查询完成更新操作。</p>
+</li>
+</ol>
+<p>   例如：</p>
+<p>   将7369的雇员工资修改为3500，雇佣日期设置为今天</p>
+   <pre><code class="hljs java">UPDATE myemp SET sal = <span class="hljs-number">3500</span>, hiredate = SYSDATE WHERE empno = <span class="hljs-number">7369</span>;</code></pre>
+
+<p>   所有20部门的雇员工资增长20%</p>
+   <pre><code class="hljs java">UPDATE myemp SET sal = sal * <span class="hljs-number">1.2</span> WHERE deptno = <span class="hljs-number">20</span>;</code></pre>
+
+<p>   公司所有的雇员的雇佣日期修改为今天</p>
+   <pre><code class="hljs java">UPDATE myemp SET HIREDATE = SYSDATE;    <span class="hljs-comment">//更新了全部</span></code></pre>
+
+<ol start="3">
+<li><p>删除操作</p>
+<p>在以后的开发中，删除操作尽可能不要使用（没有一个所谓的成熟系统支持数据的删除）。</p>
+<p>在SQL中，如果想要删除某些不在使用的数据，可以使用DELETE语法：</p>
+<pre><code class="hljs java">DELETE FROM 表名称 [WHERE 删除条件(s)] ;</code></pre>
+
+<p>如果要删除表中所有的数据，可以不设置删除条件</p>
+<pre><code class="hljs java">DELETE FROM myemp ;</code></pre>
+
+<p>在实际的项目之中的删除操作，数据的删除分为两种：</p>
+<ul>
+<li><p>物理删除：直接使用了DELETE语句，彻底删除干净</p>
+</li>
+<li><p>逻辑删除：在表中设置一个逻辑位（例如：设计的时候准备一个flag字段），那么逻辑位的内容如下：</p>
+<ol>
+<li><p>flag=1（非0表示true）：表示带数据已经被删除了</p>
+<p>​        如果数据要被删除则将flag内容设置为1（执行更        新处理）</p>
+</li>
+<li><p>flag=0（0表示false）：表示该数据未被删除</p>
+</li>
+</ol>
+<p>在以后的查询过程中，多增加一个WHERE语句：</p>
+<p>SELECT  *  FROM  表  WHERE  flag=0;</p>
+</li>
+</ul>
+<p>所以在以后的开发中，使用的都是逻辑删除，所谓的删除操作只是一个更新处理。</p>
+</li>
+</ol>
+<h2 id="事务处理"><a href="#事务处理" class="headerlink" title="事务处理"></a>事务处理</h2><p>​        传统的关系型数据库的最大特征是具有事务的支持能力，最大的好处是可以保证操作数据的完整性，也就是在进行数据更新操作的时候，如果一个更新操作会导致多张数据表的同时更新，那么这些更新要么一起成功，要么一起失败。事务处理是关系型数据库的一个最大特征，但是也是所有性能造成的瓶颈所在，</p>
+<p>事务的控制原理：</p>
+<p>Session（会话），在oracle数据库之中，同一个数据库可以连接多次，那么每一个连接到数据库上的用户在数据库之中，都会使用一个Session的概念来描述，每一个Session之中都拥有自己的独立的操作</p>
+<p>ACID：一个用户一个用户的更新，每个用户的更新操作彼此<strong>独立</strong>，更新完成后的数据要持久化到数据库之中</p>
+<p>Oracle中的事务控制</p>
+<p>重点的命令（也有其他的命令）：</p>
+<ol>
+<li>commit：指的是所有的操作需要进行提交（也就是进行真正的更新，例如删除操作一旦commit，数据就会真正的被删除）</li>
+</ol>
+<ol start="2">
+<li>rollback：当发现数据操作产生问题的时候就需要进行回滚处理，回滚到上一次的提交点</li>
+</ol>
+<p>在oracle中，对事务的支持控制本身是提供有一个操作的<strong>缓冲区</strong>的，也就是说用户发出的所有的更新操作并不是直接，立刻反应到数据库上（也可以通过设置关闭事务，这样所有的更新会立刻反应到数据库之中），用户如果发现更新没有问题就提交事务，如果有问题则进行数据的回滚。</p>
+<p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%A4%84%E7%90%86.PNG" srcset="/img/loading.gif" alt=""></p>
+<h2 id="事务锁"><a href="#事务锁" class="headerlink" title="事务锁"></a>事务锁</h2><p>例如:</p>
+<ol>
+<li><p>定义两个session分别连接到数据库</p>
+</li>
+<li><p>SessionA现在发出一个更新指令，更新一条数据：</p>
+<pre><code class="hljs java">UPDATE emp SET sal = <span class="hljs-number">9999</span> WHERE empno = <span class="hljs-number">7369</span>;</code></pre>
+</li>
+<li><p>SessionB由于第一个Session并没有提交或者回滚事务，所以这个时候第二个Session是无法更新7369这行数据的（对于其他数据是可以更新的）</p>
+</li>
+<li><p>SessionA执行rollback或者commit表示释放掉当前锁住的数据行，SessionB才可以被执行</p>
+</li>
+<li><p>在进行锁定的时候除了更新操作，可以采用其他的查询模式</p>
+<pre><code class="hljs java">SELECT * FROM emp WHERE empno = <span class="hljs-number">7369</span>;</code></pre>
+
+<p>也就说，数据行被锁的话，在当前事务释放之前，该数据不允许被修改</p>
+</li>
+</ol>
+<h2 id="数据伪列"><a href="#数据伪列" class="headerlink" title="数据伪列"></a>数据伪列</h2><p>也就是不存在于表中的列，但是该列又可以直接使用。例如：SYSDATE、重量级的伪列：ROWNUM（常用），ROWID（数据库分析）</p>
+<ol>
+<li><p><strong>ROWNUM伪列</strong>（重点）</p>
+<p>在每一次查询过程中，如果想要显示出当前的行号，就自动追加一个ROWNUM即可：</p>
+</li>
+</ol>
+<p>​                例如：ROWNUM的使用</p>
+<pre><code class="hljs java">SELECT ROWNUM, empno, ename FROM emp;</code></pre>
+
+<p>​                使用了ROWNUM之后，会自动做一个数据的增长列，该行号从1开始，但是该行号就根据数据的查询结果而进行自动的生成，不是固定的</p>
+<p>而在实际开发中，ROWNUM可以做两件事情：</p>
+<ul>
+<li><p>查询第一行记录（不能查看第N行数据，N不等于1）；</p>
+<p>例如：</p>
+<p>查询第一行数据：</p>
+<pre><code class="hljs java">SELECT empno,ename FROM emp WHERE ROWNUM=<span class="hljs-number">1</span> ;
+SELECT empno,ename FROM emp WHERE deptno=<span class="hljs-number">10</span> AND ROWNUM=<span class="hljs-number">1</span> ;</code></pre>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>查询前N行记录；</p>
+<p>例如：</p>
+<p>查询emp的前5行数据：</p>
+<pre><code class="hljs java">SELECT ROWNUM, empno, ename FROM emp WHERE ROWNUM &lt;= <span class="hljs-number">5</span>;</code></pre>
+
+<p>ROWNUM只有看前N行的能力，没有直接提供看中间行的能力（比如6~10行）</p>
+</li>
+</ul>
+<p><strong>数据的分页显示处理</strong>（很重要！！！）</p>
+<p>所谓的分页显示指的是可以让表中的数据信息按照部分的模式来完成，在Oracle中分页的基本语法定义如下：</p>
+<pre><code class="hljs java">SELECT * 
+FROM (
+	SELECT 查询字段,查询字段,..,ROWNUM rn
+    FROM 数据表
+	WHHERE ROWNUM&lt;=currentPage * lineSize) temp
+WHERE temp.rn&gt;(currentPage-<span class="hljs-number">1</span>)*lineSize ;</code></pre>
+
+<p>其中currentPage描述的是当前所在页，而lineSize描述的是每页显示的数据行数</p>
+<p>例如：</p>
+<p>查询表中的6~10条记录</p>
+<ul>
+<li>此时描述的是第二页的数据，也就是说currentPage = 2，lineSize = 5（每页显示五行数据）</li>
+</ul>
+<pre><code class="hljs java">SELECT *
+FROM (
+	SELECT empno,ename,job,ROWNUM rn
+	FROM emp
+	WHERE ROWNUM&lt;=<span class="hljs-number">10</span>) temp
+WHERE temp.rn&gt;<span class="hljs-number">5</span> ;</code></pre>
+
+
+
+<ol start="2">
+<li><p>ROWID（一般分析上使用）</p>
+<p>指的是数据行的唯一编号，该编号通过硬盘的存储而得来的</p>
+<p>例如：ROWID的组成</p>
+<pre><code class="hljs java">SELECT ROWID deptno, dname, loc FROM dept;</code></pre>
+
+<p>每一行都有唯一的一个ROWID数据，而且最为重要的是，如果想要定位某一个数据行，可以通过ROWID来实现。</p>
+<p>例如：</p>
+<p>通过ROWID找到一行数据</p>
+<pre><code class="hljs java">SELECT deptno, dname, loc FROM dept WHERE ROWID = <span class="hljs-string">'AAAR3qAAEAAAACHAAD'</span>;</code></pre>
+
+<p>对于任何一个ROWID其基本组成结构如下：”AAAR3qAAEAAAACHAAD”</p>
+<ul>
+<li>数据的对象编号：AAAR3q</li>
+<li>数据保存你的文件编号：AAE</li>
+<li>数据保存的文件块编号：AAAACH</li>
+<li>数据保存的行号：AAD</li>
+</ul>
+</li>
+</ol>
+<h2 id="数据表的创建与管理"><a href="#数据表的创建与管理" class="headerlink" title="数据表的创建与管理"></a>数据表的创建与管理</h2><p>数据表的定义属于SQL-DDL（数据定义语言）范畴，其不受到事务的控制，也就是说只有DML操作才受到事务的控制，并且在Oracle中，<strong>如果事务未提交，并且发生了DDL操作，所有未提交的事务将自动提交</strong>，也就是说在实际开发之中，数据表的创建要么是在系统定义的同时设置上，或者最简单的方式就是进行关闭服务的维护。</p>
+<ol>
+<li><p>常用的数据类型</p>
+<p>每一个数据都要求有自己的数据类型</p>
+<p>数据类型有如下几种：</p>
+<ul>
+<li>VARCHAR2(n)：一般要保存200个字以内的数据都会采用此类型，例如：姓名、家庭住址、新闻关键字</li>
+<li>NUMBER：直接编写NUMBER表示的就是数字（包括小数或者是整数）<ol>
+<li>NUMBER(n)：表示最多n位整数</li>
+<li>NUMBER(n ,m)：表示m个小数位，n-m的整数位</li>
+</ol>
+</li>
+<li>DATE：描述日期时间（Oracle中的DATE类型是包含有时间数据的，而其他数据库的DATE只有日期）</li>
+<li>CLOB（4G）：描述大文本数据</li>
+<li>BLOB（4G）：描述二进制的数据，例如：电影、音乐、文字等，一般而言不会考虑BLOB类型</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据表的创建"><a href="#数据表的创建" class="headerlink" title="数据表的创建"></a>数据表的创建</h3><p>语法：</p>
+<pre><code class="hljs java">CREATE TABLE 表名称 (
+	列名称 数据类型 [DEFAULT 默认值] ,
+	列名称 数据类型 [DEFAULT 默认值] ,
+		...
+	列名称 数据类型 [DEFAULT 默认值]       <span class="hljs-comment">//最后一列不加逗号</span>
+) ;</code></pre>
+
+<p>列名称的定义一般都建议使用字母开头，中文也可以，不过不要用</p>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span> <span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">20</span>)</span>,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> DEFAULT '无名氏',</span>
+<span class="hljs-function">	age <span class="hljs-title">NUMBER</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span>,</span>
+<span class="hljs-function">	salary <span class="hljs-title">NUMBER</span><span class="hljs-params">(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)</span>,</span>
+<span class="hljs-function">	birthday DATE DEFAULT SYSDATE,</span>
+<span class="hljs-function">	note CLOB</span>
+<span class="hljs-function">)</span>;</code></pre>
+
+<pre><code class="hljs java">SELECT * FROM tab;			<span class="hljs-comment">//可以查看所有的数据表名称</span></code></pre>
+
+<pre><code class="hljs JAVA">DESC MEMBER;			<span class="hljs-comment">//使用DESC可以查看数据表组成的结构</span></code></pre>
+
+<p>创建表时所采用的的默认值知识数据库本身的一种实现，但在开发中，一般不会进行默认值的设置，而内容默认值的设置一般都是通过程序完成的。</p>
+<p>表的复制</p>
+<p>可以根据已有的数据表（也可能是查询语句），来进行数据表的动态创建。</p>
+<p>语法：</p>
+<pre><code class="hljs java">CREATE TABLE 表名称 AS 子查询 ;</code></pre>
+
+<p>例如：</p>
+<p>将20部门的雇员复制到emp20表中</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE emp20 <span class="hljs-title">AS</span> <span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	SELECT * FROM emp WHERE deptno = <span class="hljs-number">20</span></span></span>
+<span class="hljs-function"><span class="hljs-params">)</span></span>;</code></pre>
+
+<p>将emp的表结构复制到empnull表中</p>
+<pre><code class="hljs java"><span class="hljs-comment">//此时 只需要编写一个绝对不可能满足的条件即可</span>
+<span class="hljs-function">CREATE TABLE empnull <span class="hljs-title">AS</span> <span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	SELECT * FROM emp WHERE <span class="hljs-number">1</span> = <span class="hljs-number">2</span></span></span>
+<span class="hljs-function"><span class="hljs-params">)</span></span>;</code></pre>
+
+
+
+<h3 id="修改表名称"><a href="#修改表名称" class="headerlink" title="修改表名称"></a>修改表名称</h3><p>在开发之中并不常用，所以对于这样的操作语法也只有Oracle自己支持。</p>
+<p>​        数据字典：数据库会自动进行相关数据对象的记录，可以理解为一张系统维护的数据表，当用户创建了一张数据表之后，在数据库中会自动将表的名称以及表的相关信息，都保存在一张系统维护的数据表里面。所以表的更新就是进行数据字典的休息修改，但是该数据字典一定要由系统自己来进行维护，所以用户只能采用一系列的命令来完成，对于数据字典在Oracle中，一共分为三位：</p>
+<ul>
+<li>USER_*（以USER开头）：表示用户具有的数据字典的信息</li>
+<li>DBA_*：表示数据库管理员具有的数据字典的信息</li>
+<li>ALL_*：表示用户何管理员都可以访问的数据字典信息</li>
+</ul>
+<p>例如：</p>
+<p>查看数据表保存的字典信息：</p>
+<pre><code class="hljs java">SELECT * FROM user_tables;</code></pre>
+
+<p>修改表名称：</p>
+<p>语法：</p>
+<pre><code class="hljs java">RENAME 旧的表名称 TO 新的表名称</code></pre>
+
+<p>例如：</p>
+<pre><code class="hljs java">RENAME member TO person;</code></pre>
+
+<h3 id="截断数据表"><a href="#截断数据表" class="headerlink" title="截断数据表"></a>截断数据表</h3><pre><code class="hljs java">TRUNCATE TABLE person;</code></pre>
+
+<p>表截断之后，该表中的所有资源将彻底被释放，并且无法进行事务的回滚操作，一般都在清空数据表的时候使用，但是实际开发中，一般不进行数据表的清空。</p>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><p>数据表不再使用之后，可以进行表的删除，表一旦删除之后，默认情况下（大部分情况下是无法进行恢复的）， </p>
+<p>语法：</p>
+<pre><code class="hljs java">DROP TABLE 表名称;</code></pre>
+
+<p>例如：</p>
+<p>删除数据表</p>
+<pre><code class="hljs java">DROP TABLE empnull;</code></pre>
+
+<p>​        在Oracle 10g之前，如果是进行了数据表的删除，那么该表就彻底删除了，但是从Oracle 10g开始之后，为了防止数据表被直接删除处理，所以提供了恢复的机制。</p>
+<h3 id="闪回操作"><a href="#闪回操作" class="headerlink" title="闪回操作"></a>闪回操作</h3><p>​        从Oracle 10g开始，默认情况下每当执行了一次表的删除处理都会留写一些：“BIN$Zqba7ZgYRhqvjJlMjTBogw==$0”这样的形式的数据表，这个就是FalshBack()技术，也就是相当于提供了一个回收站的功能。</p>
+<ul>
+<li>最早的时候进行回收站的查看：SHOWRECYCLEBIN（不稳定）；</li>
+<li>通用的查看回收站可以采用数据字典：</li>
+</ul>
+<pre><code class="hljs java">COL object_name FOR A30 ;
+COL original_name FOR A30 ;
+COL droptime FOR A30 ;
+SELECT object_name,original_name,droptime FROM user_recyclebin ;</code></pre>
+
+<p>如果发现有数据表删除错误了，可以通过回收站进行恢复</p>
+<pre><code class="hljs java">FLASHBACK TABLE emp20 TO BEFORE DROP;</code></pre>
+
+<p>如果不希望通过回收站，而是希望直接删除数据表，则可以在删除的时候设置一个选项：</p>
+<pre><code class="hljs java">DROP TABLE emp20 PURGE ;			<span class="hljs-comment">//彻底删除不经过回收站</span></code></pre>
+
+<p>删除回收站的表：</p>
+<pre><code class="hljs java">PURGE TABLE empnull ;			<span class="hljs-comment">//删除回收站的表</span></code></pre>
+
+<p>清空回收站</p>
+<pre><code class="hljs java">PURGE RECYCLEBIN ;			<span class="hljs-comment">//清空回收站</span></code></pre>
+
+<p>（删除表尽量先经过回收站）</p>
+<h3 id="数据表的创建于管理"><a href="#数据表的创建于管理" class="headerlink" title="数据表的创建于管理"></a>数据表的创建于管理</h3><p>表结构的修改，实际上就是字段的增加和减少的过程</p>
+<ol>
+<li>追加表的数据列的语法：</li>
+</ol>
+<pre><code class="hljs java">ALTER TABLE 表名称 ADD (列名称 数据类型 [DEFAULT 默认值],列名称 数据类型 [DEFAULT 默认值],...)
+<span class="hljs-comment">//可以一条语句上设置多个要追加的数据列</span></code></pre>
+
+<p>​        例如：</p>
+<p>​        为表中追加一个age的数据列，并且不设置默认值</p>
+<pre><code class="hljs JAVA"><span class="hljs-function">ALTER TABLE member <span class="hljs-title">ADD</span> <span class="hljs-params">(age NUMBER(<span class="hljs-number">3</span>)</span>)</span>;</code></pre>
+
+<p>​        此时，已有数据行中对应的列内容为null</p>
+<p>​        为表中追加一个sex数据列，设置默认值</p>
+<pre><code class="hljs java"><span class="hljs-function">ALTER TABLE member <span class="hljs-title">ADD</span> <span class="hljs-params">(sex VARCHAR2(<span class="hljs-number">10</span>)</span> DEFAULT '女')</span>;</code></pre>
+
+<p>​                一旦有默认值之后，对应表中的所有数据行的内容都需要进行更改 （一        般不在修改表结构的时候设置默认值）</p>
+<ol start="2">
+<li><p>修改表的数据列</p>
+<p>语法：</p>
+<pre><code class="hljs java">ALTER TABLE 表名称 MODIFY (列名称 数据类型 [DEFAULT 默认值],列名称 数据类型 [DEFAULT 默认值],...)</code></pre>
+
+<p>例如：将name的长度修改为50</p>
+<pre><code class="hljs java"><span class="hljs-function">ALTER TABLE member <span class="hljs-title">MODIFY</span><span class="hljs-params">(name VARCHAR2(<span class="hljs-number">50</span>)</span>) </span>;</code></pre>
+</li>
+<li><p>删除数据列</p>
+<p>语法：</p>
+<pre><code class="hljs java">ALTER TABLE 表名称 DROP COLUMN 字段名称 ;</code></pre>
+
+<p>例如；</p>
+<p>删除age的数据列：</p>
+<pre><code class="hljs java">ALTER TABLE member DROP COLUMN age;</code></pre>
+</li>
+<li><p>数据库对象（DDL）操作只有三类语法：</p>
+<p>CREATE    对象类型    对象名称  </p>
+<p>DROP    对象类型    对象名称</p>
+<p>ALTER    对象类型    对象名称</p>
+</li>
+</ol>
+<h2 id="约束的创建与管理"><a href="#约束的创建与管理" class="headerlink" title="约束的创建与管理"></a>约束的创建与管理</h2><p>​        当数据表创建完成的时候只能够说，确定了要操作的数据表的存储结构，如果想真正的去将其应用在项目之中，就必须要保证里面存放的数据是有效的数据。所以在传统关系型数据库中，为了保证这些数据的完整性，就提供有一套自己的检测机制：约束。</p>
+<p>约束的基本概念</p>
+<p>​        约束是保证数据完整型的一种手段，根据功能约束一共分为6种，其中有一种成为数据类型的约束（也就是数据类型为NUMBER的，不能存放字符串），而除了这类约束之外还有五种：</p>
+<ul>
+<li><p>非空约束（NOT NULL 、NK）：保证数据表中的某一个字段的内容不允许是null；</p>
+</li>
+<li><p>唯一约束（UNIQUE、UK）：该列上的数据不允许出现重复</p>
+</li>
+<li><p>主键约束（PRIMARY  KEY、PK）：非空约束 + 唯一约束</p>
+</li>
+<li><p>检查约束（CHECK、CK）：设置一些判断条件，而后满足条件的允许更新</p>
+</li>
+<li><p>外键约束（FOREIGN  KEY、FK）：设置父子表之间的约束关系</p>
+<p>只有满足约束条件的数据才能够被更新处理（才能够被保存在数据库之中）</p>
+</li>
+</ul>
+<p>系统之中，所设置的表约束越多，那么数据库的性能就会越差，但是对于约束的使用也需要考虑两种情况：</p>
+<ol>
+<li>传统的软件开发：由于使用的服务器设备有限（单台），所以约束可以适当完善</li>
+<li>如果是保证性能的开发，基本上唯一可以使用的约束就是主键约束</li>
+</ol>
+<ol>
+<li><p>非空约束</p>
+<p>​        非空约束严格来讲属于一种特殊的约束形式，因为其设置的约束形式和其他的约束相同，但是其处理流程有一些差别，如果要使用非空约束，则在创建表的时候在指定的字段后设置一个“NOT NULL”即可。</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> NOT NULL		<span class="hljs-comment">//name字段更新的时候必须设置内容</span></span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-function">INSERT INTO <span class="hljs-title">member</span><span class="hljs-params">(mid,name)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">'hello'</span>,<span class="hljs-keyword">null</span>)</span> </span>;</code></pre>
+
+<p>由于此时name字段上没有设置具体的内容，所以在进行数据的增加的时候会出现如下的错误信息</p>
+<blockquote>
+<p>ORA-01400: 无法将 NULL 插入 (“SCOTT”.”MEMBER”.”NAME”)</p>
+</blockquote>
+<p>如果更新的时候，违反了非空约束，会明确指出代码出错的位置所在</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>唯一约束</p>
+<p>主要特征是：数据表中的某一列上的内容不允许重复。如果想要设置唯一约束可以使用UNIQUE来实现</p>
+<p>例如：</p>
+<p>定义数据表使用唯一约束</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> NOT NULL ,</span>
+<span class="hljs-function">	email <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> UNIQUE</span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>设置唯一约束的时候null不在唯一约束的奠定范畴之内</p>
+<pre><code class="hljs java"><span class="hljs-function">INSERT INTO <span class="hljs-title">member</span><span class="hljs-params">(mid,name,email)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">'hello'</span>,<span class="hljs-string">'你好'</span>,<span class="hljs-keyword">null</span>)</span> </span>;</code></pre>
+
+<p>重复插入违反唯一约束之后：</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">00001</span>: 违反唯一约束条件 (SCOTT.SYS_C0011118)</code></pre>
+
+<p>​        所有的约束在Oracle数据库之中都会成为一个个独立的数据库对象，如果没有为约束设置对象的名字，那么会由系统自动的分配一个唯一的名称（例如：(SCOTT.SYS_C0011118)）进行该对象的标注。所以要查看错误的具体信息，需要通过数据字典来进行观察：</p>
+<ul>
+<li>查看约束与表的对应关系</li>
+</ul>
+<pre><code class="hljs java">SELECT * FROM user_constraints ;</code></pre>
+
+<ul>
+<li>查看约束与表中的列对应关系</li>
+</ul>
+<pre><code class="hljs java">SELECT * FROM user_cons_columns ;
+
+<span class="hljs-comment">//格式会更好看一点</span>
+COL owner FOR A20 ;
+COL constraint_name FOR A20 ;
+COL table_name FOR A20 ;
+COL column_name FOR A20 ;
+SELECT owner,constraint_name,table_name,column_name FROM user_cons_columns ;</code></pre>
+
+<p>​        但是如果每一次违反约束后都要这=这样去查看约束信息会很麻烦，所以为了简化约束的错误查看，最好的做法是明确的为约束设置一个名字，而设置约束的名字需要增加新的配置项（不可直接在列名称上设置约束）。</p>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> NOT NULL ,</span>
+<span class="hljs-function">	email <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span>,</span>
+<span class="hljs-function">	CONSTRAINT uk_email_UNIQUE <span class="hljs-title">UNIQUE</span><span class="hljs-params">(email)</span></span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>此时如果违反约束条件，会提示：</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">00001</span>: 违反唯一约束条件 (SCOTT.UK_EMAIL_UNIQUE)</code></pre>
+
+<p>可以明确知道错误的位置，方便排除错误。</p>
+<p>​        所以以后的设计中，为了方便维护，应该为每一个约束设定一个具体的约束名称（非空约束可以不用）。</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>主键约束</p>
+<p>指的就是“非空约束 + 唯一约束”，也就是说作为一个唯一标识使用</p>
+<p>例如：</p>
+<p>定义主键约束</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> NOT NULL ,</span>
+<span class="hljs-function">	CONSTRAINT pk_mid_primary PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span></span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>增加正确的数据：</p>
+<pre><code class="hljs java"><span class="hljs-function">INSERT INTO <span class="hljs-title">member</span><span class="hljs-params">(mid,name)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">'hello'</span>,<span class="hljs-string">'田田抬头'</span>)</span> </span>;</code></pre>
+
+<p>如果数据错误：</p>
+<ol>
+<li><p>情况一：追加的主键内容为空</p>
+<pre><code class="hljs java"><span class="hljs-function">INSERT INTO <span class="hljs-title">member</span><span class="hljs-params">(name)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">'田田低头'</span>)</span> </span>;</code></pre>
+
+<p>错误提示信息：</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">01400</span>: 无法将 NULL 插入 (<span class="hljs-string">"SCOTT"</span>.<span class="hljs-string">"MEMBER"</span>.<span class="hljs-string">"MID"</span>)</code></pre>
+
+
+
+</li>
+</ol>
+</li>
+</ol>
+<ol start="2">
+<li><p>情况二：设置的主键重复</p>
+<p>错误提示：</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">00001</span>: 违反唯一约束条件 (SCOTT.PK_MID_PRIMARY)</code></pre>
+
+<p>所以可以看出主键约束就是两种约束（非空约束 + 唯一约束）的合集。（复合主键的情况应该积极避免）</p>
+</li>
+</ol>
+<h3 id="检查约束"><a href="#检查约束" class="headerlink" title="检查约束"></a>检查约束</h3><p>​        检查约束的本质在于设置一系列的过滤条件，当满足了这些过滤条件之后才可以保证数据更新，</p>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	age <span class="hljs-title">NUMBER</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span> ,</span>
+<span class="hljs-function">	sex <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_mid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT ck_age <span class="hljs-title">CHECK</span> <span class="hljs-params">(age BETWEEN <span class="hljs-number">0</span> AND <span class="hljs-number">250</span> )</span>,</span>
+<span class="hljs-function">	CONSTRAINT ck_sex <span class="hljs-title">CHECK</span><span class="hljs-params">(sex IN (<span class="hljs-string">'男'</span>,<span class="hljs-string">'女'</span>)</span>)</span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>当执行错误语句时：</p>
+<pre><code class="hljs java"><span class="hljs-function">INSERT INTO <span class="hljs-title">member</span><span class="hljs-params">(mid,name,age,sex)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">'xiaoli'</span>,<span class="hljs-string">'小李'</span>,<span class="hljs-number">900</span>,<span class="hljs-string">'非女'</span>)</span> </span>;</code></pre>
+
+<p>两个数据都违反检查约束，但是这些检查的过滤并不是一次性检查完成的，而是一个个检查的。所以设置的检查约束越多，程序的执行速度也就越慢。所以多数情况下，都会选择在程序的代码之中进行这希望检查的处理。</p>
+<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><p>描述的是两张关系表（可以理解为父子关系表）上使用的约束</p>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_mid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span></span>
+<span class="hljs-function">) </span>;					<span class="hljs-comment">//可以看作父表</span>
+
+<span class="hljs-function">CREATE TABLE <span class="hljs-title">book</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	bid NUMBER ,</span></span>
+<span class="hljs-function"><span class="hljs-params">	title VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	mid <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_bid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(bid)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT fk_mid FOREIGN <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span> REFERENCES <span class="hljs-title">member</span><span class="hljs-params">(mid)</span></span>
+<span class="hljs-function">) </span>;						<span class="hljs-comment">//可以看作子表</span></code></pre>
+
+<p>这个时候如果追加子表的数据的时候没有指定父表的数据与之对应，则会抛出错误：“ORA-02291: 违反完整约束条件 (SCOTT.FK_MID) - 未找到父项关键字”</p>
+<p>需要注意：</p>
+<ol>
+<li><p>一旦设置了外键外键关系之后，在删除主表之前就必须删除子表，否则无法删除</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">02449</span>: 表中的唯一/主键被外键引用</code></pre>
+
+<p>如果两张表互为父子表则可以使用：</p>
+<pre><code class="hljs java">DROP TABLE member CASCADE CONSTRAINT ;</code></pre>
+</li>
+<li><p>对于数据的记录在默认的情况下，必须先删除父表中的记录，而后才能删除子表中的记录，但是这样就很麻烦，所以这个时候在外键设置中，可以设置级联操作，有两种级联处理：</p>
+<ul>
+<li><p>级联删除：ON  DELETE  CASCADE</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_mid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span></span>
+<span class="hljs-function">) </span>;
+<span class="hljs-function">CREATE TABLE <span class="hljs-title">book</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	bid NUMBER ,</span></span>
+<span class="hljs-function"><span class="hljs-params">	title VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	mid <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_bid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(bid)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT fk_mid FOREIGN <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span> REFERENCES <span class="hljs-title">member</span><span class="hljs-params">(mid)</span> ON DELETE CASCADE</span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>这样两张表中的数据都会被删除</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>级联更新：ON  DELETE  SET  NULL，也就是说如果被删除了，则子表中对应的外键字段设置为NULL</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">member</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	mid VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	name <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_mid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span></span>
+<span class="hljs-function">) </span>;
+<span class="hljs-function">CREATE TABLE <span class="hljs-title">book</span><span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">	bid NUMBER ,</span></span>
+<span class="hljs-function"><span class="hljs-params">	title VARCHAR2(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	mid <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_bid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(bid)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT fk_mid FOREIGN <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span> REFERENCES <span class="hljs-title">member</span><span class="hljs-params">(mid)</span> ON DELETE SET NULL</span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>但是对于是否使用级联并没有明确的要求，也就是说是否为外键进行级联配置完全由业务需要来决定。</p>
+</li>
+</ul>
+<h3 id="修改约束"><a href="#修改约束" class="headerlink" title="修改约束"></a>修改约束</h3><p>​        设置原则，当数据表的创建完成后一定要将约束同时建立完整，并且不要进行约束的变更。</p>
+<ol>
+<li><p>为表追加约束</p>
+<p>语法：</p>
+<p>ALTER  TABLE  表名称  ADD  CONSTRAINT  约束名称  约束类型（字段）;</p>
+<p>例如：</p>
+<pre><code class="hljs java"><span class="hljs-function">ALTER TABLE member ADD CONSTRAINT pk_mid PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(mid)</span> </span>;		<span class="hljs-comment">//为member表追加主键约束</span></code></pre>
+
+<p>但是如果数据表之中有违反主键的情况出现，那么该约束是无法添加的</p>
+<p>Tips：</p>
+<p>​        ALTER…ADD  CONSTRAINT  语法只能够追加非空之外的约束，如果想要追加非空约束，则只能采用修改表结构的模式完成。</p>
+<pre><code class="hljs java"><span class="hljs-function">ALTER TABLE member <span class="hljs-title">MODIFY</span><span class="hljs-params">(name VARCHAR2(<span class="hljs-number">50</span>)</span> NOT NULL) </span>;</code></pre>
+
+<p>如果有违反约束的记录存在，同样也不可修改</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>删除表约束</p>
+<p>语法：</p>
+<p>ALTER  TABLE  表名称  DROP  CONSTRAINT  约束名称;</p>
+<p>例如：</p>
+<p>删除主键约束</p>
+<pre><code class="hljs java">ALTER TABLE member DROP CONSTRAINT pk_mid ;</code></pre>
+
+<p><strong>但是，最好的做法是数据表和约束一起产出</strong></p>
+</li>
+</ol>
+<h2 id="Oracle序列"><a href="#Oracle序列" class="headerlink" title="Oracle序列"></a>Oracle序列</h2><p>​        Oralce序列是一个Oracle之中最为常用的数据对象的类型，所谓的序列本质上指的就是自动增长列的配置实现，但是oracle 11g中并没有提供简便的自动增长列的设置，Oracle中提供的是一种手工的控制序列的模式来实现自动增长列（也就是说，用户需要自己手工控制才可以完成），在Oracle 12c开始才真正追加了自动增长列的配置。</p>
+<p>序列创建的语法：</p>
+<pre><code class="hljs java">CREATE SEQUENCE 序列名称 
+[START WITH 开始值]
+[INCREMENTY BY 步长]
+[MAXVALUE 最大值 | NOMAXVALUE]
+[MINVALUE 最小值 | NOMAXVALUE]
+[CYCLE | NOCYCLE]   			<span class="hljs-comment">//是否为循环序列</span>
+[CACHE 缓存个数 | NOCACHE]		<span class="hljs-comment">//是否有缓存</span></code></pre>
+
+<p>对于以上的选项，其默认设置如下：</p>
+<ol>
+<li>开始值（START  WITH）：1</li>
+<li>步长（INCREMENTY  BY）：1</li>
+<li>最大值（MAXVALUE）：NOMAXVALUE</li>
+<li>最小值（MINVALUE）：1</li>
+<li>是否为循环序列：非循环序列</li>
+<li>缓存（CACHE）：20</li>
+</ol>
+<p>例如：</p>
+<pre><code class="hljs java">CREATE SEQUENCE myseq ;</code></pre>
+
+<p>当一个序列创建完成之后，会自动将此序列的信息保存在数据字典表之中（user_sequences）</p>
+<p>序列创建完成之后，如果想要使用该序列，可以采用序列之中定义的两个伪列：</p>
+<ul>
+<li><p>序列名称.nextval：获取下一个增长值，也就是说当前内容加上步长</p>
+</li>
+<li><p>序列名称.currval：获取序列当前的内容</p>
+<p><strong>一定要先调用nextval之后才可以执currval</strong>，否则会报错“MYSEQ.CURRVAL 尚未在此会话中定义”</p>
+</li>
+</ul>
+<p>在数据字典中，last_number这个数据值的增长是利用“步长 * 缓存个数“得来的，在Oracle数据库中，为了防止每一次都频繁的进行计算，所以会帮助用户做一个数据的缓存处理。缓存的好处是提高操作性能，缺点是，如果一旦数据库停掉了，那么可能缓存的数据就丢失了</p>
+<p>序列与数据表结合使用，只能在增加语句上进行操作</p>
+<p>例如：</p>
+<p>编写增加语句，设置mid的时候用序列处理</p>
+<pre><code class="hljs java"><span class="hljs-function">INSERT INTO <span class="hljs-title">member</span><span class="hljs-params">(mid,name)</span> <span class="hljs-title">VALUES</span> <span class="hljs-params">(myseq.nextval,<span class="hljs-string">'mldn'</span>)</span> </span>;</code></pre>
+
+
+
+<p>也可以在序列定义的时候，定义一些自定义选项来处理</p>
+<ol>
+<li><p>将序列的默认开始值设置为100</p>
+<pre><code class="hljs java">DROP SEQUENCE myseq ;
+CREATE SEQUENCE myseq START WITH <span class="hljs-number">100</span> ;</code></pre>
+</li>
+<li><p>修改序列的步长，将步长设置为2</p>
+<pre><code class="hljs java">DROP SEQUENCE myseq ;
+CREATE SEQUENCE myseq 
+START WITH <span class="hljs-number">100</span> 
+INCREMENT BY <span class="hljs-number">2</span> ;</code></pre>
+</li>
+<li><p>设置一个循环序列，例如：要求序列在1，3， 5，7，9之间进行循环处理</p>
+<pre><code class="hljs java">DROP SEQUENCE myseq ;
+CREATE SEQUENCE myseq 
+START WITH <span class="hljs-number">1</span>
+INCREMENT BY <span class="hljs-number">2</span>
+MINVALUE <span class="hljs-number">1</span>
+MAXVALUE <span class="hljs-number">9</span>
+CYCLE CACHE <span class="hljs-number">3</span> ;</code></pre>
+
+</li>
+</ol>
+<h2 id="同义词"><a href="#同义词" class="headerlink" title="同义词"></a>同义词</h2><p>​        属于Oracle自己的概念</p>
+<p>dual表是一张临时表，一般拿它作为测试使用，DUAL是属于sys的用户表</p>
+<p>​        在数据库中有一个模式的概念叫做（SCHEMA），每一张数据表的全名实际上是“schema.table”。对于这个模式，最初的时候是需要用户单独创建的，后来将模式和用户名的概念结合在了一起，所以现在所谓的模式，基本上指的都是用户名。所以例如：emp在其他的用户下的完整表名应该是：scott.emp</p>
+<p>所以同义词在Oracle中的主要目的是为了方便不同用户之间的数据表的访问。例如：scott中可以访问sys的dual表，是因为dual属于sys.dual的同义词。</p>
+<p>要创建同义词往往都需要具备有管理员的权限来完成，比如在sys上创建。</p>
+<p>语法：</p>
+<p>CREATE  SYNONYM  同义词名称  FOR  用户名.表名称;</p>
+<p>例如：将scott.emp的数据表创建为emp的同义词：</p>
+<pre><code class="hljs java">CREATE SYNONYM emp FOR scott.emp ;</code></pre>
+
+<p>这个时候所创建的同义词只能够由sys一个用户使用，因为不是公共同义词，如果一个同义词要被所有用户访问，则在创建前需要追加一个PUBLIC </p>
+<pre><code class="hljs java">DROP SYNONYM emp ;
+CREATE PUBLIC SYNONYM emp FOR scott.emp ;</code></pre>
+
+<p>同义词只是Oracle提供的一个支持。</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>主要功能是封装复杂的查询语句，也就是说，利用视图就可以实现数据的复杂查询操作。</p>
+<p>创建视图语法：</p>
+<pre><code class="hljs java">CREATE [OR REPLACE] VIEW 视图名称 AS 子查询
+[WITH CHECK OPTION] [WITH READ ONLY] ;</code></pre>
+
+<p>如果使用了CREATE  REPLACE表示该视图如果不存在就创建，如果存在就使用新的语句进行试图的替换。</p>
+<p>例如：</p>
+<p>实现一个包含有复杂查询的视图</p>
+<p>在11g中，scott用户的视图创建权限被剥削了，所以需要将其重新授权：</p>
+<ol>
+<li>使用sys登录：conn sys / change_on_install as sysdba;</li>
+<li>进行授权控制：GRANT CREATE VIEW TO scott;</li>
+<li>切换到scott：CONN   scott / tiger</li>
+</ol>
+<pre><code class="hljs jav">CREATE OR REPLACE VIEW myview
+	AS
+	&#x2F;&#x2F;进行包装处理
+SELECT d.deptno,d.dname,d.loc,temp.count
+FROM dept d, (
+	SELECT deptno dno,COUNT(empno) count
+	FROM emp
+	GROUP BY deptno) temp
+WHERE d.deptno&#x3D;temp.dno(+) ;</code></pre>
+
+<p> 当视图创建完成之后，就可以直接查询视图了</p>
+<pre><code class="hljs java">SELECT * FROM myview;</code></pre>
+
+<p>但是在视图中，为了保证创建字段的内容不被改变，可以考虑使用子句：“WIEH  CHECK  OPTION”</p>
+<p>例如：</p>
+<p>创建一个不允许修改创建字段的视图：</p>
+<pre><code class="hljs java">CREATE OR REPLACE VIEW myview
+	AS
+SELECT * FROM emp WHERE deptno=<span class="hljs-number">20</span>
+WITH CHECK OPTION ;</code></pre>
+
+<p>这时更新数据：</p>
+<pre><code class="hljs java">UPDATE myview SET deptno=<span class="hljs-number">30</span> WHERE empno=<span class="hljs-number">7369</span> ;</code></pre>
+
+<p>会出现错误：</p>
+<pre><code class="hljs java">视图 WITH CHECK OPTION where 子句违规</code></pre>
+
+<p>因为视图的创建字段、创建条件（deptno字段），不能被修改。</p>
+<p>但是此时，其他的字段依然允许被用户修改，但是视图中的数据并不是真实数据，为了保证其不能被修改，建议追加“WITH  READ  ONLY”的选项，将其配置为“只读”视图。</p>
+<pre><code class="hljs java">CREATE OR REPLACE VIEW myview
+	AS
+SELECT * FROM emp WHERE deptno=<span class="hljs-number">20</span>
+WITH READ ONLY ;</code></pre>
+
+<p>删除视图：</p>
+<pre><code class="hljs java">DROP VIEW myview;</code></pre>
+
+<p>在视图的使用过程中，都建议使用只读模式。</p>
+<h2 id="Oracle索引"><a href="#Oracle索引" class="headerlink" title="Oracle索引"></a>Oracle索引</h2><p>​        在数据库里面是一种相对提升数据库查询性能的，需要清楚数据库之中的限定查询的问题。</p>
+<p>例如：</p>
+<p>查询工资高于1500的所有雇员信息</p>
+<pre><code class="hljs java">SELECT * FROM emp WHERE sal&gt;<span class="hljs-number">1500</span> ;</code></pre>
+
+<p>如果想要观察查询的处理过程，可以通过管理员账户，启动一个轨迹的追踪器：</p>
+<ol>
+<li><p>切换账户：</p>
+<pre><code class="hljs java">conn sys / change_on_install as sysdba;</code></pre>
+</li>
+<li><p>打开执行追踪器：</p>
+<pre><code class="hljs java">SET AUTOTRACE ON;</code></pre>
+
+<p>再次执行查询，默认情况下，数据采用的是全表扫描（逐行扫描 TABLE ACCESS FULL），这种情况下，如果数据量很大，那么执行的速度就会很慢，而解决此问题的方法是，形成一棵树。</p>
+<p>​        这棵树取第一个数据作为根节点，而后比根节点小的数据放在左边，比根节点大的数据放在右边。</p>
+<p>在数据库中，对于索引的创建有两种形式：</p>
+<ol>
+<li><p>当数据列上使用了主键约束或者唯一约束的时候，自动创建索引</p>
+</li>
+<li><p>自己手动设置一个查询的字段，手动创建索引</p>
+<p>例如：</p>
+<p>在sal的字段上设置索引</p>
+<pre><code class="hljs java">CREATE INDEX scott.emp_sal_ind ON scott.emp(sal) ;</code></pre>
+
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>SQL语句有三个方面：DML、DDL、DCL。其中DCL指的就是数据库的控制语言，也就是说进行权限控制的处理操作，在DCL中，主要有两个语法：</p>
+<ol>
+<li>GRANT：授权</li>
+<li>REVOEK：回收</li>
+</ol>
+<p>如果想要正常的使用DCL还是需要结合用户来完成，而用户在数据库之中被称为对象。</p>
+<ol>
+<li><p>如果要进行用户对象的维护，一定要采用管理员账户登录，本次使用sys登录：</p>
+<pre><code class="hljs java">conn sys / change_on_install as sysdba;</code></pre>
+</li>
+<li><p>创建一个新的用户：dog / wangwang</p>
+<pre><code class="hljs java">CREATE USER dog IDENTIFIED BY wangwang;</code></pre>
+
+<p>随后启动一个新的sqlPlus客户端进行用户的登录，但是，此时会：</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">01045</span>: user DOG lacks CREATE SESSION privilege; logon denied
+警告: 您不再连接到 ORACLE。</code></pre>
+
+<p>此时该用户只是一个普通的dog用户，但是这个dog用户并没有任何的权限，本次缺少的是“CREATE  SESSION”的权限，也就表明用户无法创建session（无法登录），</p>
+</li>
+<li><p>将创建session的权限授予dog用户（由超级管理员进行）</p>
+<pre><code class="hljs java">GRANT CREATE SESSION TO dog;</code></pre>
+
+<p>授权成功之后，就可以进行1dog用户的登录处理操作了。</p>
+<p>但是此时，如果进行序列的创建或者表的创建的话，会出现</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">01031</span>: 权限不足</code></pre>
+
+<p>在Oracle中，提供了两个角色（每一个角色包含多个权限）：</p>
+<ol>
+<li>CONNECT</li>
+<li>RESOURCE</li>
+</ol>
+<p>最简单的做法是，将这个两个角色授予dog用户：</p>
+<pre><code class="hljs jav">GRANT CONNECT, RESOURCE TO dog;</code></pre>
+
+<p>授权完成之后，需要重新登录</p>
+</li>
+<li><p>一旦有了用户的产生之后，就会出现一些用户的维护：</p>
+<ul>
+<li><p>重置用户密码：</p>
+<pre><code class="hljs java">ALTER USER dog IDENTIFIED BY miaomiao;</code></pre>
+</li>
+<li><p>让密码失效：</p>
+<pre><code class="hljs java">ALTER USER dog PASSWORD EXPIRE;</code></pre>
+</li>
+<li><p>锁定用户：</p>
+<pre><code class="hljs java">ALTER USER dog ACCOUNT LOCK;</code></pre>
+
+<p>登陆时会出现：</p>
+<pre><code class="hljs java">ORA-<span class="hljs-number">28000</span>: the account is locked</code></pre>
+</li>
+<li><p>解锁：</p>
+<pre><code class="hljs java">ALTER USER dog ACCOUNT UNLOCK;</code></pre>
+</li>
+</ul>
+</li>
+<li><p>如果不同用户之间要进行访问，那么必须具有其他用户的对象权限，而对象权限一共有四种：</p>
+<ul>
+<li>SELECT </li>
+<li>UPDATE</li>
+<li>DELETE</li>
+<li>INSERT</li>
+</ul>
+<p>例如：</p>
+<p>将scott.emp表的SELECT、INSERT权限授予dog用户</p>
+<pre><code class="hljs java">GRANT SELECT, INSERT on scott.emp TO dog;</code></pre>
+
+<p>​        此时就可以访问到scott.emp</p>
+</li>
+<li><p>进行对象权限的回收</p>
+<pre><code class="hljs java">REVOKE select, insert on scott.emp from dog;</code></pre>
+
+<p>此时就不可以再进行查询</p>
+</li>
+</ol>
+<p>   回收CONNECT、RESOURCE的角色</p>
+   <pre><code class="hljs JAVA">REVOKE CONNECT, RESOURCE FROM dog;</code></pre>
+
+<p>   回收连接的权限</p>
+   <pre><code class="hljs java">REVOKE CREATE SESSION FROM dog;</code></pre>
+
+<p>   此时，不可以再进行连接。</p>
+<ol start="7">
+<li><p>删除用户</p>
+<pre><code class="hljs java">DROP USER dog CASCADE;</code></pre>
+
+<p>用户有可能由各种对象的创建，所以在删除的时候一定要将这些遗留的内容一起清除掉，要加上CASCADE。</p>
+</li>
+</ol>
+<h2 id="数据库的备份"><a href="#数据库的备份" class="headerlink" title="数据库的备份"></a>数据库的备份</h2><ol>
+<li><p>数据的导出与导入（开发中进行）</p>
+<p>将数据导出到d:\backup目录之中</p>
+<ul>
+<li><p>建立一个目录：mkdir  backup；</p>
+</li>
+<li><p>进入到“d:\backup”目录中</p>
+<pre><code class="hljs java">cd backup</code></pre>
+</li>
+<li><p>执行一个数据导出命令：exp;</p>
+<ol>
+<li><p>输入要导出数据的用户名</p>
+</li>
+<li><p>设置一个导出的文件名称，默认为：“导出文件: EXPDAT.DMP”</p>
+</li>
+<li><p>导出全部数据表：</p>
+<p>“U（将该用户下的表都导出）”</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>数据的导入：</p>
+<ul>
+<li>进入到备份文件所在的路径：“d:\backup”</li>
+<li>执行“imp”的指令</li>
+</ul>
+<p>不适合导数据很大的文件</p>
+</li>
+</ol>
+<h2 id="数据库冷备份"><a href="#数据库冷备份" class="headerlink" title="数据库冷备份"></a>数据库冷备份</h2><p>   ​        是数据库较为全面的数据库的处理模式，利用数据库冷备份的操作可以保证所有的数据都是归档数据。需要清除数据库的存储结构。</p>
+<p>   ​        Oracle数据库是以文件形式进行存储的，也就是说在一块磁盘上会划分出不同的文件区，而后每一个文件区里面可以保存相应的数据。</p>
+<ul>
+<li><p>备份控制文件，控制整个Oracle数据库的服务信息</p>
+<p>通过“v$controlfile”获得</p>
+</li>
+<li><p>备份重做日志文件</p>
+<p>通过“v$logfile”数据字典获得</p>
+</li>
+<li><p>数据文件</p>
+<p>保存真实的数据信息，通过“v$datafile”数据字典获得</p>
+</li>
+<li><p>核心配置文件（pfile）</p>
+<p>整个Oracle的核心参数</p>
+<p>例如:</p>
+<p>查看控制文件的路径：</p>
+<p>需要使用sys账户</p>
+<pre><code class="hljs java">SELECT * FROM v$controlfile;</code></pre>
+
+<pre><code class="hljs java">D:\ORACLE\ORACLE\ORADATA\ORCL\CONTROL01.CTL</code></pre>
+
+<p>查看日志文件的路径：</p>
+<pre><code class="hljs java">SELECT * FROM v$logfile;</code></pre>
+
+<pre><code class="hljs java">D:\ORACLE\ORACLE\ORADATA\ORCL\REDO03.LOG</code></pre>
+
+<p>查看数据文件的路径：</p>
+<pre><code class="hljs java">SELECT * FROM v$datafile;</code></pre>
+
+<pre><code class="hljs java">D:\ORACLE\ORACLE\ORADATA\ORCL\SYSTEM01.DBF</code></pre>
+
+<p>查看核心配置文件（pfile）的目录：</p>
+<pre><code class="hljs java">show parameter pfile;</code></pre>
+
+<pre><code class="hljs java">D:\ORACLE\ORACLE\PRODUCT\<span class="hljs-number">11.2</span><span class="hljs-number">.0</span>\DBHOME_1\DATABASE\SPFILEORCL.ORA</code></pre>
+
+<p>Oracle最核心的配置</p>
+<p>​    </p>
+<p>关闭Oracle的服务</p>
+<pre><code class="hljs java">SHUTDOWN IMMEDIATE		<span class="hljs-comment">//立即执行，不等待</span></code></pre>
+
+<p>将之前记录好的路径文件都拷贝到其他磁盘上</p>
+<p>恢复Oracle数据库的实例</p>
+<pre><code class="hljs java">STARTUP</code></pre>
+
+<p>这种数据库备份的前提要求是允许你关闭服务。</p>
+<p>如果是一些公共的服务，就不能关闭服务进行此操作，只能进行热备份，最简单的热备份模式就是做一个主从关系。</p>
+</li>
+</ul>
+<h2 id="数据库的设计范式"><a href="#数据库的设计范式" class="headerlink" title="数据库的设计范式"></a>数据库的设计范式</h2><p>​        数据库的设计范式，其核心的本质在于可以设计出方便扩展，而且存储精准的数据结构，并且可以有效的满足程序开发的需求。但是从另外一个层次来讲，数据库设计没有模式，核心：保证数据有效存储，保证查询性能。</p>
+<ol>
+<li><p>第一设计范式</p>
+<p>设计要求：数据表中的每个字段不可再分</p>
+<p>例如：</p>
+<p>设计一个表示用户的数据表</p>
+<pre><code class="hljs java">CREATE TABLE 用户 (
+	用户编号		NUMBER ,
+	姓名		VARCHAR2(<span class="hljs-number">20</span>) ,
+	联系方式	VARCHAR2(<span class="hljs-number">200</span>) ,
+	CONSTRAINT pk_用户编号 <span class="hljs-function">PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(用户编号)</span></span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>而此设计中，最大的败笔在于联系方式上，因为从实际的使用角度来讲，联系方式是可以进一步进行拆分的，例如：电话</p>
+<p>email、城市、住址、邮编……所以并不符合第一设计范式，因为有的字段还可以进行拆分，所以以下设计是符合第一设计范式要求的：</p>
+<pre><code class="hljs java">CREATE TABLE 用户 (
+	用户编号		NUMBER ,
+	姓名		VARCHAR2(<span class="hljs-number">20</span>) ,
+	联系电话	VARCHAR2(<span class="hljs-number">20</span>) ,
+	<span class="hljs-function">email		<span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_用户编号 PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(用户编号)</span></span>
+<span class="hljs-function">) </span>;</code></pre>
+
+<p>而此设计每一个字段无法再进行划分，所以该设计属于第一设计范式的要求。</p>
+<p>对于第一设计范式，需要注意的是：</p>
+<ul>
+<li><p>再中国姓名就是姓名，而国外飞鸟为姓（firstName）名（lastName）</p>
+</li>
+<li><p>在设计的时候应该尽量使用数据库支持的几种数据类型（字符串、数字、日期、大文本），不要将日期拆分为独立的年、月、日来保存，例如：</p>
+<pre><code class="hljs java">CREATE TABLE 用户 (
+	用户编号		NUMBER ,
+	姓名		VARCHAR2(<span class="hljs-number">20</span>) ,
+	生日_年		NUMBER(<span class="hljs-number">4</span>) ,
+	生日_月		NUMBER(<span class="hljs-number">2</span>)  ,
+	生日_日		NUMBER(<span class="hljs-number">2</span>)  ,
+	<span class="hljs-function">email		<span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> ,</span>
+<span class="hljs-function">	CONSTRAINT pk_用户编号 PRIMARY <span class="hljs-title">KEY</span><span class="hljs-params">(用户编号)</span></span>
+<span class="hljs-function">) </span>;					<span class="hljs-comment">//这样设计很不好！</span></code></pre>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>第二设计范式</p>
+<p>设计原则：数据表中不存在非关键字段对于任一候选关键字的部分函数依赖。</p>
+<p>理解：</p>
+<ul>
+<li>函数关系</li>
+</ul>
+<pre><code class="hljs java">CREATE TABLE 订单 (
+	订单编号		NUMBER ,
+	订单日期		DATE ,
+	商品单价		NUMBER ,
+	商品数量		NUMBER ,
+	商品总价 		NUMBER
+) ;</code></pre>
+
+<p>这个时候，这些字段之间彼此存在有函数依赖关系：“商品总价 = 商品数量 * 商品总价”，所以这是不符合第二设计范式的</p>
+<ul>
+<li>函数依赖：不同的字段可以得到相同或者不同的结果</li>
+</ul>
+</li>
+</ol>
+<p>   再例如：</p>
+<p>   一个学生可以选择参加多门课程，一门课程可以有多个学生参加，并且每个学生参加完每个课程都有一个自己的考试成绩。</p>
+<p>   如果此时按照第一范式设计，其设计如下：</p>
+   <pre><code class="hljs java">CREATE TABLE 学生选课 (
+	学生编号	NUMBER  PRIMARY KEY 
+	学生姓名	VARCHAR2(<span class="hljs-number">50</span>),
+	学生年龄	NUMBER ,
+	课程名称	VARCHAR2(<span class="hljs-number">50</span>) ,
+	课程学分	NUMBER ,
+	考试成绩	NUMBER
+) ;				<span class="hljs-comment">//符合第一设计范式</span></code></pre>
+
+<p>   插入信息：</p>
+   <pre><code class="hljs java">INSERT INTO 学生选课  VALUES (<span class="hljs-number">1</span>,<span class="hljs-string">'张三'</span>,<span class="hljs-number">18</span>,<span class="hljs-string">'oracle'</span>,<span class="hljs-number">2</span>,<span class="hljs-number">89</span>) ;
+INSERT INTO 学生选课  VALUES (<span class="hljs-number">2</span>,<span class="hljs-string">'李四'</span>,<span class="hljs-number">17</span>,<span class="hljs-string">'java'</span>,<span class="hljs-number">3</span>,<span class="hljs-number">69</span>) ;
+INSERT INTO 学生选课  VALUES (<span class="hljs-number">1</span>,<span class="hljs-string">'张三'</span>,<span class="hljs-number">18</span>,<span class="hljs-string">'java'</span>,<span class="hljs-number">3</span>,<span class="hljs-number">79</span>) ;</code></pre>
+
+<p>   而此时，使用第一设计范式的时候，会出现以下几个问题：</p>
+<ul>
+<li><p>无法确认主键，因为一个学生可以选择多门课程</p>
+</li>
+<li><p>数据冗余（重复），因为一个课程的名称是不会被改变的，学分信息也是一样的</p>
+</li>
+<li><p>数据更新麻烦，当某一门课程的学分要更新之后，所影响到的数据行有N行</p>
+</li>
+<li><p>如果一门课程没有一个人选择，那么这门课程就彻底消失了</p>
+<p>所以此时是一个多对多的处理关系</p>
+<p>设计改进如下： </p>
+<pre><code class="hljs java">CREATE TABLE 学生(
+	学生ID	NUMBER PRIMARY KEY ,
+	学生姓名	VARCHAR2(<span class="hljs-number">20</span>) ,
+	学生年龄	NUMBER 
+) ;
+
+CREATE TABLE 课程(
+	课程ID	 NUMBER	PRIMARY KEY ,
+	课程名称	VARCHAR2(<span class="hljs-number">50</span>) ,
+	课程学分	NUMBER 
+) ;
+
+CREATE TABLE 学生选课(
+	学生ID	 NUMBER REFERENCES 学生(学生ID) ,
+	课程ID	 NUMBER REFERENCES 课程(课程ID) ,
+	成绩		NUMBER
+) ;</code></pre>
+
+<p>如果需要修改什么信息，就修改对应的表信息即可。</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>第三设计范式</p>
+<p>设计原则：数据表之中，不存在非关键字段对任意候选关键字段的传递函数依赖。而实际上，传递函数依赖就好比层级关系表一样</p>
+<p>如果采用第一设计范式进行数据表的设计，那么就有如下的结构</p>
+<table>
+<thead>
+<tr>
+<th align="center">姓名</th>
+<th align="center">工资</th>
+<th align="center">部门名称</th>
+<th align="center">部门位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SIMITH</td>
+<td align="center">800.0</td>
+<td align="center">ACCOUNTGING</td>
+<td align="center">NEWYORK</td>
+</tr>
+</tbody></table>
+<p>这个时候：（雇员编号）—&gt; 部门名称 —&gt; 部门位置，所以这样的设计就不符合于第三设计范式</p>
+<p>例如：</p>
+<p>现在需要设计一个学生和学校关系的数据库，很明显，一个学校会有多个学生</p>
+<pre><code class="hljs java">
+CREATE TABLE 学校-学生 (
+	学校ID	NUMBER PRIMARY KEY ,
+	学校名称	VARCHAR2(<span class="hljs-number">50</span>) ,
+	学校地址	VARCHAR2(<span class="hljs-number">50</span>) ,
+	学生姓名	VARCHAR2(<span class="hljs-number">50</span>) ,
+	学生年龄	NUMBER
+) ;</code></pre>
+
+<p>此为第一设计范式，会有以下问题：</p>
+<ul>
+<li>如果学生数量太多，那么学校名称会重复很多次，如果学校更名，此数据量是非常大的</li>
+</ul>
+</li>
+</ol>
+<p>   使用第三设计范式：</p>
+   <pre><code class="hljs java">CREATE TABLE 学校 (
+	学校ID	NUMBER PRIMARY KEY ,
+	学校名称	VARCHAR2(<span class="hljs-number">50</span>) ,
+	学校地址	VARCHAR2(<span class="hljs-number">50</span>)
+) ;
+
+CREATE TABLE 学生 (
+	学生ID	NUMBER PRIMARY KEY ,
+	学生姓名	VARCHAR2(<span class="hljs-number">50</span>) ,
+	学生年龄	NUMBER ,
+	学校ID	NUMBER REFERENCES 学校(学校ID)
+) ;</code></pre>
+
+<p>   这一过程属于一个一对多的设计方案</p>
+<p>总结：</p>
+<p>第一范式就是单表设计原则，第二范式就是多对多关系，第三范式就是一对多关系</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/07/ajax/">
+                        <span class="hidden-mobile">ajax</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Oracle&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
