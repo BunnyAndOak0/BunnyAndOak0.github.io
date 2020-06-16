@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>PLSQL编程语言 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>BunnyAndOak0</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-06-16 12:59">
+                    June 16, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    2k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    28
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 align=center>PL/SQL编程语言</h1>
+
+<h2 id="SQL的语法变量"><a href="#SQL的语法变量" class="headerlink" title="SQL的语法变量"></a>SQL的语法变量</h2><p>plsql定义：在数据库服务器上保存的大段的可执行方法，供其他的开发人员进行调用</p>
+<p>语法：</p>
+<pre><code class="hljs java">[declare] --定义部分：变量，引用变量，记录型变量，异常
+    begin			<span class="hljs-comment">//必须写</span>
+ [exception]  --需要捕获异常时写上
+    end				<span class="hljs-comment">//必须写</span></code></pre>
+
+<p>例如：</p>
+<p>定义一个number变量，定义PI常量，定义记录型变量，定义应用型变量</p>
+<p>（没有++、——这样的写法）</p>
+<pre><code class="hljs java">declare
+    i number := <span class="hljs-number">1</span>;			<span class="hljs-comment">//:=进行赋值（定义变量）</span>
+	PI constant number := <span class="hljs-number">3.14</span>;		<span class="hljs-comment">//constant表示常量（定义常量）</span>
+	pemp emp%rowtype;			<span class="hljs-comment">//定义一个记录型变量</span>
+	pname emp.ename%type;		<span class="hljs-comment">//引用型变量</span>
+ 	<span class="hljs-function">pjob <span class="hljs-title">VARCHAR2</span><span class="hljs-params">(<span class="hljs-number">50</span>)</span></span>;
+begin
+    DBMS_OUTPUT.PUT_LINE(i);
+	DBMS_OUTPUT.PUT_LINE(PI);
+	SELECT * INTO pemp FROM emp WHERE empno = <span class="hljs-number">7499</span>;
+  	DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'员工编号：'</span> || pemp.empno || <span class="hljs-string">',     员工姓名：'</span> || pemp.ename);
+	SELECT ename INTO pname FROM emp WHERE empno = <span class="hljs-number">7499</span>;
+  DBMS_OUTPUT.PUT_LINE(pname);
+	SELECT job INTO pjob FROM emp WHERE empno = <span class="hljs-number">7499</span>;
+  DBMS_OUTPUT.PUT_LINE(pjob);
+	
+end;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-number">2</span>
+<span class="hljs-number">3.14</span>
+员工编号：<span class="hljs-number">7499</span>, 员工姓名：ALLEN
+ALLEN
+SALESMAN</code></pre>
+
+
+
+<h2 id="if分支"><a href="#if分支" class="headerlink" title="if分支"></a>if分支</h2><pre><code class="hljs java"><span class="hljs-comment">//if判断分支语句</span>
+begin 
+    <span class="hljs-keyword">if</span> 判断语句 then
+    elsif 判断语句 then		<span class="hljs-comment">//注意是“elsif”</span>
+    <span class="hljs-keyword">else</span>
+    end <span class="hljs-keyword">if</span>;
+end;</code></pre>
+
+<p>例如：</p>
+<p>从控制台出入一个数字。如果是1，就输出我是1</p>
+<p>(PLSQL中没有==，等于是“:=”)</p>
+<pre><code class="hljs java">DECLARE 
+  age NUMBER := &amp;age;
+BEGIN
+  IF age = <span class="hljs-number">1</span> then
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'我是'</span> || age);
+  ELSE
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'我不是1'</span>);
+  END IF;
+END;</code></pre>
+
+<pre><code class="hljs java">我是<span class="hljs-number">1</span>      <span class="hljs-comment">//   我是不是1</span></code></pre>
+
+<p>如果输出的年龄在18岁一下，输出未成年人，18~40，成年人；40以上，老年人</p>
+<pre><code class="hljs java">DECLARE
+  age NUMBER := &amp;age;
+BEGIN
+  IF age &lt; <span class="hljs-number">18</span> THEN
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'未成年人'</span>);
+  ELSIF age &gt;= <span class="hljs-number">18</span> AND age &lt; <span class="hljs-number">40</span> THEN
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'成年人'</span>);
+  ELSE
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'老年人'</span>);
+  END IF;
+END;</code></pre>
+
+<pre><code class="hljs java">未成年人 | 成年人 | 老年人</code></pre>
+
+
+
+<h2 id="loop循环"><a href="#loop循环" class="headerlink" title="loop循环"></a>loop循环</h2><p>相当于for循环</p>
+<p>语法一：</p>
+<pre><code class="hljs java">begin:
+	<span class="hljs-keyword">while</span> 循环条件 loop
+    end loop;
+end;</code></pre>
+
+<p>语法二：（常用）</p>
+<pre><code class="hljs java">begin
+    loop
+    	exit when 退出条件
+    end loop;
+end;</code></pre>
+
+<p>语法三：</p>
+<pre><code class="hljs java">begin
+    <span class="hljs-keyword">for</span> i in <span class="hljs-number">1</span>..<span class="hljs-number">10</span> loop
+    end loop;
+end;</code></pre>
+
+<p>例如：</p>
+<p>语法一：在控制台输出1-10：</p>
+<pre><code class="hljs java">DECLARE 
+  i NUMBER := <span class="hljs-number">1</span>;
+BEGIN
+  WHILE i &lt;= <span class="hljs-number">10</span> LOOP
+    DBMS_OUTPUT.PUT_LINE(i);
+    i := i + <span class="hljs-number">1</span>;
+  END LOOP;
+END;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">5</span>
+<span class="hljs-number">6</span>
+<span class="hljs-number">7</span>
+<span class="hljs-number">8</span>
+<span class="hljs-number">9</span>
+<span class="hljs-number">10</span></code></pre>
+
+<p>语法二：在控制台输出1-10：</p>
+<pre><code class="hljs java">DECLARE
+  i NUMBER := <span class="hljs-number">1</span>;
+BEGIN
+  LOOP
+    EXIT WHEN i &gt; <span class="hljs-number">10</span>;
+      DBMS_OUTPUT.PUT_LINE(i);
+      i := i + <span class="hljs-number">1</span>;
+  END LOOP;
+END;</code></pre>
+
+<p>语法三：在控制台输出1-10：</p>
+<pre><code class="hljs JAVA">BEGIN
+  FOR i IN <span class="hljs-number">1</span>..<span class="hljs-number">10</span> LOOP		<span class="hljs-comment">//for中已经定义</span>
+    DBMS_OUTPUT.PUT_LINE(i);
+  END LOOP;
+END;</code></pre>
+
+
+
+<h2 id="SQL游标（Cursor）"><a href="#SQL游标（Cursor）" class="headerlink" title="SQL游标（Cursor）"></a>SQL游标（Cursor）</h2><p>在PL/SQL中，会用到多条数据，这时就需要用到游标，游标可以存储查询返回的多条数据</p>
+<p>语法：</p>
+<p>CURSOR  游标名 [(参数名  数据类型， 参数名  数据类型, …)]  IS  SELECT   语句;</p>
+<p>例如：</p>
+<pre><code class="hljs java">CURSOR c1 IS SELECT ename FROM emp;</code></pre>
+
+<p>游标的使用步骤：</p>
+<ol>
+<li><p>打开游标：open c1;（打开游标执行查询）</p>
+</li>
+<li><p>取一行游标的值：fetch c1 into pjob;   (取一行到变量中)</p>
+</li>
+<li><p>关闭游标：close  c1;  （关闭游标释放资源）</p>
+</li>
+<li><p>游标的结束方式：exit when c1%notfound</p>
+<p>（上面的pjob必须和emp中的job类型一致）</p>
+</li>
+</ol>
+<p>例如：</p>
+<p>使用游标方式，输出emp表中的员工编号和姓名</p>
+<pre><code class="hljs java">DECLARE
+  pemp emp%rowtype;		<span class="hljs-comment">//定义游标</span>
+  CURSOR c1 IS			<span class="hljs-comment">//定义记录型的变量</span>
+    SELECT * FROM emp;
+BEGIN
+  OPEN C1;		<span class="hljs-comment">//打开游标</span>
+  LOOP
+    FETCH c1
+      INTO pemp;	<span class="hljs-comment">//从游标中取值，取完值后会自动向下移动一步</span>
+    EXIT WHEN c1%notfound;
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'编号为'</span> || pemp.empno || <span class="hljs-string">', 名字为：'</span> || pemp.ename);
+  END LOOP;
+  CLOSE C1;			<span class="hljs-comment">//关闭游标</span>
+END;</code></pre>
+
+<pre><code class="hljs java">员工编号为：<span class="hljs-number">7369</span>, 员工姓名为：SMITH
+员工编号为：<span class="hljs-number">7499</span>, 员工姓名为：ALLEN
+员工编号为：<span class="hljs-number">7521</span>, 员工姓名为：WARD
+员工编号为：<span class="hljs-number">7566</span>, 员工姓名为：JONES
+员工编号为：<span class="hljs-number">7654</span>, 员工姓名为：MARTIN
+    ......</code></pre>
+
+<p>例如：</p>
+<p>按照员工的工种涨工资，总裁1000元，经理800元，其他人员长400元</p>
+<pre><code class="hljs java">DECLARE
+  pemp emp%rowtype;
+  addsal NUMBER;
+  CURSOR c1 IS  
+         SELECT * FROM myemp;
+BEGIN
+  OPEN c1;
+  LOOP
+    EXIT WHEN c1%notfound;
+    FETCH c1 INTO pemp;
+    IF pemp.JOB = <span class="hljs-string">'PRESIDENT'</span> THEN
+      addsal := <span class="hljs-number">1000</span>;
+    ELSIF pemp.JOB = <span class="hljs-string">'MANAGER'</span> THEN
+      addsal := <span class="hljs-number">800</span>;
+    ELSE
+      addsal := <span class="hljs-number">400</span>;
+    END IF;
+    UPDATE myemp SET SAL = SAL + addsal WHERE empno = pemp.empno;
+  END LOOP;
+  COMMIT;
+  CLOSE c1;
+END;</code></pre>
+
+<p>为部门是10的员工涨工资</p>
+<pre><code class="hljs java">DECLARE
+    <span class="hljs-comment">//带了参数的游标</span>
+   <span class="hljs-function">CURSOR <span class="hljs-title">c1</span><span class="hljs-params">(dno myemp.deptno%type)</span> IS SELECT * FROM myemp WHERE deptno </span>= dno;
+   adddeptno myemp%rowtype;
+BEGIN
+    <span class="hljs-comment">//除了此处其他的地方的游标不需要带参数</span>
+   <span class="hljs-function">OPEN <span class="hljs-title">c1</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;
+   LOOP 
+     EXIT WHEN c1%notfound;
+     FETCH c1 INTO adddeptno;
+     UPDATE myemp SET SAL = SAL + <span class="hljs-number">1000</span> WHERE deptno = adddeptno.deptno;
+   END LOOP;
+   COMMIT;
+   CLOSE c1;
+END;</code></pre>
+
+
+
+<h2 id="异常（例外）"><a href="#异常（例外）" class="headerlink" title="异常（例外）"></a>异常（例外）</h2><p>系统定义异常</p>
+<p>no_data_found（没有找到数据）</p>
+<p>too_many_rows（select…into语句匹配多个行）</p>
+<p>zero_divide（被零除）</p>
+<p>value_error（算术或转换错误）</p>
+<p>timeout_on_resource（在等待资源时发生超时）</p>
+<p>others（是最大的异常）</p>
+<p>例如：</p>
+<p>写出被0除的异常</p>
+<pre><code class="hljs java">DECLARE
+  i NUMBER := <span class="hljs-number">1</span>;
+BEGIN
+  i := i / <span class="hljs-number">0</span>;
+  EXCEPTION 
+    WHEN zero_divide THEN
+      DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'分母不能为0'</span>);
+END;</code></pre>
+
+<p>写了exception就一定需要写点什么</p>
+<p> 设置错误的value_error异常</p>
+<pre><code class="hljs java">DECLARE
+      page NUMBER;
+BEGIN
+  page := <span class="hljs-string">'test'</span>;
+  EXCEPTION
+      WHEN value_error THEN
+        DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'算数或转换出错'</span>);
+END;</code></pre>
+
+<p>都可以通过others捕获</p>
+<p>自定义异常</p>
+<p>查询部门编号为40员工（自定义exception）</p>
+<pre><code class="hljs java">DECLARE
+       no_data EXCEPTION;
+       CURSOR emp_cur IS SELECT * FROM emp WHERE empno = <span class="hljs-number">0</span>;
+       pemp emp%rowtype;
+BEGIN
+  OPEN emp_cur;
+  FETCH emp_cur INTO pemp;
+  IF emp_cur%notfound THEN 
+    RAISE no_data;
+  END IF;
+  EXCEPTION 
+    WHEN no_data THEN
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'抛出没有数据的自定义异常！'</span>);
+END;</code></pre>
+
+
+
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>是在大型数据库中，为了完成特定的功能的SQL语句集。</p>
+<p>语法：</p>
+<pre><code class="hljs java">CREATE [or replace] procedure 过程名(参数名字 in | out 类型)
+    AS
+<span class="hljs-comment">//可以加定义</span>
+BEGIN
+END;</code></pre>
+
+<p>例如：</p>
+<p>声明pro_add_sal存储的过程，作用是给指定的员工涨1000工资，并打印出涨前和涨后的工资</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE OR REPLACE PROCEDURE <span class="hljs-title">pro_add_sal</span> <span class="hljs-params">(pno in NUMBER)</span></span>
+<span class="hljs-function">AS </span>
+<span class="hljs-function">       psal NUMBER</span>;
+BEGIN
+  SELECT sal INTO psal FROM myemp WHERE empno = pno;
+  DBMS_OUTPUT.PUT_LINE(psal);
+  UPDATE myemp SET sal = sal + <span class="hljs-number">1000</span> WHERE empno = pno;
+  DBMS_OUTPUT.PUT_LINE(psal + <span class="hljs-number">1000</span>);
+  COMMIT;			<span class="hljs-comment">//进行提交</span>
+END;
+
+BEGIN
+  pro_add_sal(<span class="hljs-number">7499</span>);
+END;</code></pre>
+
+
+
+<h2 id="存储函数"><a href="#存储函数" class="headerlink" title="存储函数"></a>存储函数</h2><p>定义：保存一段可执行的sql语句，方便开发调用过程名</p>
+<p>语法：</p>
+<pre><code class="hljs java">CREATE [OR REPLACE] FUNCTION 方法名 (参数名 in | out 类型) RETURN 参数类型		<span class="hljs-comment">//in的类型可以忽略不写 out必须要写 也可以写引用型类型</span>
+AS
+    定义变量名 类型要和RETURN返回类型一致
+BEGIN
+    RETURN 变量名			<span class="hljs-comment">//必须和前面return的类型一致</span>
+END;</code></pre>
+
+<p>例如：</p>
+<p>声明pro_emp_totalsal存储过程，查询指定员工的年薪</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE OR REPLACE PROCEDURE <span class="hljs-title">emp_totalsal</span><span class="hljs-params">(pno in number, psal OUT NUMBER)</span></span>
+<span class="hljs-function">AS</span>
+<span class="hljs-function">BEGIN</span>
+<span class="hljs-function">  <span class="hljs-title">SELECT</span> <span class="hljs-params">(sal*<span class="hljs-number">12</span>)</span>+<span class="hljs-title">nvl</span><span class="hljs-params">(COMM, <span class="hljs-number">0</span>)</span> INTO psal FROM myemp WHERE empno </span>= pno;
+END;
+
+DECLARE
+  sal NUMBER;
+BEGIN
+emp_totalsal(<span class="hljs-number">7499</span>, sal);
+DBMS_OUTPUT.PUT_LINE(sal);
+END;</code></pre>
+
+<p>声明func_emp_totalsal存储函数，查询指定员工的年薪</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE OR REPLACE FUNCTION <span class="hljs-title">func_emp_totalsal</span><span class="hljs-params">(pno in NUMBER)</span> RETURN NUMBER</span>
+<span class="hljs-function">AS</span>
+<span class="hljs-function">  psal NUMBER</span>;
+BEGIN
+  SELECT (sal*<span class="hljs-number">12</span>)+nvl(COMM, <span class="hljs-number">0</span>) INTO psal FROM myemp WHERE empno = pno;
+  DBMS_OUTPUT.PUT_LINE(psal);
+  RETURN psal;
+END;
+
+
+DECLARE 
+  sal NUMBER;
+BEGIN
+  sal := func_emp_totalsal(<span class="hljs-number">7369</span>);
+  DBMS_OUTPUT.PUT_LINE(sal);
+END;</code></pre>
+
+<p>在select调用存储函数</p>
+<pre><code class="hljs java">SELECT ename, func_emp_dname(deptno) FROM emp;</code></pre>
+
+<p>存储过程和存储函数的区别：</p>
+<ol>
+<li>定义的语法不一样procedure，function</li>
+<li>function有返回值</li>
+<li>function可以在select中进行调用</li>
+<li>存储过程可以通过out类型来返回参数</li>
+</ol>
+<p>java中调用存储函数、存储过程</p>
+<p>调用存储函数</p>
+<p>存储函数：</p>
+<pre><code class="hljs java">--声明func_emp_totalsal存储函数，查询指定员工的年薪
+<span class="hljs-function">CREATE OR REPLACE FUNCTION <span class="hljs-title">func_emp_totalsal</span><span class="hljs-params">(pno in NUMBER)</span> RETURN NUMBER</span>
+<span class="hljs-function">AS</span>
+<span class="hljs-function">  psal NUMBER</span>;
+BEGIN
+  SELECT (sal*<span class="hljs-number">12</span>)+nvl(COMM, <span class="hljs-number">0</span>) INTO psal FROM myemp WHERE empno = pno;
+  DBMS_OUTPUT.PUT_LINE(psal);
+  RETURN psal;
+END;</code></pre>
+
+<p>调用：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span>  <span class="hljs-title">testFunctinnEmpTotalsal</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException</span>&#123;
+		call = connection.prepareCall(<span class="hljs-string">"&#123;? = call func_emp_totalsal(?)&#125;"</span>);		<span class="hljs-comment">//注意&#123;&#125;</span>
+		call.registerOutParameter(<span class="hljs-number">1</span>, OracleTypes.NUMBER);
+		call.setInt(<span class="hljs-number">2</span>, <span class="hljs-number">7499</span>);
+		call.execute();
+		<span class="hljs-keyword">int</span> totalsal = call.getInt(<span class="hljs-number">1</span>);
+		System.out.println(totalsal);
+	&#125;</code></pre>
+
+<p>调用存储过程</p>
+<p>存储过程：</p>
+<pre><code class="hljs java">---声明pro_add_sal存储的过程，作用是给指定的员工涨<span class="hljs-number">1000</span>工资，并打印出涨前和涨后的工资
+<span class="hljs-function">CREATE OR REPLACE PROCEDURE <span class="hljs-title">pro_add_sal</span> <span class="hljs-params">(pno in NUMBER)</span></span>
+<span class="hljs-function">AS </span>
+<span class="hljs-function">       psal NUMBER</span>;
+BEGIN
+  SELECT sal INTO psal FROM myemp WHERE empno = pno;
+  DBMS_OUTPUT.PUT_LINE(psal);
+  UPDATE myemp SET sal = sal + <span class="hljs-number">1000</span> WHERE empno = pno;
+  DBMS_OUTPUT.PUT_LINE(psal + <span class="hljs-number">1000</span>);
+END;</code></pre>
+
+<p>调用：</p>
+<pre><code class="hljs java">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testCallProceduraAddSal</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException</span>&#123;
+	call = connection.prepareCall(<span class="hljs-string">"call pro_add_sal(?)"</span>);
+	call.setInt(<span class="hljs-string">"pno"</span>, <span class="hljs-number">7499</span>);
+	call.execute();
+&#125;</code></pre>
+
+
+
+<h2 id="SQL触发器"><a href="#SQL触发器" class="headerlink" title="SQL触发器"></a>SQL触发器</h2><p>​        满足一定设定的触发条件，立即执行</p>
+<p>语法：</p>
+<pre><code class="hljs java">CREATE [OR REPLACE] TRIGGER 触发器名
+BEFORE | AFTER
+INSERT | UPDATE | DELETE
+ON 表名
+FOR EACH ROW    --:<span class="hljs-keyword">new</span>, :old	<span class="hljs-comment">//表示指向新值或者旧值  for each row是行级触发器</span>
+BEGIN
+END;</code></pre>
+
+<p>例如：</p>
+<p>触发器应用</p>
+<pre><code class="hljs java">CREATE OR REPLACE TRIGGER tri_emp_insert
+BEFORE
+INSERT
+ON myemp
+FOR EACH ROW
+BEGIN
+  SELECT myseq1.nextval INTO :<span class="hljs-keyword">new</span>.empno FROM dual;
+END;</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/15/git/">
+                        <span class="hidden-mobile">git</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "PLSQL编程语言&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
