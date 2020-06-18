@@ -213,26 +213,38 @@
 <li>安装pcre依赖</li>
 </ul>
 <p>进入 /usr/src目录下，并解压</p>
+<font size = '5'>
+
 <pre><code class="hljs java">tar -xvf pcre-<span class="hljs-number">8.37</span>.tar.gz</code></pre>
+
+</font>
 
 <p>TIps：-x 解压     -v：显示详情    -f：指定解压文件    </p>
 <p>进入解压之后的目录，执行./configur</p>
 <p>使用</p>
+<font size = '5'>
+
 <pre><code class="hljs java">make &amp;&amp; make install		<span class="hljs-comment">//进行安装</span>
     <span class="hljs-comment">//可以使用命令  pre-config--version查看版本号</span>
 yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目录的话需要安装</span></code></pre>
 
+</font>
+
 <ul>
 <li><p>安装zlib命令</p>
+<font size = '5'>
+
 <pre><code class="hljs java">yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel 
 <span class="hljs-comment">//可以一键安装四个依赖</span></code></pre>
+
 </li>
 </ul>
+</font>
 </li>
 <li><p>安装nginx</p>
 <ul>
 <li>步骤同上，回到/usr/src目录下</li>
-<li>解压问价</li>
+<li>解压文件</li>
 <li>./configure</li>
 <li>make &amp;&amp; make install 进行安装</li>
 </ul>
@@ -240,10 +252,18 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 </ol>
 <p>安装成功后，在usr中会出现local/nginx，在nginx中，由sbin启动的脚本</p>
 <p>进入</p>
+<font size = '5'>
+
 <pre><code class="hljs java">[root@localhost /]# cd usr/local/nginx/sbin</code></pre>
 
+</font>
+
 <p>启动Nginx：</p>
+<font size = '5'>
+
 <pre><code class="hljs java">/nginx</code></pre>
+
+</font>
 
 <p>关于防火墙</p>
 <blockquote>
@@ -253,29 +273,55 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <p>查看开放的端口号 firewall-cmd –list-all </p>
 </blockquote>
 <h2 id="Nginx常用命令"><a href="#Nginx常用命令" class="headerlink" title="Nginx常用命令"></a>Nginx常用命令</h2><p>使用nginx命令，必须先进入nginx的目录中，也就是</p>
+<font size = '5'>
+
 <pre><code class="hljs java">cd /usr/local/nginx/sbin</code></pre>
 
+</font>
+
 <p>查看nginx版本号</p>
+<font size = '5'>
+
 <pre><code class="hljs java">./nginx -v</code></pre>
 
+</font>
+
 <p>nginx当前状态</p>
+<font size = '5'>
+
 <pre><code class="hljs java">ps -ef | grep nginx</code></pre>
 
+</font>
+
 <p>启动nginx</p>
+<font size = '5'>
+
 <pre><code class="hljs java">./nginx</code></pre>
 
+</font>
+
 <p>关闭nginx</p>
+<font size = '5'>
+
 <pre><code class="hljs java">./nginx -s stop</code></pre>
 
+</font>
+
 <p>重新加载nginx</p>
+<font size = '5'>
+
 <pre><code class="hljs java">./nginx -s reload		<span class="hljs-comment">//不需要重启就可以加载配置文件</span>
 /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf		<span class="hljs-comment">//如果有错误，可以使用这个修复</span></code></pre>
 
-
+</font>
 
 <h2 id="Nginx的配置文件"><a href="#Nginx的配置文件" class="headerlink" title="Nginx的配置文件"></a>Nginx的配置文件</h2><ol>
 <li><p>Nginx的配置文件目录</p>
+<font size = '5'>
+
 <pre><code class="hljs java">[root@localhost /]# cd usr/local/nginx/conf/</code></pre>
+
+</font>
 
 <p>中的nginx.conf</p>
 </li>
@@ -285,7 +331,11 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <li><p>全局块</p>
 <p>设置一些会影响nginx服务器整体运行的配置指令</p>
 <p>例如：</p>
+<font size = '5'>
+
 <pre><code class="hljs java">worker_processes  <span class="hljs-number">1</span>;</code></pre>
+
+</font>
 
 <p>nginx服务器并发处理的关键配置，worker_processes值越大，可以支持的并发处理量也就越多，但是会受硬件和软件的限制</p>
 </li>
@@ -296,9 +346,13 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <li><p>events块</p>
 <p>涉及的指令主要影响nginx服务器与用户的网络连接</p>
 <p>例如：</p>
+<font size = '5'>
+
 <pre><code class="hljs java">events &#123;
     worker_connections  <span class="hljs-number">1024</span>;
 &#125;</code></pre>
+
+</font>
 
 <p>表示nginx支持的连接数，对性能影响很大，应该灵活分配</p>
 </li>
@@ -309,9 +363,13 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <ol>
 <li><p>http全局块</p>
 <p>包含文件引入、MIME-TYPE定义、日志自定义、连接超时时间等等</p>
-<pre><code class="hljs java">include       mime.types;
-    default_type  application/octet-stream;
-		......</code></pre>
+<font size = '5'>
+
+<pre><code class="hljs java"> include       mime.types;
+     default_type  application/octet-stream;
+......</code></pre>
+
+</font>
 </li>
 <li><p>server块</p>
 <p>和虚拟主机有密切的关系</p>
@@ -343,10 +401,16 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <li><p>具体配置（参看）</p>
 <ol>
 <li><p>在 windows 系统的 host 文件进行域名和 ip 对应关系的配置 </p>
-<pre><code class="hljs java"><span class="hljs-comment">//C:\Windows\System32\drivers\etc中的hosts文件添加对应ip</span>
+<font size = '5'>
+
+<pre><code class="hljs java">   <span class="hljs-comment">//C:\Windows\System32\drivers\etc中的hosts文件添加对应ip</span>
 <span class="hljs-number">192.168</span><span class="hljs-number">.56</span><span class="hljs-number">.101</span> www<span class="hljs-number">.123</span>.com</code></pre>
+
+</font>
 </li>
 <li><p>在 nginx 进行请求转发的配置（反向代理配置） </p>
+<font size = '5'>
+
 <pre><code class="hljs java">server &#123;
         listen       <span class="hljs-number">80</span>;
     	<span class="hljs-comment">//配置server_name</span>
@@ -363,12 +427,15 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
             index  index.html index.htm;
         &#125;</code></pre>
 
+</li>
+</ol>
+</li>
+</ol>
+</font>
 
-</li>
-</ol>
-</li>
-</ol>
 <p>实例2：</p>
+<font size = '5'>
+
 <pre><code class="hljs java">server &#123;
         listen       <span class="hljs-number">9001</span>;
     #    listen       somename:8080;
@@ -382,13 +449,19 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
         &#125;
     &#125;</code></pre>
 
+</font>
+
 <p>在location中</p>
+<font size = '5'>
+
 <pre><code class="hljs java">location [= | ~ | ~* | ^~] uri&#123;
     
 &#125;</code></pre>
 
+</font>
+
 <p>说明：</p>
-<p> 1、= ：用于不含正则表达式的 uri 前，要求请求字符串与 uri 严格匹配，如果匹配 成功，就停止继续向下搜索并立即处理该请求。<br>  2、<del>：用于表示 uri 包含正则表达式，并且区分大小写。<br>  3、`</del><em>`：用于表示 uri 包含正则表达式，并且不区分大小写。<br>  4、^~：用于不含正则表达式的 uri 前，要求 Nginx 服务器找到标识 uri 和请求字 符串匹配度最高的 location 后，立即使用此 location 处理请求，而不再使用 location 块中的正则 uri 和请求字符串做匹配。<br>  注意：如果 uri 包含正则表达式，则必须要有 ~ 或者 ~</em> 标识。 </p>
+<p> 1、<code>=</code>：用于不含正则表达式的 uri 前，要求请求字符串与 uri 严格匹配，如果匹配 成功，就停止继续向下搜索并立即处理该请求。<br>  2、<code>~</code>：用于表示 uri 包含正则表达式，并且区分大小写。<br>  3、<code>~*</code>：用于表示 uri 包含正则表达式，并且不区分大小写。<br>  4、<code>^~</code>：用于不含正则表达式的 uri 前，要求 Nginx 服务器找到标识 uri 和请求字 符串匹配度最高的 location 后，立即使用此 location 处理请求，而不再使用 location 块中的正则 uri 和请求字符串做匹配。<br>  注意：如果 uri 包含正则表达式，则必须要有 ~ 或者 ~* 标识。 </p>
 <h2 id="实例：负载均衡"><a href="#实例：负载均衡" class="headerlink" title="实例：负载均衡"></a>实例：负载均衡</h2><p>实现效果：</p>
 <p>浏览器中输入地址，负载均衡效果，将请求平均分配到8080和8081端口中</p>
 <ol>
@@ -397,6 +470,8 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <li><p>两台tomcat都在在webapps中创建文件edu夹，放入相应的页面</p>
 </li>
 <li><p>nginx的配置文件中进行负载均衡的配置</p>
+<font size = '5'>
+
 <pre><code class="hljs java">upstream myserver &#123;
       <span class="hljs-comment">//加上服务器列表</span>
       server <span class="hljs-number">192.168</span><span class="hljs-number">.56</span><span class="hljs-number">.101</span>:<span class="hljs-number">8080</span>;
@@ -415,6 +490,8 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 
 </li>
 </ol>
+</font>
+
 <p>分配策略：</p>
 <ol>
 <li><p>轮询（默认）</p>
@@ -426,34 +503,43 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 </li>
 </ol>
 <p>例如：</p>
+<font size = '5'>
+
 <pre><code class="hljs java">upstream server_pool&#123;    
     server <span class="hljs-number">192.168</span><span class="hljs-number">.5</span><span class="hljs-number">.21</span> weight=<span class="hljs-number">10</span>;     
     server <span class="hljs-number">192.168</span><span class="hljs-number">.5</span><span class="hljs-number">.22</span> weight=<span class="hljs-number">10</span>;     
 &#125;</code></pre>
 
+</font>
+
 <ol start="3">
 <li><p>ip_hash</p>
 <p>每个请求按照访问的ip的hash的结果分配，这样每一个访客固定一个后端服务器，可以解决session共享的问题，不能加weight</p>
 <p>例如：</p>
+</li>
+</ol>
 <pre><code class="hljs java">upstream server_pool&#123;    
     ip_hash;     
     server <span class="hljs-number">192.168</span><span class="hljs-number">.5</span><span class="hljs-number">.21</span>:<span class="hljs-number">80</span>;     
     server <span class="hljs-number">192.168</span><span class="hljs-number">.5</span><span class="hljs-number">.22</span>:<span class="hljs-number">80</span>;     
 &#125;</code></pre>
-</li>
+
+<ol start="4">
 <li><p>fair(第三方)</p>
 <p>按照后端服务器的响应时间来分配请求，响应时间短的优先分配</p>
+<font size = '5'>
+
+</li>
+</ol>
 <pre><code class="hljs java">upstream server_pool&#123;    
     server <span class="hljs-number">192.168</span><span class="hljs-number">.5</span><span class="hljs-number">.21</span>:<span class="hljs-number">80</span>;     
     server <span class="hljs-number">192.168</span><span class="hljs-number">.5</span><span class="hljs-number">.22</span>:<span class="hljs-number">80</span>;     
     fair;     
 &#125;</code></pre>
 
+</font>
 
 
-
-</li>
-</ol>
 <h2 id="实例：动静分离"><a href="#实例：动静分离" class="headerlink" title="实例：动静分离"></a>实例：动静分离</h2><p>​        严格意义上来说，就是把动态请求和静态请求分开，可以理解为使用Nginx处理静态页面，Tomcat处理动态页面。</p>
 <p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/Nginx/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB.PNG" srcset="/img/loading.gif" alt="动静分离"></p>
 <p>有两种方案实现：</p>
@@ -467,6 +553,8 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/Nginx/nginx%E8%B5%84%E6%BA%90.PNG" srcset="/img/loading.gif" alt="nginx资源"></p>
 </li>
 <li><p>在ngxin.conf文件中进行配置</p>
+<font size = '5'>
+
 <pre><code class="hljs java">server &#123;
         listen       <span class="hljs-number">80</span>;
         server_name  <span class="hljs-number">192.168</span><span class="hljs-number">.56</span><span class="hljs-number">.101</span>;
@@ -481,10 +569,10 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
         &#125;
     &#125;</code></pre>
 
-
-
 </li>
 </ol>
+</font>
+
 <h2 id="配置高可用的集群"><a href="#配置高可用的集群" class="headerlink" title="配置高可用的集群"></a>配置高可用的集群</h2><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/Nginx/%E9%AB%98%E5%8F%AF%E7%94%A8.PNG" srcset="/img/loading.gif" alt="高可用"></p>
 <p>​        保证在宕机的情况下，服务器仍然可以正常运行，使用一个虚拟的ip与两台服务器进行绑定，并对外开放，keepalived的作用是相当于一个路由器。</p>
 <ol>
@@ -497,14 +585,20 @@ yum -y install gcc-c++		<span class="hljs-comment">//make后出现未指明目�
 <li><p>下载安装包解压安装</p>
 </li>
 <li><p>用yum命令</p>
+<font size = '5'>
+
 <pre><code class="hljs java">yum install keepalived -y
 rpm -q -a keepalived		<span class="hljs-comment">//查看版本</span></code></pre>
+
+</font>
 
 </li>
 </ul>
 <p>其安装位置在：<code>[root@localhost /]# cd etc/keepalived/</code></p>
 <p>其中：<code>keepalived.conf</code>是配置文件</p>
 <p>修改其中配置</p>
+<font size = '5'>
+
 <pre><code class="hljs java">global_defs &#123;
  notification_email &#123;
 	 acassen<span class="hljs-meta">@firewall</span>.loc
@@ -536,7 +630,11 @@ vrrp_instance VI_1 &#123;
  &#125;
 &#125;</code></pre>
 
+</font>
+
 <p>脚本文件script “/usr/local/src/nginx_check.sh”           注意路径，用于检测nginx是否还或者</p>
+<font size = '5'>
+
 <pre><code class="hljs java">#!/bin/bash
 A=`ps -C nginx –no-header |wc -l`
 <span class="hljs-keyword">if</span> [ $A -eq <span class="hljs-number">0</span> ];then
@@ -546,20 +644,30 @@ A=`ps -C nginx –no-header |wc -l`
  killall keepalived
  fi
 fi</code></pre>
+
+</font>
 </li>
 <li><p>将两台服务器上的nginx和keepalived都启动起来</p>
 <p>启动keepalived：</p>
+<font size = '5'>
+
 <pre><code class="hljs java">systemctl start keepalived.service</code></pre>
 
+</font>
+
 <p>查看是否启动</p>
+<font size = '5'>
+
 <pre><code class="hljs java">ps -ef | grep keepalived</code></pre>
 
-
+</font>
 
 
 </li>
 </ol>
 <h2 id="高可用配置信息的详细解释"><a href="#高可用配置信息的详细解释" class="headerlink" title="高可用配置信息的详细解释"></a>高可用配置信息的详细解释</h2><p>全局配置</p>
+<font size = '5'>
+
 <pre><code class="hljs java">global_defs &#123;
  notification_email &#123;
 	 acassen<span class="hljs-meta">@firewall</span>.loc
@@ -572,14 +680,22 @@ fi</code></pre>
  router_id LVS_DEVEL	#访问到主机
 &#125;</code></pre>
 
+</font>
+
 <p>检测脚本配置</p>
+<font size = '5'>
+
 <pre><code class="hljs java">vrrp_script chk_http_port &#123;
  script <span class="hljs-string">"/usr/local/src/nginx_check.sh"</span>
  interval 2 #（检测脚本执行的间隔）
  weight <span class="hljs-number">2</span>
 &#125;</code></pre>
 
+</font>
+
 <p>虚拟ip</p>
+<font size = '5'>
+
 <pre><code class="hljs java">vrrp_instance VI_1 &#123;
  state BACKUP # 备份服务器上将 MASTER 改为 BACKUP
  <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">enp0s3</span> //网卡</span>
@@ -595,7 +711,7 @@ fi</code></pre>
  &#125;
 &#125;</code></pre>
 
-
+</font>
 
 <h2 id="Nginx原理"><a href="#Nginx原理" class="headerlink" title="Nginx原理"></a>Nginx原理</h2><p><img src="https://github.com/BunnyAndOak0/IMG/raw/master/images/Nginx/Nginx%E5%8E%9F%E7%90%86%E5%9B%BE.PNG" srcset="/img/loading.gif" alt="nginx原理图"></p>
 <p>worker工作示示意图</p>
